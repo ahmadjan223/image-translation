@@ -1,0 +1,445 @@
+{
+    "attributes": [
+        {
+            "attributeId": 3216,
+            "name": "Color",
+            "values": [
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-17.webp",
+                    "selectionId": "3216_1",
+                    "value": "Oj24 black (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-18.webp",
+                    "selectionId": "3216_2",
+                    "value": "Oj24 red (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-19.webp",
+                    "selectionId": "3216_3",
+                    "value": "Oj24 blue (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-20.webp",
+                    "selectionId": "3216_4",
+                    "value": "Oj24 fluorescent green (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-21.webp",
+                    "selectionId": "3216_5",
+                    "value": "Bsst20 black (full finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-22.webp",
+                    "selectionId": "3216_6",
+                    "value": "Bsst20 red (full finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-23.webp",
+                    "selectionId": "3216_7",
+                    "value": "Bsst20 gray (full finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-24.webp",
+                    "selectionId": "3216_8",
+                    "value": "Bsst49 black (two fingers exposed) [material upgrade to export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-25.webp",
+                    "selectionId": "3216_9",
+                    "value": "Bsst49 red (two fingers exposed) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-26.webp",
+                    "selectionId": "3216_10",
+                    "value": "Bsst49 gray (two fingers exposed) [material upgrade to export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-27.webp",
+                    "selectionId": "3216_11",
+                    "value": "Bsst50 green (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-28.webp",
+                    "selectionId": "3216_12",
+                    "value": "Bsst50 black (half finger) [material upgrade export quality]"
+                },
+                {
+                    "imageUrl": "https://media.public.markaz.app/public/products/679766833879-29.webp",
+                    "selectionId": "3216_13",
+                    "value": "Bsst50 purple (half finger) [material upgrade export quality]"
+                }
+            ]
+        },
+        {
+            "attributeId": 450,
+            "name": "Size",
+            "values": [
+                {
+                    "selectionId": "450_1",
+                    "value": "M"
+                },
+                {
+                    "selectionId": "450_2",
+                    "value": "L"
+                },
+                {
+                    "selectionId": "450_3",
+                    "value": "XL"
+                }
+            ]
+        }
+    ],
+    "combinationIndexes": [
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-17.webp",
+            "price": 1395,
+            "selectionKey": "3216_1|450_1",
+            "skuId": 5873551993128,
+            "specId": "61e1122e02ba70fff6b0b60faec909f0",
+            "stock": 999688
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-17.webp",
+            "price": 1395,
+            "selectionKey": "3216_1|450_2",
+            "skuId": 5873551993138,
+            "specId": "c3de4a936f58ce84a7c9ed04f1023e25",
+            "stock": 999718
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-17.webp",
+            "price": 1395,
+            "selectionKey": "3216_1|450_3",
+            "skuId": 5873551993148,
+            "specId": "1ff23182f15f1993eb81abdce5e00bbb",
+            "stock": 999697
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-18.webp",
+            "price": 1395,
+            "selectionKey": "3216_2|450_1",
+            "skuId": 5873551993129,
+            "specId": "3c7aae9ae28263c71abf928298e42557",
+            "stock": 999905
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-18.webp",
+            "price": 1395,
+            "selectionKey": "3216_2|450_2",
+            "skuId": 5873551993139,
+            "specId": "a85705b182b8dde50e7461c729a0fe02",
+            "stock": 999944
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-18.webp",
+            "price": 1395,
+            "selectionKey": "3216_2|450_3",
+            "skuId": 5873551993149,
+            "specId": "1aec79895f202d2380283f4f3c2e1522",
+            "stock": 999963
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-19.webp",
+            "price": 1395,
+            "selectionKey": "3216_3|450_1",
+            "skuId": 5873551993130,
+            "specId": "0624a054ab9f4a984dbe391596cc4a8c",
+            "stock": 999950
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-19.webp",
+            "price": 1395,
+            "selectionKey": "3216_3|450_2",
+            "skuId": 5873551993140,
+            "specId": "a6f697adffdf62e29c5252ce54a80006",
+            "stock": 999970
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-19.webp",
+            "price": 1395,
+            "selectionKey": "3216_3|450_3",
+            "skuId": 5873551993150,
+            "specId": "39a72c6efc1a5f7b02abf9712f1b6797",
+            "stock": 999969
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-20.webp",
+            "price": 1395,
+            "selectionKey": "3216_4|450_1",
+            "skuId": 5873551993131,
+            "specId": "4a5245712037ca8d03654ffc6b0641ce",
+            "stock": 999968
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-20.webp",
+            "price": 1395,
+            "selectionKey": "3216_4|450_2",
+            "skuId": 5873551993141,
+            "specId": "b0cf65f12211e9b3903a771298069f85",
+            "stock": 999952
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-20.webp",
+            "price": 1395,
+            "selectionKey": "3216_4|450_3",
+            "skuId": 5873551993151,
+            "specId": "cfd6d8dbfc2fbd6f3be9aa81c0c16d90",
+            "stock": 999968
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-21.webp",
+            "price": 1485,
+            "selectionKey": "3216_5|450_1",
+            "skuId": 6030987927901,
+            "specId": "0c7e9172894b5dad8552fe1ec17cea24",
+            "stock": 998974
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-21.webp",
+            "price": 1485,
+            "selectionKey": "3216_5|450_2",
+            "skuId": 6030987927908,
+            "specId": "69c4dd9e025dc52c7bc7618fa1747740",
+            "stock": 999608
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-21.webp",
+            "price": 1485,
+            "selectionKey": "3216_5|450_3",
+            "skuId": 6030987927915,
+            "specId": "0009faf2778d45e8499dde524022128d",
+            "stock": 999619
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-22.webp",
+            "price": 1485,
+            "selectionKey": "3216_6|450_1",
+            "skuId": 6030987927902,
+            "specId": "41bbc4d4d183544a99ba515f8a0efde7",
+            "stock": 999906
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-22.webp",
+            "price": 1485,
+            "selectionKey": "3216_6|450_2",
+            "skuId": 6030987927909,
+            "specId": "a3a4ac949e45b1a6f576ec80f01c0742",
+            "stock": 999908
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-22.webp",
+            "price": 1485,
+            "selectionKey": "3216_6|450_3",
+            "skuId": 6030987927916,
+            "specId": "6697c826ff3de3137c785d30482b7f62",
+            "stock": 999904
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-23.webp",
+            "price": 1485,
+            "selectionKey": "3216_7|450_1",
+            "skuId": 6030987927903,
+            "specId": "490837d4f90cbaefeaf2d1dde61ee455",
+            "stock": 999917
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-23.webp",
+            "price": 1485,
+            "selectionKey": "3216_7|450_2",
+            "skuId": 6030987927910,
+            "specId": "5d302f7c1958529b087fc5b70afdc8fc",
+            "stock": 999860
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-23.webp",
+            "price": 1485,
+            "selectionKey": "3216_7|450_3",
+            "skuId": 6030987927917,
+            "specId": "ee8d5128dde18f8c066eb772b5cb9596",
+            "stock": 999891
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-24.webp",
+            "price": 1445,
+            "selectionKey": "3216_8|450_1",
+            "skuId": 5873551993134,
+            "specId": "5f8b2585d82f0fc61aa8681b8170ce1a",
+            "stock": 999997
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-24.webp",
+            "price": 1445,
+            "selectionKey": "3216_8|450_2",
+            "skuId": 5873551993144,
+            "specId": "fa4ca9254d1d0f1fc2aaebf22040a986",
+            "stock": 999999
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-24.webp",
+            "price": 1445,
+            "selectionKey": "3216_8|450_3",
+            "skuId": 5873551993154,
+            "specId": "d7412099c98075671c7bdb5345417d0f",
+            "stock": 999999
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-25.webp",
+            "price": 1445,
+            "selectionKey": "3216_9|450_1",
+            "skuId": 5873551993132,
+            "specId": "11288f021cd4400bf04a190efc81f823",
+            "stock": 999996
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-25.webp",
+            "price": 1445,
+            "selectionKey": "3216_9|450_2",
+            "skuId": 5873551993142,
+            "specId": "844d9a42ebedd15f96957919c3ffd836",
+            "stock": 999997
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-25.webp",
+            "price": 1445,
+            "selectionKey": "3216_9|450_3",
+            "skuId": 5873551993152,
+            "specId": "94777e83345de45c561c1c267682f1ca",
+            "stock": 999998
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-26.webp",
+            "price": 1445,
+            "selectionKey": "3216_10|450_1",
+            "skuId": 5873551993133,
+            "specId": "de6e7a44295c4539f0ca5fef644b35df",
+            "stock": 999996
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-26.webp",
+            "price": 1445,
+            "selectionKey": "3216_10|450_2",
+            "skuId": 5873551993143,
+            "specId": "bd6f84ab38c54b5f77c8209db7b3fcf4",
+            "stock": 999999
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-26.webp",
+            "price": 1445,
+            "selectionKey": "3216_10|450_3",
+            "skuId": 5873551993153,
+            "specId": "201493362b29ed8ac8d253ae3fe252b0",
+            "stock": 999999
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-27.webp",
+            "price": 1395,
+            "selectionKey": "3216_11|450_1",
+            "skuId": 5873551993135,
+            "specId": "770abea22f08242a26cc4e6b1cc4448f",
+            "stock": 999999
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-27.webp",
+            "price": 1395,
+            "selectionKey": "3216_11|450_2",
+            "skuId": 5873551993145,
+            "specId": "3a1900d3595087c7b4c5e84807764122",
+            "stock": 999997
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-27.webp",
+            "price": 1395,
+            "selectionKey": "3216_11|450_3",
+            "skuId": 5873551993155,
+            "specId": "89548288d5126495398afe46ba5b2fe4",
+            "stock": 999998
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-28.webp",
+            "price": 1395,
+            "selectionKey": "3216_12|450_1",
+            "skuId": 5873554593991,
+            "specId": "05168bb6d5e5a3946a41cb466836b0ce",
+            "stock": 999792
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-28.webp",
+            "price": 1395,
+            "selectionKey": "3216_12|450_2",
+            "skuId": 5873554593992,
+            "specId": "8e9dccd69ff0ba6cd435904eebd5ec94",
+            "stock": 999992
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-28.webp",
+            "price": 1395,
+            "selectionKey": "3216_12|450_3",
+            "skuId": 5873554593993,
+            "specId": "c85113d13cf60aa6a3654f02007c20d9",
+            "stock": 999995
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-29.webp",
+            "price": 1395,
+            "selectionKey": "3216_13|450_1",
+            "skuId": 5873551993136,
+            "specId": "4b2d91ed9255194aa87e988325153f77",
+            "stock": 999997
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-29.webp",
+            "price": 1395,
+            "selectionKey": "3216_13|450_2",
+            "skuId": 5873551993146,
+            "specId": "0b749aed532ae7a6fc71f8ffbed036f6",
+            "stock": 999997
+        },
+        {
+            "imageUrl": "https://media.public.markaz.app/public/products/679766833879-29.webp",
+            "price": 1395,
+            "selectionKey": "3216_13|450_3",
+            "skuId": 5873551993156,
+            "specId": "5cee8d60c003990912795dc661da6746",
+            "stock": 999999
+        }
+    ],
+    "defaultSelectionKey": "3216_1|450_1",
+    "deliveryCharges": {
+        "deliveryCharges": 99.0,
+        "minDeliveryCharges": 99.0
+    },
+    "description": "<div id=\"offer-template-0\"></div><div style=\"width: 790.0px;\">\r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01eFQrMV2FifWUH2Rw2_!!2211682888914-0-cib.jpg\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_0\"/>\r\n        \r\n        \r\n    \r\n        <div style=\"display: none;\" class=\"sdmap-dynamic-offer-list\">{&quot;styleType&quot;:&quot;offer-type-1&quot;,&quot;items&quot;:&quot;669498468388,700407352258,711035078240,775881120689,707877229724,716436342388,705995095244,703726034123,647794226114&quot;,&quot;usemap&quot;:&quot;_sdmap_1&quot;}</div>\r\n         <img class=\"dynamic-backup-img\" src=\"https://cbu01.alicdn.com/img/ibank/O1CN01WlrlaJ1qqa3QuSw2i_!!6000000005547-0-cib.jpg\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_1\" title=\"预览状态下无法点击，发布后，可点击跳转到对应的商品页面\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01z59yGI2FifP9B3IsF_!!2211682888914-0-cib.jpg?__r__=1693883778216\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_2\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01aKAsTF2FifP9B2ELc_!!2211682888914-0-cib.jpg?__r__=1693883778216\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_3\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN016evewJ2FifP9Jjvme_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_4\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01DZdC5N2FifPBYQiTm_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_5\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01xM5PqW2FifP9BXvOm_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_6\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01s9BArQ2FifPE3DON9_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_7\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01v2akE92FifPCEFNwf_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_8\"/>\r\n        \r\n        \r\n    \r\n        \r\n         <img src=\"https://cbu01.alicdn.com/img/ibank/O1CN01OYq9cZ2FifP5NzYpz_!!2211682888914-0-cib.jpg?__r__=1693883778217\" style=\"display: block;width: 100.0%;height: auto;\" usemap=\"#_sdmap_9\"/>\r\n        \r\n        \r\n    </div>",
+    "favoriteCount": 0,
+    "id": 679766833879,
+    "isFavorite": false,
+    "media": {
+        "images": [
+            "https://media.public.markaz.app/public/products/679766833879-17.webp",
+            "https://media.public.markaz.app/public/products/679766833879-18.webp",
+            "https://media.public.markaz.app/public/products/679766833879-19.webp",
+            "https://media.public.markaz.app/public/products/679766833879-20.webp",
+            "https://media.public.markaz.app/public/products/679766833879-21.webp",
+            "https://media.public.markaz.app/public/products/679766833879-22.webp",
+            "https://media.public.markaz.app/public/products/679766833879-23.webp",
+            "https://media.public.markaz.app/public/products/679766833879-24.webp",
+            "https://media.public.markaz.app/public/products/679766833879-25.webp",
+            "https://media.public.markaz.app/public/products/679766833879-26.webp",
+            "https://media.public.markaz.app/public/products/679766833879-27.webp",
+            "https://media.public.markaz.app/public/products/679766833879-28.webp",
+            "https://media.public.markaz.app/public/products/679766833879-29.webp",
+            "https://media.public.markaz.app/public/products/679766833879-1.webp",
+            "https://media.public.markaz.app/public/products/679766833879-2.webp",
+            "https://media.public.markaz.app/public/products/679766833879-3.webp",
+            "https://media.public.markaz.app/public/products/679766833879-4.webp",
+            "https://media.public.markaz.app/public/products/679766833879-5.webp"
+        ],
+        "videos": [
+            "https://cloud.video.taobao.com/play/u/2211682888914/p/1/e/6/t/1/397218037870.mp4"
+        ],
+        "whiteImage": "https://media.public.markaz.app/public/thumbnails/679766833879.webp"
+    },
+    "name": "Wholesale Sports Gloves Half-Finger Extended Outdoor Mountaineering and Cycling Breathable Training Autumn and Winter New Fitness Gloves for Men and Women",
+    "price": 1395,
+    "soldOut": "3424"
+}
