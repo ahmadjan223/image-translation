@@ -1,0 +1,8 @@
+paddleocr
+paddlepaddle
+opencv-python-headless
+pillow
+simple-lama-inpainting
+google-genai
+numpy
+matplotlib
