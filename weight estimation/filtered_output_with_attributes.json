@@ -1,0 +1,76 @@
+[
+    {
+        "id": "694bc79ae4695545ca636d6b",
+        "categoryId": 124264005,
+        "subjectTrans": "Nurse Watch with Easy-Pull Buckle, Student Cartoon Style, Women's Retractable Pocket Watch, Portable Luminous Cross-Border Supply Watch",
+        "Product info": {
+            "length": null,
+            "weight": null,
+            "height": null,
+            "width": null,
+            "aiWeight": null
+        },
+        "skus": [
+            {
+                "skuId": "5694259412173",
+                "skuAttributes": [
+                    {
+                        "attributeId": 3216,
+                        "attributeName": "Color",
+                        "value": "M109 hook model--free white box"
+                    }
+                ],
+                "length": 11,
+                "weight": 0.046,
+                "height": 2,
+                "width": 4.6,
+                "aiWeight": null
+            },
+            {
+                "skuId": "5694259412174",
+                "skuAttributes": [
+                    {
+                        "attributeId": 3216,
+                        "attributeName": "Color",
+                        "value": "M109 hook style--color gift box"
+                    }
+                ],
+                "length": 11.6,
+                "weight": 0.068,
+                "height": 2.3,
+                "width": 6.1,
+                "aiWeight": null
+            },
+            {
+                "skuId": "5694259412175",
+                "skuAttributes": [
+                    {
+                        "attributeId": 3216,
+                        "attributeName": "Color",
+                        "value": "M109 clip model--free white box"
+                    }
+                ],
+                "length": 11,
+                "weight": 0.046,
+                "height": 2,
+                "width": 4.6,
+                "aiWeight": null
+            },
+            {
+                "skuId": "5694259412176",
+                "skuAttributes": [
+                    {
+                        "attributeId": 3216,
+                        "attributeName": "Color",
+                        "value": "M109 clip style--color gift box"
+                    }
+                ],
+                "length": 11.6,
+                "weight": 0.068,
+                "height": 2.3,
+                "width": 6.1,
+                "aiWeight": null
+            }
+        ]
+    }
+]
