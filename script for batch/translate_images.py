@@ -22,12 +22,20 @@ Requirements:
 """
 
 import os
+
+# Fix threading conflicts that cause crashes during OCR prediction
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
 import sys
 import json
 import glob
 import argparse
 import math
 import re
+import shutil
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Any
 
@@ -149,6 +157,7 @@ class ImageTranslator:
     
     def detect_chinese_text(self, image_path: str) -> Tuple[List[Dict], str]:
         """Detect Chinese text in image and return OCR results"""
+        print(f"   🔍 Step 1: Loading image and running OCR...")
         img_bgr = self.load_image_to_bgr(image_path)
         
         # Save temp image for OCR
@@ -157,24 +166,54 @@ class ImageTranslator:
         cv2.imwrite(fed_path, img_bgr)
         
         # Run OCR
+        print(f"   📖 Running OCR on {os.path.basename(image_path)}...")
         outputs = self.ocr.predict(fed_path)
         
-        # Parse OCR results
-        if not outputs or not outputs[0]:
+        # Process OCR results like in the notebook
+        if not outputs:
+            print(f"   ⚠️ OCR returned no results")
             return [], fed_path
         
-        ocr_data = outputs[0].__dict__
+        # Save outputs to JSON and reload (matches notebook approach)
+        temp_json_dir = os.path.join(temp_dir, "temp_ocr_json")
+        os.makedirs(temp_json_dir, exist_ok=True)
+        
+        # Save each result to JSON
+        for res in outputs:
+            res.save_to_json(temp_json_dir)
+        
+        # Load the most recent JSON file
+        jfiles = sorted(glob.glob(os.path.join(temp_json_dir, "*.json")), key=os.path.getmtime)
+        if not jfiles:
+            print(f"   ⚠️ No JSON files generated")
+            return [], fed_path
+        
+        with open(jfiles[-1], "r", encoding="utf-8") as f:
+            ocr_data = json.load(f)
+        
+        # Debug: show all OCR results
+        rec_texts = ocr_data.get("rec_texts", []) or []
+        rec_scores = ocr_data.get("rec_scores", []) or []
+        print(f"   📊 OCR found {len(rec_texts)} text regions total")
+        for i, (txt, score) in enumerate(zip(rec_texts[:5], rec_scores[:5])):
+            print(f"      {i+1}. '{txt}' (confidence: {score:.2f})")
+        if len(rec_texts) > 5:
+            print(f"      ... and {len(rec_texts)-5} more")
         
         # Extract Chinese items
         chinese_items = self._get_chinese_items(ocr_data)
+        print(f"   🈯 Found {len(chinese_items)} regions with Chinese text")
         
-        # Clean up temp file
+        # Clean up temp files
         if os.path.exists(fed_path):
             os.remove(fed_path)
+        import shutil
+        if os.path.exists(temp_json_dir):
+            shutil.rmtree(temp_json_dir)
         
         return chinese_items, image_path
     
-    def _get_chinese_items(self, ocr_json: Dict, conf_thresh: float = None) -> List[Dict]:
+    def _get_chinese_items(self, ocr_json: Dict, conf_thresh: float = 0.1) -> List[Dict]:
         """Filter OCR results for Chinese text only"""
         if not ocr_json:
             return []
@@ -186,11 +225,20 @@ class ImageTranslator:
         
         found = []
         for i, txt in enumerate(rec_texts):
-            if not CJK_RE.search(txt or ""):
+            txt = txt or ""
+            # Check for Chinese characters (broader detection)
+            has_chinese = bool(CJK_RE.search(txt))
+            # Also check for other Asian scripts that might be Chinese
+            has_asian = any(ord(c) > 0x3000 for c in txt)
+            
+            print(f"      Checking: '{txt[:20]}...' - Chinese: {has_chinese}, Asian: {has_asian}")
+            
+            if not (has_chinese or has_asian):
                 continue
             
             score = float(rec_scores[i]) if i < len(rec_scores) else 0.0
-            if conf_thresh is not None and score < conf_thresh:
+            if score < conf_thresh:
+                print(f"        Skipping low confidence: {score:.2f} < {conf_thresh}")
                 continue
             
             item = {"text": txt, "conf": score}
@@ -199,10 +247,11 @@ class ImageTranslator:
             if rec_boxes is not None and i < len(rec_boxes):
                 item["box"] = rec_boxes[i]
             found.append(item)
+            print(f"        ✅ Added Chinese text: '{txt[:30]}...' (conf: {score:.2f})")
         
         return found
     
-    def translate_chinese_items(self, chinese_items: List[Dict], model: str = "gemini-2.0-flash-exp") -> List[str]:
+    def translate_chinese_items(self, chinese_items: List[Dict], model: str = "models/gemini-flash-lite-latest") -> List[str]:
         """Translate Chinese text items to English"""
         if not chinese_items:
             return []
@@ -525,43 +574,64 @@ class ImageTranslator:
     def process_image(self, input_path: str, output_path: str) -> bool:
         """Process a single image: OCR -> Translate -> Inpaint -> Overlay"""
         try:
-            print(f"🔄 Processing: {os.path.basename(input_path)}")
+            print(f"\n🔄 Processing: {os.path.basename(input_path)}")
+            print(f"   📁 Input: {input_path}")
+            print(f"   📁 Output: {output_path}")
             
             # Step 1: Load and detect Chinese text
+            print(f"\n📖 STEP 1: OCR Detection")
             chinese_items, _ = self.detect_chinese_text(input_path)
             if not chinese_items:
                 print(f"❌ No Chinese text found in {input_path}")
+                print(f"   💡 Tip: Check if image contains Chinese text and OCR settings")
                 return False
             
-            print(f"   📝 Found {len(chinese_items)} Chinese text regions")
+            print(f"   ✅ Step 1 Complete: Found {len(chinese_items)} Chinese text regions")
             
             # Step 2: Translate Chinese to English
+            print(f"\n🌐 STEP 2: Translation")
+            print(f"   🔄 Sending {len(chinese_items)} items to Gemini API...")
             english_translations = self.translate_chinese_items(chinese_items)
             
             # Update items with translations
             for item, en in zip(chinese_items, english_translations):
                 item["en"] = en
+                print(f"      '{item['text'][:20]}...' → '{en[:30]}...'")
             
-            print(f"   🔤 Translated {len([t for t in english_translations if t])} items")
+            successful_translations = len([t for t in english_translations if t])
+            print(f"   ✅ Step 2 Complete: Translated {successful_translations}/{len(chinese_items)} items")
             
             # Step 3: Load original image and create inpaint mask
+            print(f"\n🎨 STEP 3: Inpainting Preparation")
             img_bgr = self.load_image_to_bgr(input_path)
+            print(f"   📏 Image dimensions: {img_bgr.shape}")
             mask = self.create_inpaint_mask(chinese_items, img_bgr.shape)
+            mask_area = np.sum(mask > 0)
+            print(f"   🖼️ Inpaint mask created: {mask_area} pixels to inpaint")
+            print(f"   ✅ Step 3 Complete: Mask ready")
             
             # Step 4: Inpaint to remove Chinese text
+            print(f"\n🔧 STEP 4: Inpainting (Removing Chinese text)")
             inpainted_img = self.inpaint_image(img_bgr, mask)
+            print(f"   ✅ Step 4 Complete: Chinese text removed")
             
             # Step 5: Overlay English text
+            print(f"\n✍️ STEP 5: English Text Overlay")
             final_img = self.overlay_english_text(inpainted_img, chinese_items, english_translations)
+            print(f"   ✅ Step 5 Complete: English text overlaid")
             
             # Step 6: Save result
+            print(f"\n💾 STEP 6: Saving Result")
             cv2.imwrite(output_path, final_img)
-            print(f"   ✅ Saved: {output_path}")
+            print(f"   ✅ Step 6 Complete: Saved to {output_path}")
             
+            print(f"\n🎉 SUCCESS: Image processing complete!")
             return True
             
         except Exception as e:
             print(f"❌ Error processing {input_path}: {e}")
+            import traceback
+            traceback.print_exc()
             return False
 
 
