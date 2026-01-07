@@ -1,0 +1,8 @@
+2026-01-07 19:34:50,456 - INFO - Processing batch of 1 products...
+2026-01-07 19:34:50,457 - INFO - Input data size: 615 characters
+2026-01-07 19:35:05,727 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-01-07 19:35:05,766 - INFO - API Call #1 completed in 15.31s
+2026-01-07 19:35:05,767 - INFO - Input tokens: 1681
+2026-01-07 19:35:05,768 - INFO - Output tokens: 635
+2026-01-07 19:35:05,769 - INFO - Total tokens used so far: 2316
+2026-01-07 19:35:05,770 - INFO - Successfully processed 1 products in this batch

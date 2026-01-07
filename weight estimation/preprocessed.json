@@ -1,0 +1,45 @@
+[
+  {
+    "id": "69086b83583153528d633f18",
+    "categories": [
+      {
+        "categoryId": 10165,
+        "categoryName": "Menswear"
+      },
+      {
+        "categoryId": 1031890,
+        "categoryName": "men's casual pants"
+      }
+    ],
+    "name": "2022 foreign trade Men's Chinese style loose tether cotton and linen shorts breathable casual pants wholesale",
+    "Product info": {
+      "length": 150,
+      "weight": 5000.15,
+      "height": 115,
+      "width": 115,
+      "aiWeight": null
+    },
+    "skus": [
+      {
+        "skuId": "4838594336744",
+        "skuAttributes": [
+          {
+            "attributeId": 3216,
+            "attributeName": "Color",
+            "value": "Khaki"
+          },
+          {
+            "attributeId": 450,
+            "attributeName": "Size",
+            "value": "M"
+          }
+        ],
+        "length": 150,
+        "weight": 5000.15,
+        "height": 115,
+        "width": 115,
+        "aiWeight": null
+      }
+    ]
+  }
+]
