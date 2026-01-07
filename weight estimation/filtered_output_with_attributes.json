@@ -1,3852 +1,726 @@
 [
     {
-        "id": "694bb11cee23344d07e009ca",
+        "id": "694bb934621a31e5555ced2a",
         "categoryId": 1042207,
-        "subjectTrans": "Suitable for iPhone 17 Pro Max Lychee Pattern Plaid Card Holder Phone Leather Case Apple 16 Ring Card Holder Protective Case",
+        "subjectTrans": "Suitable for Samsung Z Fold 7 Flip Card Holder Phone Case, Z Fold 6543 Card Holder Protective Case",
         "Product info": {
-            "length": 25,
-            "weight": 0.13,
-            "height": 5,
-            "width": 15,
+            "length": 11.692307692307692,
+            "weight": 0.11526923076923078,
+            "height": 3.6153846153846154,
+            "width": 8.461538461538462,
             "aiWeight": null
         },
+        "categories": [
+            {
+                "categoryId": 7,
+                "categoryName": "Digital, Computer"
+            },
+            {
+                "categoryId": 50911,
+                "categoryName": "Mobile phone accessories"
+            },
+            {
+                "categoryId": 1042207,
+                "categoryName": "Mobile Phone Protective Cover"
+            }
+        ],
         "skus": [
             {
-                "skuId": "5972117457533",
+                "skuId": "6122391071462",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--black"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457529",
+                "skuId": "6122391071461",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--black"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457531",
+                "skuId": "6122391071460",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--black"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457532",
+                "skuId": "6122391071459",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--black"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083672",
+                "skuId": "6122391071458",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--black"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083671",
+                "skuId": "6122391071487",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--light purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083669",
+                "skuId": "6122391071486",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--light purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083670",
+                "skuId": "6122391071485",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--light purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457530",
+                "skuId": "6122391071484",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--light purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786673",
+                "skuId": "6122391071483",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--light purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786681",
+                "skuId": "6122391071492",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--dark purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786680",
+                "skuId": "6122391071491",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--dark purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786679",
+                "skuId": "6122391071490",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--dark purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786677",
+                "skuId": "6122391071489",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--dark purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786675",
+                "skuId": "6122391071488",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--dark purple"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786678",
+                "skuId": "6122391071467",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--red"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786676",
+                "skuId": "6122391071466",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--red"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786672",
+                "skuId": "6122391071465",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--red"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786671",
+                "skuId": "6122391071464",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--red"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786685",
+                "skuId": "6122391071463",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip card holder--red"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786684",
+                "skuId": "6122391071477",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip-up card holder--green"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786682",
+                "skuId": "6122391071476",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip-up card holder--green"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786674",
+                "skuId": "6122391071475",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip-up card holder--green"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone11"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786683",
+                "skuId": "6122391071474",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-black"
+                        "value": "Ym flip-up card holder--green"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457523",
+                "skuId": "6122391071473",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip-up card holder--green"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457519",
+                "skuId": "6122391071472",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--brown"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457521",
+                "skuId": "6122391071471",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--brown"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457522",
+                "skuId": "6122391071470",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--brown"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083664",
+                "skuId": "6122391071469",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--brown"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083663",
+                "skuId": "6122391071468",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--brown"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083661",
+                "skuId": "6122391071482",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--rose gold"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
+                        "value": "Samsung z fold 7"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5743654083662",
+                "skuId": "6122391071481",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--rose gold"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
+                        "value": "Samsung z fold 6"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5972117457520",
+                "skuId": "6122391071480",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--rose gold"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
+                        "value": "Samsung z fold 5"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786643",
+                "skuId": "6122391071479",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--rose gold"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15"
+                        "value": "Samsung z fold 4"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
             },
             {
-                "skuId": "5653146786651",
+                "skuId": "6122391071478",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
+                        "value": "Ym flip card holder--rose gold"
                     },
                     {
                         "attributeId": 100018377,
                         "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
+                        "value": "Samsung z fold 3"
                     }
                 ],
                 "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786650",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786649",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786647",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786645",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786648",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786646",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786642",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786641",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786655",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786654",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786652",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786644",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786653",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-white"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457528",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457524",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457526",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457527",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083668",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083667",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083665",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083666",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457525",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786658",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786666",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786665",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786664",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786662",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786660",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786663",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786661",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786657",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786656",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786670",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786669",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786667",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786659",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786668",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-apricot"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457498",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457494",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457496",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457497",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083644",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083643",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083641",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083642",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457495",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786568",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786576",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786575",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786574",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786572",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786570",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786573",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786571",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786567",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786566",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786580",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786579",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786577",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786569",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786578",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-pink"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457503",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457499",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457501",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457502",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083648",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083647",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083645",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083646",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457500",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786583",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786591",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786590",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786589",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786587",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786585",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786588",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786586",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786582",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786581",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786595",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786594",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786592",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786584",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786593",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457508",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457504",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457506",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457507",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083652",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083651",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083649",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083650",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457505",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786598",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786606",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786605",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786604",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786602",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786600",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786603",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786601",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786597",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786596",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786610",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786609",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786607",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786599",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786608",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-light purple"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457513",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457509",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457511",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457512",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083656",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083655",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083653",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083654",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457510",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786613",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786621",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786620",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786619",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786617",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786615",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786618",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786616",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786612",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786611",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786625",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786624",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786622",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786614",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786623",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-blue"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457518",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457514",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17 Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457516",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17Air"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457517",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 17ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083660",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083659",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083657",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5743654083658",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone16ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5972117457515",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone 16E"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786628",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786636",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786635",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786634",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone15ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786632",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14/13"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786630",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786633",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14Plus"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786631",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone14ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786627",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786626",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone13ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786640",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12/12Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786639",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone12ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786637",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11Pro"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786629",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "5653146786638",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "XC litchi lattice card bag-plum color"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "iPhone11ProMax"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.098,
+                "weight": 0.07,
                 "height": 0,
                 "width": 0,
                 "aiWeight": null
