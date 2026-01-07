@@ -1,728 +1,583 @@
 [
     {
-        "id": "694bb934621a31e5555ced2a",
-        "categoryId": 1042207,
-        "subjectTrans": "Suitable for Samsung Z Fold 7 Flip Card Holder Phone Case, Z Fold 6543 Card Holder Protective Case",
-        "Product info": {
-            "length": 11.692307692307692,
-            "weight": 0.11526923076923078,
-            "height": 3.6153846153846154,
-            "width": 8.461538461538462,
-            "aiWeight": null
-        },
+        "id": "69086b83583153528d633f18",
         "categories": [
             {
-                "categoryId": 7,
-                "categoryName": "Digital, Computer"
+                "categoryId": 10165,
+                "categoryName": "Menswear"
             },
             {
-                "categoryId": 50911,
-                "categoryName": "Mobile phone accessories"
-            },
-            {
-                "categoryId": 1042207,
-                "categoryName": "Mobile Phone Protective Cover"
+                "categoryId": 1031890,
+                "categoryName": "men's casual pants"
             }
         ],
+        "name": "2022 foreign trade Men's Chinese style loose tether cotton and linen shorts breathable casual pants wholesale",
+        "Product info": {
+            "length": 150,
+            "weight": 5000.15,
+            "height": 115,
+            "width": 115,
+            "aiWeight": null
+        },
         "skus": [
             {
-                "skuId": "6122391071462",
+                "skuId": "4838594336744",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--black"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "M"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071461",
+                "skuId": "4838594336745",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--black"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "L"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071460",
+                "skuId": "4838594336746",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--black"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071459",
+                "skuId": "4838594336747",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--black"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071458",
+                "skuId": "4838594336748",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--black"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071487",
+                "skuId": "4838594336749",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--light purple"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "4XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071486",
+                "skuId": "4838594336750",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--light purple"
+                        "value": "Khaki"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "5XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071485",
+                "skuId": "4838594336751",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--light purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "M"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071484",
+                "skuId": "4838594336752",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--light purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "L"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071483",
+                "skuId": "4838594336753",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--light purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071492",
+                "skuId": "4838594336754",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--dark purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071491",
+                "skuId": "4838594336755",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--dark purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071490",
+                "skuId": "4838594336756",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--dark purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "4XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071489",
+                "skuId": "4838594336757",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--dark purple"
+                        "value": "Black"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "5XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071488",
+                "skuId": "4838594336758",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--dark purple"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "M"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071467",
+                "skuId": "4838594336759",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--red"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "L"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071466",
+                "skuId": "4838594336760",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--red"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071465",
+                "skuId": "4838594336761",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--red"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071464",
+                "skuId": "4838594336762",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--red"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071463",
+                "skuId": "4838594336763",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--red"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "4XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071477",
+                "skuId": "4838594336764",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip-up card holder--green"
+                        "value": "Navy"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "5XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071476",
+                "skuId": "4838594336765",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip-up card holder--green"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "M"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071475",
+                "skuId": "4838594336766",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip-up card holder--green"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "L"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071474",
+                "skuId": "4838594336767",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip-up card holder--green"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071473",
+                "skuId": "4838594336768",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip-up card holder--green"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071472",
+                "skuId": "4838594336769",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--brown"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "XXXL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071471",
+                "skuId": "4838594336770",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--brown"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "4XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             },
             {
-                "skuId": "6122391071470",
+                "skuId": "4838594336771",
                 "skuAttributes": [
                     {
                         "attributeId": 3216,
                         "attributeName": "Color",
-                        "value": "Ym flip card holder--brown"
+                        "value": "Greyish green"
                     },
                     {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
+                        "attributeId": 450,
+                        "attributeName": "Size",
+                        "value": "5XL"
                     }
                 ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071469",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071468",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--brown"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071482",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--rose gold"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 7"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071481",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--rose gold"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 6"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071480",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--rose gold"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 5"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071479",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--rose gold"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 4"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
-                "aiWeight": null
-            },
-            {
-                "skuId": "6122391071478",
-                "skuAttributes": [
-                    {
-                        "attributeId": 3216,
-                        "attributeName": "Color",
-                        "value": "Ym flip card holder--rose gold"
-                    },
-                    {
-                        "attributeId": 100018377,
-                        "attributeName": "Applicable model",
-                        "value": "Samsung z fold 3"
-                    }
-                ],
-                "length": 0,
-                "weight": 0.07,
-                "height": 0,
-                "width": 0,
+                "length": 150,
+                "weight": 5000.15,
+                "height": 115,
+                "width": 115,
                 "aiWeight": null
             }
         ]
