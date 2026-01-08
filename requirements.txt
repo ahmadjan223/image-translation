@@ -6,3 +6,5 @@ simple-lama-inpainting
 google-genai
 numpy
 matplotlib
+anthropic 
+python-dotenv
