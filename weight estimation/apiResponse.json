@@ -1,270 +1,201 @@
 [
   {
-    "product_name": "2022 foreign trade Men's Chinese style loose tether cotton and linen shorts breathable casual pants wholesale",
-    "analysis_logic": {
-      "category_context": "Category indicates Men's Casual Pants/Shorts. Expected weight range: 150-400g for a single pair of cotton-linen shorts. Dimensions should represent folded/packaged state: ~150cm length is excessive for a folded garment; likely represents unfolded/laid-flat measurement. Valid weight baseline: 200-350g.",
-      "sku_differentiation": "Size variants (M, L, XL, XXL, XXXL, 4XL, 5XL) represent physical differences in garment dimensions and weight. Color variants (Khaki, Black, Navy, Greyish green) are cosmetic only. Weight should increase slightly with size due to more fabric material. Dimensions should remain consistent (folded state) across all variants.",
-      "unit_prediction": "Input detected as Centimeters (cm) for dimensions and Grams (g) for weight. However, weight value 5000.15g (5kg) is a critical outlier—this is 10-25x heavier than a typical pair of shorts. This suggests either: (1) Unit error (should be 250g, not 5000g), or (2) Bulk packaging error (multiple pairs bundled). Given product name mentions 'wholesale', this may represent a bulk unit. Treating as single-unit error and correcting to realistic single-pair weight.",
-      "correction_reasoning": "The weight 5000.15g is physically impossible for a single pair of cotton-linen shorts. A typical men's shorts pair weighs 200-350g. The decimal precision (5000.15) suggests data entry or system error. All SKUs carry identical weight despite size variance, indicating copy-paste error. Corrected weight to 280g (midpoint for medium-sized shorts in cotton-linen blend). Dimensions (150x115x115cm) appear to represent a folded/packaged garment in laid-flat state, which is reasonable for wholesale packaging. No further dimension correction needed as they fall within acceptable range for folded apparel."
-    },
-    "validated_main_info": {
-      "length_cm": 150.0,
-      "width_cm": 115.0,
-      "height_cm": 115.0,
-      "weight_g": 280.0
-    },
-    "validated_skus": [
+    "skus": [
       {
-        "sku_index": 0,
-        "sku_attributes_summary": "Color: Khaki, Size: M",
-        "sku_note": "Weight corrected from 5000.15g to 280g (realistic single-pair weight). Size M baseline established.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 280.0
+        "skuId": "4838594336744",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 250
       },
       {
-        "sku_index": 1,
-        "sku_attributes_summary": "Color: Khaki, Size: L",
-        "sku_note": "Weight corrected from 5000.15g to 295g (slight increase for larger size). Size L variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 295.0
+        "skuId": "4838594336745",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 260
       },
       {
-        "sku_index": 2,
-        "sku_attributes_summary": "Color: Khaki, Size: XL",
-        "sku_note": "Weight corrected from 5000.15g to 310g (increased fabric for XL). Size XL variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 310.0
+        "skuId": "4838594336746",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 270
       },
       {
-        "sku_index": 3,
-        "sku_attributes_summary": "Color: Khaki, Size: XXL",
-        "sku_note": "Weight corrected from 5000.15g to 325g (increased fabric for XXL). Size XXL variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 325.0
+        "skuId": "4838594336747",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 280
       },
       {
-        "sku_index": 4,
-        "sku_attributes_summary": "Color: Khaki, Size: XXXL",
-        "sku_note": "Weight corrected from 5000.15g to 340g (increased fabric for XXXL). Size XXXL variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 340.0
+        "skuId": "4838594336748",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 290
       },
       {
-        "sku_index": 5,
-        "sku_attributes_summary": "Color: Khaki, Size: 4XL",
-        "sku_note": "Weight corrected from 5000.15g to 355g (increased fabric for 4XL). Size 4XL variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 355.0
+        "skuId": "4838594336749",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 300
       },
       {
-        "sku_index": 6,
-        "sku_attributes_summary": "Color: Khaki, Size: 5XL",
-        "sku_note": "Weight corrected from 5000.15g to 370g (maximum fabric for 5XL). Size 5XL variant.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 370.0
+        "skuId": "4838594336750",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 310
       },
       {
-        "sku_index": 7,
-        "sku_attributes_summary": "Color: Black, Size: M",
-        "sku_note": "Weight corrected from 5000.15g to 280g (baseline M size). Color variant only—no physical difference expected.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 280.0
+        "skuId": "4838594336751",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 250
       },
       {
-        "sku_index": 8,
-        "sku_attributes_summary": "Color: Black, Size: L",
-        "sku_note": "Weight corrected from 5000.15g to 295g (size L increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 295.0
+        "skuId": "4838594336752",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 260
       },
       {
-        "sku_index": 9,
-        "sku_attributes_summary": "Color: Black, Size: XL",
-        "sku_note": "Weight corrected from 5000.15g to 310g (size XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 310.0
+        "skuId": "4838594336753",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 270
       },
       {
-        "sku_index": 10,
-        "sku_attributes_summary": "Color: Black, Size: XXL",
-        "sku_note": "Weight corrected from 5000.15g to 325g (size XXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 325.0
+        "skuId": "4838594336754",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 280
       },
       {
-        "sku_index": 11,
-        "sku_attributes_summary": "Color: Black, Size: XXXL",
-        "sku_note": "Weight corrected from 5000.15g to 340g (size XXXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 340.0
+        "skuId": "4838594336755",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 290
       },
       {
-        "sku_index": 12,
-        "sku_attributes_summary": "Color: Black, Size: 4XL",
-        "sku_note": "Weight corrected from 5000.15g to 355g (size 4XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 355.0
+        "skuId": "4838594336756",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 300
       },
       {
-        "sku_index": 13,
-        "sku_attributes_summary": "Color: Black, Size: 5XL",
-        "sku_note": "Weight corrected from 5000.15g to 370g (size 5XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 370.0
+        "skuId": "4838594336757",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 310
       },
       {
-        "sku_index": 14,
-        "sku_attributes_summary": "Color: Navy, Size: M",
-        "sku_note": "Weight corrected from 5000.15g to 280g (baseline M size). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 280.0
+        "skuId": "4838594336758",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 250
       },
       {
-        "sku_index": 15,
-        "sku_attributes_summary": "Color: Navy, Size: L",
-        "sku_note": "Weight corrected from 5000.15g to 295g (size L increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 295.0
+        "skuId": "4838594336759",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 260
       },
       {
-        "sku_index": 16,
-        "sku_attributes_summary": "Color: Navy, Size: XL",
-        "sku_note": "Weight corrected from 5000.15g to 310g (size XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 310.0
+        "skuId": "4838594336760",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 270
       },
       {
-        "sku_index": 17,
-        "sku_attributes_summary": "Color: Navy, Size: XXL",
-        "sku_note": "Weight corrected from 5000.15g to 325g (size XXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 325.0
+        "skuId": "4838594336761",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 280
       },
       {
-        "sku_index": 18,
-        "sku_attributes_summary": "Color: Navy, Size: XXXL",
-        "sku_note": "Weight corrected from 5000.15g to 340g (size XXXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 340.0
+        "skuId": "4838594336762",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 290
       },
       {
-        "sku_index": 19,
-        "sku_attributes_summary": "Color: Navy, Size: 4XL",
-        "sku_note": "Weight corrected from 5000.15g to 355g (size 4XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 355.0
+        "skuId": "4838594336763",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 300
       },
       {
-        "sku_index": 20,
-        "sku_attributes_summary": "Color: Navy, Size: 5XL",
-        "sku_note": "Weight corrected from 5000.15g to 370g (size 5XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 370.0
+        "skuId": "4838594336764",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 310
       },
       {
-        "sku_index": 21,
-        "sku_attributes_summary": "Color: Greyish green, Size: M",
-        "sku_note": "Weight corrected from 5000.15g to 280g (baseline M size). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 280.0
+        "skuId": "4838594336765",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 250
       },
       {
-        "sku_index": 22,
-        "sku_attributes_summary": "Color: Greyish green, Size: L",
-        "sku_note": "Weight corrected from 5000.15g to 295g (size L increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 295.0
+        "skuId": "4838594336766",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 260
       },
       {
-        "sku_index": 23,
-        "sku_attributes_summary": "Color: Greyish green, Size: XL",
-        "sku_note": "Weight corrected from 5000.15g to 310g (size XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 310.0
+        "skuId": "4838594336767",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 270
       },
       {
-        "sku_index": 24,
-        "sku_attributes_summary": "Color: Greyish green, Size: XXL",
-        "sku_note": "Weight corrected from 5000.15g to 325g (size XXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 325.0
+        "skuId": "4838594336768",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 280
       },
       {
-        "sku_index": 25,
-        "sku_attributes_summary": "Color: Greyish green, Size: XXXL",
-        "sku_note": "Weight corrected from 5000.15g to 340g (size XXXL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 340.0
+        "skuId": "4838594336769",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 290
       },
       {
-        "sku_index": 26,
-        "sku_attributes_summary": "Color: Greyish green, Size: 4XL",
-        "sku_note": "Weight corrected from 5000.15g to 355g (size 4XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 355.0
+        "skuId": "4838594336770",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 300
       },
       {
-        "sku_index": 27,
-        "sku_attributes_summary": "Color: Greyish green, Size: 5XL",
-        "sku_note": "Weight corrected from 5000.15g to 370g (size 5XL increment). Color variant only.",
-        "length_cm": 150.0,
-        "width_cm": 115.0,
-        "height_cm": 115.0,
-        "weight_g": 370.0
+        "skuId": "4838594336771",
+        "length_cm": 150,
+        "width_cm": 115,
+        "height_cm": 115,
+        "weight_g": 310
       }
     ]
   }
