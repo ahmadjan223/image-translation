@@ -1,0 +1,5294 @@
+{
+  "_id": "68f9d701766c2f8a29a2665b",
+  "offerId": 624730890959,
+  "name": "2020 New Men's Hooded Splash Ink Printed Fashion Trendy Sweat Long Sleeve Fleece Hooded Sports Sweat Set",
+  "description": "<div id=\"offer-template-0\"></div><p><img alt=\"图片_20200522192827\" src=\"https://media.public.markaz.app/public/products/624730890959-7.webp\" /><br /><br /><img alt=\"undefined\" src=\"https://media.public.markaz.app/public/products/624730890959-8.webp\" /><br /><br /><img alt=\"undefined\" src=\"https://media.public.markaz.app/public/products/624730890959-9.webp\" /><br /><br /><img alt=\"undefined\" src=\"https://media.public.markaz.app/public/products/624730890959-10.webp\" /><br /><br /><img alt=\"undefined\" src=\"https://media.public.markaz.app/public/products/624730890959-11.webp\" /><br /><br /></p><div style=\"color: #ffffff;font-size: 0.0px;\">2020新款男士连帽泼墨印花时尚潮流卫衣长袖抓绒连帽运动卫衣套装</div>",
+  "categories": [
+    {
+      "categoryId": 10165,
+      "categoryName": "Menswear"
+    },
+    {
+      "categoryId": 122238007,
+      "categoryName": "Men's leisure sports suit"
+    }
+  ],
+  "productAttributes": [
+    {
+      "attributeId": "100000691",
+      "attributeName": "Source category",
+      "value": "Spot"
+    },
+    {
+      "attributeId": "973",
+      "attributeName": "Style",
+      "value": "Leisure Sports"
+    },
+    {
+      "attributeId": "7002",
+      "attributeName": "Thickness",
+      "value": "Ordinary"
+    },
+    {
+      "attributeId": "1398",
+      "attributeName": "Item No.",
+      "value": "T-1925 paragraph"
+    },
+    {
+      "attributeId": "8520",
+      "attributeName": "Pants length",
+      "value": "Trousers"
+    },
+    {
+      "attributeId": "8519",
+      "attributeName": "Top style",
+      "value": "Coat"
+    },
+    {
+      "attributeId": "100018078",
+      "attributeName": "Jacket sleeve length",
+      "value": "Long Sleeve"
+    },
+    {
+      "attributeId": "1626560",
+      "attributeName": "Hooded or not",
+      "value": "Hooded"
+    },
+    {
+      "attributeId": "2531",
+      "attributeName": "Suitable for season",
+      "value": "Four Seasons"
+    },
+    {
+      "attributeId": "102498523",
+      "attributeName": "Amoy category",
+      "value": "Youth pop (18-24 years old)"
+    },
+    {
+      "attributeId": "100031521",
+      "attributeName": "Fabric Name",
+      "value": "Knitted fabric"
+    },
+    {
+      "attributeId": "117130178",
+      "attributeName": "Main fabric composition",
+      "value": "Polyester Fiber (Polyester)"
+    },
+    {
+      "attributeId": "151816012",
+      "attributeName": "Content of main fabric components",
+      "value": "95"
+    },
+    {
+      "attributeId": "10363196",
+      "attributeName": "Applicable Scenarios",
+      "value": "Leisure"
+    },
+    {
+      "attributeId": "8243",
+      "attributeName": "Inventory Type",
+      "value": "Whole order"
+    },
+    {
+      "attributeId": "20666",
+      "attributeName": "Listing year/season",
+      "value": "Spring 2020"
+    },
+    {
+      "attributeId": "3216",
+      "attributeName": "Color",
+      "value": "White"
+    },
+    {
+      "attributeId": "3216",
+      "attributeName": "Color",
+      "value": "Red"
+    },
+    {
+      "attributeId": "3216",
+      "attributeName": "Color",
+      "value": "Grey"
+    },
+    {
+      "attributeId": "3216",
+      "attributeName": "Color",
+      "value": "Army Green"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "S"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "M"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "L"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "XL"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "XXL"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "XXXL"
+    },
+    {
+      "attributeId": "450",
+      "attributeName": "Size",
+      "value": "XXXXL"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "ebay"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "Amazon"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "wish"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "AliExpress"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "Independent Station"
+    },
+    {
+      "attributeId": "182318189",
+      "attributeName": "Main downstream platform",
+      "value": "LAZADA"
+    },
+    {
+      "attributeId": "193290002",
+      "attributeName": "Main sales area",
+      "value": "Europe"
+    },
+    {
+      "attributeId": "193290002",
+      "attributeName": "Main sales area",
+      "value": "South America"
+    },
+    {
+      "attributeId": "193290002",
+      "attributeName": "Main sales area",
+      "value": "Southeast Asia"
+    },
+    {
+      "attributeId": "193290002",
+      "attributeName": "Main sales area",
+      "value": "North America"
+    },
+    {
+      "attributeId": "193290002",
+      "attributeName": "Main sales area",
+      "value": "Middle East"
+    },
+    {
+      "attributeId": "182282223",
+      "attributeName": "Whether the source of cross-border export is exclusive",
+      "value": "Yes"
+    },
+    {
+      "attributeId": "364",
+      "attributeName": "Product Category",
+      "value": "Men's Casual Suit"
+    }
+  ],
+  "price": {
+    "priceType": "fixed",
+    "amount": 2363
+  },
+  "options": [
+    {
+      "attributeId": 3216,
+      "attributeName": "Color",
+      "primaryAttribute": true,
+      "values": [
+        {
+          "selectionId": "3216_1",
+          "value": "White",
+          "imageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp"
+        },
+        {
+          "selectionId": "3216_2",
+          "value": "Red",
+          "imageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp"
+        },
+        {
+          "selectionId": "3216_3",
+          "value": "Grey",
+          "imageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp"
+        },
+        {
+          "selectionId": "3216_4",
+          "value": "Army Green",
+          "imageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp"
+        }
+      ]
+    },
+    {
+      "attributeId": 450,
+      "attributeName": "Size",
+      "primaryAttribute": false,
+      "values": [
+        {
+          "selectionId": "450_1",
+          "value": "S"
+        },
+        {
+          "selectionId": "450_2",
+          "value": "M"
+        },
+        {
+          "selectionId": "450_3",
+          "value": "L"
+        },
+        {
+          "selectionId": "450_4",
+          "value": "XL"
+        },
+        {
+          "selectionId": "450_5",
+          "value": "XXL"
+        },
+        {
+          "selectionId": "450_6",
+          "value": "XXXL"
+        },
+        {
+          "selectionId": "450_7",
+          "value": "XXXXL"
+        }
+      ]
+    }
+  ],
+  "productSkuInfos": [
+    {
+      "amountOnSale": 8015,
+      "skuId": 4423361457251,
+      "specId": "94d1d179497744028aa76873afdeba62",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "S"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.541,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_1"
+    },
+    {
+      "amountOnSale": 7497,
+      "skuId": 4423361457252,
+      "specId": "cef93beef156f1799e736c649f36efae",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "M"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.548,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_2"
+    },
+    {
+      "amountOnSale": 7294,
+      "skuId": 4423361457253,
+      "specId": "82114cbd2c10b5e97b01af1510807e2d",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "L"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.573,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_3"
+    },
+    {
+      "amountOnSale": 7400,
+      "skuId": 4423361457254,
+      "specId": "c45d8408137e34adf8e695250c42a2e9",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.596,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_4"
+    },
+    {
+      "amountOnSale": 7394,
+      "skuId": 4423361457255,
+      "specId": "df78564262818d6eb0c428a37ab4a251",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.63,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_5"
+    },
+    {
+      "amountOnSale": 7827,
+      "skuId": 4423361457256,
+      "specId": "e36b5ea0b0624852e776139a5e97d448",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.657,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_6"
+    },
+    {
+      "amountOnSale": 8015,
+      "skuId": 4423361457257,
+      "specId": "2f98b4a58a7ad50a7938e7bc67e4fd9a",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "White"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.68,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-12.webp",
+      "selectionKey": "3216_1|450_7"
+    },
+    {
+      "amountOnSale": 8060,
+      "skuId": 4423361457258,
+      "specId": "4b3436849e25eacb755f6f29ea09e809",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "S"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.54,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_1"
+    },
+    {
+      "amountOnSale": 7759,
+      "skuId": 4423361457259,
+      "specId": "a105e7d232cfb509d4253d59cfe30bbd",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "M"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.548,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_2"
+    },
+    {
+      "amountOnSale": 7561,
+      "skuId": 4423361457260,
+      "specId": "3dbe840b47bcb8f849bff38fc1f049fb",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "L"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.573,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_3"
+    },
+    {
+      "amountOnSale": 7643,
+      "skuId": 4423361457261,
+      "specId": "ce7fb37f848bc060cfece58cfbe38c19",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.597,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_4"
+    },
+    {
+      "amountOnSale": 7752,
+      "skuId": 4423361457262,
+      "specId": "17a001fccdc38e767030004ac03b8881",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.64,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_5"
+    },
+    {
+      "amountOnSale": 7753,
+      "skuId": 4423361457263,
+      "specId": "4455da11dac1943daf05752397817392",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.661,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_6"
+    },
+    {
+      "amountOnSale": 8013,
+      "skuId": 4423361457264,
+      "specId": "3a7eb19c8862a0c5f0c5ecc3046e8453",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Red"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.675,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-13.webp",
+      "selectionKey": "3216_2|450_7"
+    },
+    {
+      "amountOnSale": 8105,
+      "skuId": 4423361457265,
+      "specId": "b4ec52b39f4c3cb76bf667d126591349",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "S"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.547,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_1"
+    },
+    {
+      "amountOnSale": 7819,
+      "skuId": 4423361457266,
+      "specId": "2e578fba8900edcb236eff5cdc5eefb5",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "M"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.551,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_2"
+    },
+    {
+      "amountOnSale": 7466,
+      "skuId": 4423361457267,
+      "specId": "43b0e72e98731aed69e1f0cc7d64bf4d",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "L"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.576,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_3"
+    },
+    {
+      "amountOnSale": 7506,
+      "skuId": 4423361457268,
+      "specId": "893746f5330dc3273d24aa1ac1a9a8b5",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.602,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_4"
+    },
+    {
+      "amountOnSale": 7512,
+      "skuId": 4423361457269,
+      "specId": "42d994cba0210528142a743d4069700f",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.649,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_5"
+    },
+    {
+      "amountOnSale": 7966,
+      "skuId": 4423361457270,
+      "specId": "23424d07d2e30e4f94821ebb808306a1",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.666,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_6"
+    },
+    {
+      "amountOnSale": 8068,
+      "skuId": 4423361457271,
+      "specId": "016bbf0c2e4b5a273892c9dcab53fec9",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Grey"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.683,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-14.webp",
+      "selectionKey": "3216_3|450_7"
+    },
+    {
+      "amountOnSale": 8137,
+      "skuId": 4423361457272,
+      "specId": "47f6f92dad911d513b3a8d9d44596f53",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "S"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.543,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_1"
+    },
+    {
+      "amountOnSale": 8050,
+      "skuId": 4423361457273,
+      "specId": "6a320352827085ba15cbd01beb12b56b",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "M"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.55,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_2"
+    },
+    {
+      "amountOnSale": 7950,
+      "skuId": 4423361457274,
+      "specId": "aa2a5c489291b3d78e89e96c06f7b213",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "L"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.575,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_3"
+    },
+    {
+      "amountOnSale": 8036,
+      "skuId": 4423361457275,
+      "specId": "80ecb057f63ccacbbf6fef01fd9df1e0",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.605,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_4"
+    },
+    {
+      "amountOnSale": 8026,
+      "skuId": 4423361457276,
+      "specId": "f68486155837cac2e00acc4a4b72e86b",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.641,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_5"
+    },
+    {
+      "amountOnSale": 8094,
+      "skuId": 4423361457277,
+      "specId": "f8afd75be8aaf1a280ffda9f710bd2f7",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.665,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_6"
+    },
+    {
+      "amountOnSale": 8075,
+      "skuId": 4423361457278,
+      "specId": "504dff9490387f5c5c79fc7de64ca0f3",
+      "skuAttributes": [
+        {
+          "attributeId": 3216,
+          "attributeName": "Color",
+          "value": "Army Green"
+        },
+        {
+          "attributeId": 450,
+          "attributeName": "Size",
+          "value": "XXXXL"
+        }
+      ],
+      "consignPrice": 33.0,
+      "status": "Active",
+      "productShippingInfo": {
+        "sendGoodsAddressText": "福建省厦门市",
+        "weight": 0.4714,
+        "width": 22.189375000000002,
+        "height": 6.422499999999999,
+        "length": 27.281249999999996,
+        "skuShippingDetails": [
+          {
+            "skuId": "4423361457260",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457263",
+            "aiWeight": 0.661,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457264",
+            "aiWeight": 0.675,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457261",
+            "aiWeight": 0.597,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457262",
+            "aiWeight": 0.64,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457267",
+            "aiWeight": 0.576,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457268",
+            "aiWeight": 0.602,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457265",
+            "aiWeight": 0.547,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457266",
+            "aiWeight": 0.551,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457269",
+            "aiWeight": 0.649,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457270",
+            "aiWeight": 0.666,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457271",
+            "aiWeight": 0.683,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457252",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457274",
+            "aiWeight": 0.575,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457253",
+            "aiWeight": 0.573,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457275",
+            "aiWeight": 0.605,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457272",
+            "aiWeight": 0.543,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457251",
+            "aiWeight": 0.541,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457273",
+            "aiWeight": 0.55,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457256",
+            "aiWeight": 0.657,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457278",
+            "aiWeight": 0.681,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457257",
+            "aiWeight": 0.68,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457254",
+            "aiWeight": 0.596,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457276",
+            "aiWeight": 0.641,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457255",
+            "aiWeight": 0.63,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457277",
+            "aiWeight": 0.665,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457258",
+            "aiWeight": 0.54,
+            "aiWeightAccuracy": "84%"
+          },
+          {
+            "skuId": "4423361457259",
+            "aiWeight": 0.548,
+            "aiWeightAccuracy": "84%"
+          }
+        ],
+        "pkgSizeSource": "预测-同款放大"
+      },
+      "skuShippingInfo": [],
+      "skuShippingDetail": {
+        "aiWeight": 0.681,
+        "aiWeightAccuracy": "84%"
+      },
+      "price": 2363,
+      "offerPrice": 32.34,
+      "skuImageUrl": "https://media.public.markaz.app/public/products/624730890959-15.webp",
+      "selectionKey": "3216_4|450_7"
+    }
+  ],
+  "amountOnSale": 218793,
+  "minOrderQuantity": 1,
+  "status": "Active",
+  "soldOut": "108",
+  "promotionModel": {
+    "hasPromotion": false
+  },
+  "companyName": "莆田市荔城区万隆百货经销部",
+  "originalSource": "1688",
+  "productImages": {
+    "images": [
+      "https://media.public.markaz.app/public/products/624730890959-1.webp",
+      "https://media.public.markaz.app/public/products/624730890959-2.webp",
+      "https://media.public.markaz.app/public/products/624730890959-3.webp",
+      "https://media.public.markaz.app/public/products/624730890959-4.webp",
+      "https://media.public.markaz.app/public/products/624730890959-5.webp"
+    ],
+    "whiteImage": "https://media.public.markaz.app/public/thumbnails/624730890959.webp"
+  },
+  "productVideos": [],
+  "createDate": "2025-12-01 12:52:56.164000",
+  "lastUpdateDate": "2025-12-01 12:52:56.164000"
+}
