@@ -59,3 +59,31 @@ class TranslateResponse(BaseModel):
     output_image_path: str
     inpainted_image_path: str
     translations: List[Dict[str, Any]]
+
+
+# --- Batch Translation Models ---
+
+class BatchTranslateRequest(BaseModel):
+    """Request model for batch translating images in HTML content."""
+    html_content: str
+    session_id: Optional[str] = None
+
+
+class ImageTranslationResult(BaseModel):
+    """Result of translating a single image."""
+    original_url: str
+    local_path: str
+    chinese_count: int
+    success: bool
+    error: Optional[str] = None
+
+
+class BatchTranslateResponse(BaseModel):
+    """Response model after batch translation."""
+    session_id: str
+    message: str
+    total_images: int
+    successful_translations: int
+    failed_translations: int
+    translated_html: str
+    image_results: List[ImageTranslationResult]

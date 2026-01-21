@@ -1,0 +1,130 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/62165238-18ca-41a6-b37c-bdda3005006c/images/ocr_2/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                68,
+                79
+            ],
+            [
+                679,
+                79
+            ],
+            [
+                679,
+                154
+            ],
+            [
+                68,
+                154
+            ]
+        ],
+        [
+            [
+                364,
+                699
+            ],
+            [
+                721,
+                698
+            ],
+            [
+                722,
+                728
+            ],
+            [
+                364,
+                729
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.2,
+        "max_side_limit": 4000,
+        "box_thresh": 0.3,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0
+    ],
+    "text_rec_score_thresh": 0.0,
+    "return_word_box": false,
+    "rec_texts": [
+        "马卡龙三代-亮面-天蓝",
+        "shopdazan888.1688.com"
+    ],
+    "rec_scores": [
+        0.9906583428382874,
+        0.9855400323867798
+    ],
+    "rec_polys": [
+        [
+            [
+                68,
+                79
+            ],
+            [
+                679,
+                79
+            ],
+            [
+                679,
+                154
+            ],
+            [
+                68,
+                154
+            ]
+        ],
+        [
+            [
+                364,
+                699
+            ],
+            [
+                721,
+                698
+            ],
+            [
+                722,
+                728
+            ],
+            [
+                364,
+                729
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            68,
+            79,
+            679,
+            154
+        ],
+        [
+            364,
+            698,
+            722,
+            729
+        ]
+    ]
+}
