@@ -73,6 +73,7 @@ class ImageTranslationResult(BaseModel):
     """Result of translating a single image."""
     original_url: str
     local_path: str
+    public_url: Optional[str] = None  # GCS public URL
     chinese_count: int
     success: bool
     error: Optional[str] = None

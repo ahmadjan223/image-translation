@@ -29,6 +29,7 @@ from services.ocr import ocr_predict_to_json, get_chinese_items
 from services.translation import translate_items_gemini
 from services.inpainting import create_mask_from_items, inpaint_image
 from services.text_overlay import overlay_english_text
+from gcp_storage import gcp_storage
 
 router = APIRouter()
 
@@ -266,15 +267,17 @@ async def translate_image(request: TranslateRequest):
 async def download_and_translate_image(
     image_url: str,
     image_dir: Path,
-    image_index: int
+    image_index: int,
+    session_id: str
 ) -> Tuple[str, ImageTranslationResult]:
     """
-    Download a single image, translate it, and return the result.
+    Download a single image, translate it, upload to GCS, and return the result.
     
     Args:
         image_url: URL of the image to download.
         image_dir: Directory to save the image.
         image_index: Index of the image for naming.
+        session_id: Session ID for organizing uploads in GCS.
         
     Returns:
         Tuple of (original_url, ImageTranslationResult).
@@ -312,10 +315,21 @@ async def download_and_translate_image(
         ch_items = get_chinese_items(ocr_data, conf_thresh=None)
         
         if not ch_items:
-            # No Chinese text found, use original
+            # No Chinese text found, upload original to GCS
+            public_url = None
+            if gcp_storage.is_available():
+                with open(original_path, "rb") as f:
+                    image_bytes = f.read()
+                public_url = gcp_storage.upload_from_bytes(
+                    image_bytes,
+                    folder_name=f"translated/{session_id}",
+                    image_name=f"image_{image_index}"
+                )
+            
             return image_url, ImageTranslationResult(
                 original_url=image_url,
                 local_path=str(original_path),
+                public_url=public_url,
                 chinese_count=0,
                 success=True,
                 error=None
@@ -335,13 +349,28 @@ async def download_and_translate_image(
         # Overlay English text
         final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
         
-        # Save translated image
+        # Save translated image locally
         output_path = image_dir / f"translated_{image_index}.png"
         final_pil.convert("RGB").save(str(output_path))
+        
+        # Upload to GCS and get public URL
+        public_url = None
+        if gcp_storage.is_available():
+            import io
+            img_buffer = io.BytesIO()
+            final_pil.convert("RGB").save(img_buffer, format="PNG")
+            img_bytes = img_buffer.getvalue()
+            public_url = gcp_storage.upload_from_bytes(
+                img_bytes,
+                folder_name=f"translated/{session_id}",
+                image_name=f"image_{image_index}"
+            )
+            print(f"   ☁️  Uploaded to GCS: {public_url}")
         
         return image_url, ImageTranslationResult(
             original_url=image_url,
             local_path=str(output_path),
+            public_url=public_url,
             chinese_count=len(ch_items),
             success=True,
             error=None
@@ -351,6 +380,7 @@ async def download_and_translate_image(
         return image_url, ImageTranslationResult(
             original_url=image_url,
             local_path="",
+            public_url=None,
             chinese_count=0,
             success=False,
             error=str(e)[:200]
@@ -378,7 +408,7 @@ async def translate_batch(request: BatchTranslateRequest):
         
         # Extract image URLs from HTML
 
-        
+
         image_urls = extract_image_urls(request.html_content)
         
         if not image_urls:
@@ -402,13 +432,17 @@ async def translate_batch(request: BatchTranslateRequest):
         
         for idx, url in enumerate(image_urls):
             print(f"📷 Processing image {idx + 1}/{len(image_urls)}: {url[:80]}...")
-            original_url, result = await download_and_translate_image(url, images_dir, idx)
+            original_url, result = await download_and_translate_image(url, images_dir, idx, session_id)
             results.append(result)
             
-            if result.success and result.local_path:
-                url_mapping[original_url] = result.local_path
+            # Use public URL if available, otherwise fall back to local path
+            if result.success:
+                if result.public_url:
+                    url_mapping[original_url] = result.public_url
+                elif result.local_path:
+                    url_mapping[original_url] = result.local_path
         
-        # Replace URLs in HTML
+        # Replace URLs in HTML with GCS public URLs (or local paths as fallback)
         translated_html = replace_image_urls(request.html_content, url_mapping)
         
         # Count successes and failures
