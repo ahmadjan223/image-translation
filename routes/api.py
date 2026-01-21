@@ -377,6 +377,8 @@ async def translate_batch(request: BatchTranslateRequest):
         session_dir.mkdir(exist_ok=True)
         
         # Extract image URLs from HTML
+
+        
         image_urls = extract_image_urls(request.html_content)
         
         if not image_urls:

@@ -4,6 +4,27 @@ Configuration and constants for the Image Translation API.
 import os
 import re
 from pathlib import Path
+from pydantic_settings import BaseSettings
+from typing import Optional
+
+
+class Settings(BaseSettings):
+    """Application settings loaded from environment variables"""
+    
+    # GCP Settings
+    GCP_PROJECT_ID: Optional[str] = None
+    GCP_BUCKET_NAME: Optional[str] = None
+    GCP_CDN_URL: Optional[str] = None
+    
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
+
+
+# Create settings instance
+settings = Settings()
+
 
 # --- Environment setup for threading issues ---
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
