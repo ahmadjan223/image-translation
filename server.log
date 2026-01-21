@@ -1,11 +1,9 @@
 nohup: ignoring input
 [33mChecking connectivity to the model hosters, this may take a while. To bypass this check, set `DISABLE_MODEL_SOURCE_CHECK` to `True`.[0m
-INFO:     Started server process [15746]
+INFO:     Started server process [25272]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-📷 Processing image 1/1: https://img.alicdn.com/imgextra/i1/2216003990037/O1CN01hOHgNk1E5YY8gK2h1_!!22160...
-INFO:     127.0.0.1:43944 - "POST /translate-batch HTTP/1.1" 200 OK
 /home/ahmad-jan/Desktop/Markaz/image-translation/venv/lib/python3.12/site-packages/paddle/utils/cpp_extension/extension_utils.py:718: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
   warnings.warn(warning_message)
 [32mCreating model: ('PP-LCNet_x1_0_textline_ori', None)[0m
@@ -14,5 +12,28 @@ INFO:     127.0.0.1:43944 - "POST /translate-batch HTTP/1.1" 200 OK
 [32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `/home/ahmad-jan/.paddlex/official_models/PP-OCRv5_server_det`.[0m
 [32mCreating model: ('PP-OCRv5_server_rec', None)[0m
 [32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `/home/ahmad-jan/.paddlex/official_models/PP-OCRv5_server_rec`.[0m
-📷 Processing image 1/1: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.p...
-INFO:     127.0.0.1:36298 - "POST /translate-batch HTTP/1.1" 200 OK
+
+
+--------------------------------------
+C++ Traceback (most recent call last):
+--------------------------------------
+0   torch::jit::InterpreterState::run(std::vector<c10::IValue, std::allocator<c10::IValue> >&)
+1   at::native::_convolution(at::Tensor const&, at::Tensor const&, std::optional<at::Tensor> const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, bool, c10::ArrayRef<long>, long, bool, bool, bool, bool)
+2   at::native::mkldnn_to_dense(at::Tensor const&, std::optional<c10::ScalarType>, std::optional<bool>)
+3   at::TensorBase::__dispatch_contiguous(c10::MemoryFormat) const
+4   at::_ops::contiguous::call(at::Tensor const&, c10::MemoryFormat)
+5   at::native::contiguous(at::Tensor const&, c10::MemoryFormat)
+6   at::_ops::clone::call(at::Tensor const&, std::optional<c10::MemoryFormat>)
+7   at::native::clone(at::Tensor const&, std::optional<c10::MemoryFormat>)
+8   at::_ops::copy_::call(at::Tensor&, at::Tensor const&, bool)
+9   at::native::copy_(at::Tensor&, at::Tensor const&, bool)
+10  at::TensorIteratorBase::for_each(c10::function_ref<void (char**, long const*, long, long)>, long)
+11  at::TensorIteratorBase::serial_for_each(c10::function_ref<void (char**, long const*, long, long)>, at::Range) const
+
+----------------------
+Error Message Summary:
+----------------------
+FatalError: `Termination signal` is detected by the operating system.
+  [TimeInfo: *** Aborted at 1769009195 (unix time) try "date -d @1769009195" if you are using GNU date ***]
+  [SignalInfo: *** SIGTERM (@0x3e800000797) received by PID 25272 (TID 0x794b99d6a080) from PID 1943 ***]
+

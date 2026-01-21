@@ -1,0 +1,220 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/683650438921/images/ocr_8/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                509,
+                330
+            ],
+            [
+                552,
+                330
+            ],
+            [
+                552,
+                340
+            ],
+            [
+                509,
+                340
+            ]
+        ],
+        [
+            [
+                533,
+                450
+            ],
+            [
+                565,
+                466
+            ],
+            [
+                560,
+                475
+            ],
+            [
+                528,
+                459
+            ]
+        ],
+        [
+            [
+                546,
+                469
+            ],
+            [
+                556,
+                475
+            ],
+            [
+                551,
+                481
+            ],
+            [
+                542,
+                476
+            ]
+        ],
+        [
+            [
+                555,
+                474
+            ],
+            [
+                564,
+                474
+            ],
+            [
+                564,
+                483
+            ],
+            [
+                555,
+                483
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.2,
+        "max_side_limit": 4000,
+        "box_thresh": 0.3,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        1,
+        0
+    ],
+    "text_rec_score_thresh": 0.0,
+    "return_word_box": false,
+    "rec_texts": [
+        "146C5C€",
+        "ANTIBLUEL",
+        "福",
+        "X"
+    ],
+    "rec_scores": [
+        0.8176457285881042,
+        0.8705779314041138,
+        0.1267550140619278,
+        0.2770550847053528
+    ],
+    "rec_polys": [
+        [
+            [
+                509,
+                330
+            ],
+            [
+                552,
+                330
+            ],
+            [
+                552,
+                340
+            ],
+            [
+                509,
+                340
+            ]
+        ],
+        [
+            [
+                533,
+                450
+            ],
+            [
+                565,
+                466
+            ],
+            [
+                560,
+                475
+            ],
+            [
+                528,
+                459
+            ]
+        ],
+        [
+            [
+                546,
+                469
+            ],
+            [
+                556,
+                475
+            ],
+            [
+                551,
+                481
+            ],
+            [
+                542,
+                476
+            ]
+        ],
+        [
+            [
+                555,
+                474
+            ],
+            [
+                564,
+                474
+            ],
+            [
+                564,
+                483
+            ],
+            [
+                555,
+                483
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            509,
+            330,
+            552,
+            340
+        ],
+        [
+            528,
+            450,
+            565,
+            475
+        ],
+        [
+            542,
+            469,
+            556,
+            481
+        ],
+        [
+            555,
+            474,
+            564,
+            483
+        ]
+    ]
+}

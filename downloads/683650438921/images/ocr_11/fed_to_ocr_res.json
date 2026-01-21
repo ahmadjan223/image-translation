@@ -1,0 +1,175 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/683650438921/images/ocr_11/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                175,
+                475
+            ],
+            [
+                235,
+                467
+            ],
+            [
+                237,
+                480
+            ],
+            [
+                177,
+                488
+            ]
+        ],
+        [
+            [
+                185,
+                480
+            ],
+            [
+                227,
+                473
+            ],
+            [
+                230,
+                493
+            ],
+            [
+                188,
+                500
+            ]
+        ],
+        [
+            [
+                192,
+                492
+            ],
+            [
+                225,
+                486
+            ],
+            [
+                227,
+                499
+            ],
+            [
+                194,
+                505
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.2,
+        "max_side_limit": 4000,
+        "box_thresh": 0.3,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        0
+    ],
+    "text_rec_score_thresh": 0.0,
+    "return_word_box": false,
+    "rec_texts": [
+        "INDUUTA",
+        "光蓝",
+        "004V0"
+    ],
+    "rec_scores": [
+        0.5159374475479126,
+        0.3115595281124115,
+        0.5705757141113281
+    ],
+    "rec_polys": [
+        [
+            [
+                175,
+                475
+            ],
+            [
+                235,
+                467
+            ],
+            [
+                237,
+                480
+            ],
+            [
+                177,
+                488
+            ]
+        ],
+        [
+            [
+                185,
+                480
+            ],
+            [
+                227,
+                473
+            ],
+            [
+                230,
+                493
+            ],
+            [
+                188,
+                500
+            ]
+        ],
+        [
+            [
+                192,
+                492
+            ],
+            [
+                225,
+                486
+            ],
+            [
+                227,
+                499
+            ],
+            [
+                194,
+                505
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            175,
+            467,
+            237,
+            488
+        ],
+        [
+            185,
+            473,
+            230,
+            500
+        ],
+        [
+            192,
+            486,
+            227,
+            505
+        ]
+    ]
+}

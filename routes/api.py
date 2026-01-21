@@ -315,15 +315,21 @@ async def download_and_translate_image(
         ch_items = get_chinese_items(ocr_data, conf_thresh=None)
         
         if not ch_items:
-            # No Chinese text found, upload original to GCS
+            # No Chinese text found, convert to WebP and upload to GCS
             public_url = None
             if gcp_storage.is_available():
-                with open(original_path, "rb") as f:
-                    image_bytes = f.read()
+                # Convert to WebP format
+                from PIL import Image
+                import io
+                img = Image.open(original_path).convert("RGB")
+                img_buffer = io.BytesIO()
+                img.save(img_buffer, format="WEBP", quality=90)
+                image_bytes = img_buffer.getvalue()
+                
                 public_url = gcp_storage.upload_from_bytes(
                     image_bytes,
                     folder_name=f"translated/{session_id}",
-                    image_name=f"image_{image_index}"
+                        image_name=f"image_{image_index}"
                 )
             
             return image_url, ImageTranslationResult(
@@ -350,20 +356,20 @@ async def download_and_translate_image(
         final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
         
         # Save translated image locally
-        output_path = image_dir / f"translated_{image_index}.png"
-        final_pil.convert("RGB").save(str(output_path))
+        output_path = image_dir / f"translated_{image_index}.webp"
+        final_pil.convert("RGB").save(str(output_path), format="WEBP", quality=90)
         
-        # Upload to GCS and get public URL
+        # Upload to GCS and get public URL (as WebP)
         public_url = None
         if gcp_storage.is_available():
             import io
             img_buffer = io.BytesIO()
-            final_pil.convert("RGB").save(img_buffer, format="PNG")
+            final_pil.convert("RGB").save(img_buffer, format="WEBP", quality=90)
             img_bytes = img_buffer.getvalue()
             public_url = gcp_storage.upload_from_bytes(
                 img_bytes,
                 folder_name=f"translated/{session_id}",
-                image_name=f"image_{image_index}"
+                 image_name=f"image_{image_index}"
             )
             print(f"   ☁️  Uploaded to GCS: {public_url}")
         

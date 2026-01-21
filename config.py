@@ -48,6 +48,11 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyAe33GrwIicD5N4JIwxYSO6N
 # --- Regex patterns ---
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 
+# --- WebP conversion settings ---
+WEBP_LOSSLESS = True  # Set to True for lossless WebP (best quality, larger files)
+WEBP_QUALITY = 100    # Only used when WEBP_LOSSLESS=False
+WEBP_METHOD = 6       # 0-6, higher = better compression (slower)
+
 # --- Font settings ---
 FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
