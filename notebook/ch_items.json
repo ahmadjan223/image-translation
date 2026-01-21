@@ -1,7 +1,7 @@
 [
   {
     "text": "老",
-    "conf": 0.8130937814712524,
+    "conf": 0.8130937218666077,
     "poly": [
       [
         57,
@@ -233,7 +233,7 @@
   },
   {
     "text": "现货",
-    "conf": 0.9865351319313049,
+    "conf": 0.9865350723266602,
     "poly": [
       [
         56,
@@ -287,11 +287,11 @@
       592,
       743
     ],
-    "en": "Low Price/Docs Ready"
+    "en": "First Price/Docs Ready"
   },
   {
     "text": "速发",
-    "conf": 0.9711567759513855,
+    "conf": 0.971156656742096,
     "poly": [
       [
         56,
@@ -548,7 +548,7 @@
       619,
       1354
     ],
-    "en": "Best Value Supplier"
+    "en": "Good Value Supplier"
   },
   {
     "text": "无忧",
@@ -664,6 +664,6 @@
       714,
       1500
     ],
-    "en": "Same Day Ship/Coop"
+    "en": "Same Day Ship+Coop"
   }
 ]
