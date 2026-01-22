@@ -67,8 +67,8 @@ async def download_image(request: ImageDownloadRequest):
         Session ID, image path, and image dimensions.
     """
     try:
-        session_id = request.session_id or str(uuid.uuid4())
-        session_dir = DOWNLOADS_DIR / session_id
+        offer_id = request.offer_id or str(uuid.uuid4())
+        session_dir = DOWNLOADS_DIR / offer_id
         session_dir.mkdir(exist_ok=True)
         
         image_url = str(request.image_url)
@@ -102,7 +102,7 @@ async def download_image(request: ImageDownloadRequest):
         height, width = get_image_dimensions(img_bgr)
         
         return ImageDownloadResponse(
-            session_id=session_id,
+            offer_id=offer_id,
             message="✅ Image downloaded successfully",
             image_path=str(image_path),
             image_size={"width": width, "height": height}
@@ -126,11 +126,11 @@ async def run_ocr(request: OCRRequest):
         OCR results with detected Chinese text items.
     """
     try:
-        session_id = request.session_id
-        session_dir = DOWNLOADS_DIR / session_id
+        offer_id = request.offer_id
+        session_dir = DOWNLOADS_DIR / offer_id
         
         if not session_dir.exists():
-            raise HTTPException(status_code=404, detail=f"Session not found: {session_id}")
+            raise HTTPException(status_code=404, detail=f"Session not found: {offer_id}")
         
         # Find the original image
         exts = ("*.webp", "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.tif", "*.tiff")
@@ -159,7 +159,7 @@ async def run_ocr(request: OCRRequest):
             json.dump(ch_items, f, ensure_ascii=False, indent=2)
         
         return OCRResponse(
-            session_id=session_id,
+            offer_id=offer_id,
             message=f"✅ OCR completed. Found {len(ch_items)} Chinese text regions.",
             chinese_count=len(ch_items),
             chinese_items=ch_items,
@@ -185,11 +185,11 @@ async def translate_image(request: TranslateRequest):
         Translation results with output image paths.
     """
     try:
-        session_id = request.session_id
-        session_dir = DOWNLOADS_DIR / session_id
+        offer_id = request.offer_id
+        session_dir = DOWNLOADS_DIR / offer_id
         
         if not session_dir.exists():
-            raise HTTPException(status_code=404, detail=f"Session not found: {session_id}")
+            raise HTTPException(status_code=404, detail=f"Session not found: {offer_id}")
         
         # Find the original image
         exts = ("*.webp", "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.tif", "*.tiff")
@@ -216,7 +216,7 @@ async def translate_image(request: TranslateRequest):
             output_path = output_dir / "translated.png"
             save_image(img_bgr, str(output_path))
             return TranslateResponse(
-                session_id=session_id,
+                offer_id=offer_id,
                 message="✅ No Chinese text found. Original image returned.",
                 chinese_count=0,
                 output_image_path=str(output_path),
@@ -250,7 +250,7 @@ async def translate_image(request: TranslateRequest):
         final_pil.convert("RGB").save(str(output_path))
         
         return TranslateResponse(
-            session_id=session_id,
+            offer_id=offer_id,
             message=f"✅ Translation completed. {len(ch_items)} Chinese regions translated.",
             chinese_count=len(ch_items),
             output_image_path=str(output_path),
@@ -268,7 +268,7 @@ async def download_and_translate_image(
     image_url: str,
     image_dir: Path,
     image_index: int,
-    session_id: str
+    offer_id: str
 ) -> Tuple[str, ImageTranslationResult]:
     """
     Download a single image, translate it, upload to GCS, and return the result.
@@ -277,7 +277,7 @@ async def download_and_translate_image(
         image_url: URL of the image to download.
         image_dir: Directory to save the image.
         image_index: Index of the image for naming.
-        session_id: Session ID for organizing uploads in GCS.
+        offer_id: Offer ID for organizing uploads in GCS.
         
     Returns:
         Tuple of (original_url, ImageTranslationResult).
@@ -332,7 +332,7 @@ async def download_and_translate_image(
                 
                 public_url = gcp_storage.upload_from_bytes(
                     image_bytes,
-                    folder_name=f"translated/{session_id}",
+                    folder_name=f"translated/{offer_id}",
                     image_name=f"image_{image_index}"
                 )
             
@@ -372,7 +372,7 @@ async def download_and_translate_image(
             img_bytes = img_buffer.getvalue()
             public_url = gcp_storage.upload_from_bytes(
                 img_bytes,
-                folder_name=f"translated/{session_id}",
+                folder_name=f"translated/{offer_id}",
                  image_name=f"image_{image_index}"
             )
             print(f"   ☁️  Uploaded to GCS: {public_url}")
@@ -406,29 +406,27 @@ async def translate_batch(request: BatchTranslateRequest):
     then returns the HTML with image src replaced with local translated paths.
     
     Args:
-        request: Contains HTML content with image tags and optional session ID.
+        request: Contains HTML content (description) with image tags and optional offer ID.
         
     Returns:
         Translated HTML and details about each image translation.
     """
     try:
-        session_id = request.session_id or str(uuid.uuid4())
-        session_dir = DOWNLOADS_DIR / session_id
+        offer_id = request.offer_id or str(uuid.uuid4())
+        session_dir = DOWNLOADS_DIR / offer_id
         session_dir.mkdir(exist_ok=True)
         
         # Extract image URLs from HTML
-
-
-        image_urls = extract_image_urls(request.html_content)
+        image_urls = extract_image_urls(request.description)
         
         if not image_urls:
             return BatchTranslateResponse(
-                session_id=session_id,
+                offer_id=offer_id,
                 message="⚠️ No images found in HTML content.",
                 total_images=0,
                 successful_translations=0,
                 failed_translations=0,
-                translated_html=request.html_content,
+                translated_html=request.description,
                 image_results=[]
             )
         
@@ -442,7 +440,7 @@ async def translate_batch(request: BatchTranslateRequest):
         
         for idx, url in enumerate(image_urls):
             print(f"📷 Processing image {idx + 1}/{len(image_urls)}: {url[:80]}...")
-            original_url, result = await download_and_translate_image(url, images_dir, idx, session_id)
+            original_url, result = await download_and_translate_image(url, images_dir, idx, offer_id)
             results.append(result)
             
             # Use public URL if available, otherwise fall back to local path
@@ -453,14 +451,14 @@ async def translate_batch(request: BatchTranslateRequest):
                     url_mapping[original_url] = result.local_path
         
         # Replace URLs in HTML with GCS public URLs (or local paths as fallback)
-        translated_html = replace_image_urls(request.html_content, url_mapping)
+        translated_html = replace_image_urls(request.description, url_mapping)
         
         # Count successes and failures
         successful = sum(1 for r in results if r.success)
         failed = len(results) - successful
         
         return BatchTranslateResponse(
-            session_id=session_id,
+            offer_id=offer_id,
             message=f"✅ Batch translation completed. {successful}/{len(results)} images translated.",
             total_images=len(results),
             successful_translations=successful,
