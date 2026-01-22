@@ -33,6 +33,11 @@ os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
+# --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
+os.environ["FLAGS_use_mkldnn"] = "false"
+os.environ["PADDLE_USE_MKLDNN"] = "0"
+os.environ["FLAGS_use_onednn"] = "false"
+
 # --- Directory paths ---
 ROOT_DIR = Path(__file__).parent
 DOWNLOADS_DIR = ROOT_DIR / "downloads"

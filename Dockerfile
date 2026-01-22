@@ -19,11 +19,16 @@ COPY requirements.txt .
 # Install PyTorch CPU-only first
 RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-# Install remaining dependencies WITHOUT || true
+# Install remaining dependencies (ignore dependency conflicts since it works locally)
 RUN pip install -r requirements.txt
 
 # Copy application code
 COPY . .
+
+# Set environment variables to disable oneDNN/MKL-DNN optimizations
+ENV FLAGS_use_mkldnn=false
+ENV PADDLE_USE_MKLDNN=0
+ENV FLAGS_use_onednn=false
 
 # Pre-download PaddleOCR models during build
 # This caches models in /root/.paddlex/ so they don't need to download at runtime

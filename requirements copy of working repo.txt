@@ -59,7 +59,8 @@ nest-asyncio==1.6.0
 networkx==3.6.1
 numpy==1.26.4
 opencv-contrib-python==4.10.0.84
-opencv-python==4.8.1.78
+opencv-python==4.11.0.86
+opencv-python-headless==4.13.0.90
 opt-einsum==3.3.0
 orjson==3.11.5
 packaging==25.0

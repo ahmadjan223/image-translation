@@ -1,6 +1,7 @@
 """
 API routes for the Image Translation API.
 """
+import sys
 import uuid
 import json
 import asyncio
@@ -277,10 +278,17 @@ def process_image_sync(original_path: str, ocr_dir: str) -> Tuple[Dict, str, lis
         Tuple of (ocr_data, fed_path, ch_items)
     """
     print(f"   🔍 Running OCR on: {Path(original_path).name}")
-    ocr_data, fed_path = ocr_predict_to_json(original_path, ocr_dir)
-    ch_items = get_chinese_items(ocr_data, conf_thresh=None)
-    print(f"   ✅ OCR complete. Found {len(ch_items)} Chinese text regions")
-    return ocr_data, fed_path, ch_items
+    sys.stdout.flush()
+    try:
+        ocr_data, fed_path = ocr_predict_to_json(original_path, ocr_dir)
+        ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+        print(f"   ✅ OCR complete. Found {len(ch_items)} Chinese text regions")
+        sys.stdout.flush()
+        return ocr_data, fed_path, ch_items
+    except Exception as e:
+        print(f"   ❌ OCR failed: {str(e)}")
+        sys.stdout.flush()
+        raise
 
 
 def translate_and_process_sync(original_path: str, ch_items: list) -> bytes:
@@ -292,27 +300,35 @@ def translate_and_process_sync(original_path: str, ch_items: list) -> bytes:
         Translated image as WebP bytes
     """
     print(f"   🌐 Translating {len(ch_items)} text regions...")
-    # Translate Chinese to English
-    en_lines = translate_items_gemini(ch_items)
-    for it, en in zip(ch_items, en_lines):
-        it["en"] = en
-    
-    print(f"   🎨 Inpainting and overlaying text...")
-    # Inpaint (remove Chinese text)
-    img_bgr = load_image_to_bgr(original_path)
-    H, W = get_image_dimensions(img_bgr)
-    mask = create_mask_from_items(ch_items, H, W, pad=6)
-    inpainted_bgr = inpaint_image(img_bgr, mask)
-    
-    # Overlay English text
-    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
-    
-    print(f"   ✅ Translation and overlay complete")
-    # Convert to WebP bytes
-    import io
-    img_buffer = io.BytesIO()
-    final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
-    return img_buffer.getvalue()
+    sys.stdout.flush()
+    try:
+        # Translate Chinese to English
+        en_lines = translate_items_gemini(ch_items)
+        for it, en in zip(ch_items, en_lines):
+            it["en"] = en
+        
+        print(f"   🎨 Inpainting and overlaying text...")
+        sys.stdout.flush()
+        # Inpaint (remove Chinese text)
+        img_bgr = load_image_to_bgr(original_path)
+        H, W = get_image_dimensions(img_bgr)
+        mask = create_mask_from_items(ch_items, H, W, pad=6)
+        inpainted_bgr = inpaint_image(img_bgr, mask)
+        
+        # Overlay English text
+        final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+        
+        print(f"   ✅ Translation and overlay complete")
+        sys.stdout.flush()
+        # Convert to WebP bytes
+        import io
+        img_buffer = io.BytesIO()
+        final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
+        return img_buffer.getvalue()
+    except Exception as e:
+        print(f"   ❌ Translation/processing failed: {str(e)}")
+        sys.stdout.flush()
+        raise
 
 
 async def download_and_translate_image(
@@ -362,7 +378,7 @@ async def download_and_translate_image(
         # Run OCR in thread pool (CPU-bound operation)
         ocr_dir = image_dir / f"ocr_{image_index}"
         ocr_dir.mkdir(exist_ok=True)
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         ocr_data, fed_path, ch_items = await loop.run_in_executor(
             executor,
             process_image_sync,
@@ -402,7 +418,7 @@ async def download_and_translate_image(
             )
         
         # Translate and process in thread pool (CPU-bound operations)
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
         img_bytes = await loop.run_in_executor(
             executor,
             translate_and_process_sync,
@@ -435,13 +451,18 @@ async def download_and_translate_image(
         )
     
     except Exception as e:
+        import traceback
+        error_msg = f"{type(e).__name__}: {str(e)}"
+        print(f"   ❌ ERROR processing image: {error_msg}")
+        print(f"   📋 Traceback: {traceback.format_exc()}")
+        sys.stdout.flush()
         return image_url, ImageTranslationResult(
             original_url=image_url,
             local_path="",
             public_url=None,
             chinese_count=0,
             success=False,
-            error=str(e)[:200]
+            error=error_msg[:200]
         )
 
 
@@ -488,8 +509,16 @@ async def translate_batch(request: BatchTranslateRequest):
         
         for idx, url in enumerate(image_urls):
             print(f"📷 Processing image {idx + 1}/{len(image_urls)}: {url[:80]}...")
-            original_url, result = await download_and_translate_image(url, images_dir, idx, offer_id)
-            results.append(result)
+            sys.stdout.flush()
+            try:
+                original_url, result = await download_and_translate_image(url, images_dir, idx, offer_id)
+                results.append(result)
+                print(f"✅ Image {idx + 1}/{len(image_urls)} completed: {result.success}")
+                sys.stdout.flush()
+            except Exception as e:
+                print(f"❌ Image {idx + 1}/{len(image_urls)} failed: {str(e)}")
+                sys.stdout.flush()
+                raise
             
             # Use public URL if available, otherwise fall back to local path
             if result.success:
