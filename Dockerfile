@@ -4,25 +4,30 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies (if needed for your ML libraries)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     libgl1 \
     libglib2.0-0 \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements
 COPY requirements.txt .
 
-# Install PyTorch CPU-only first with the special index
-RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# Install PyTorch CPU-only first
+RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-# Install remaining dependencies (skip torch/torchvision since already installed)
-RUN pip install --no-cache-dir -r requirements.txt || true
+# Install remaining dependencies WITHOUT || true
+RUN pip install -r requirements.txt
 
 # Copy application code
 COPY . .
+
+# Pre-download PaddleOCR models during build
+# This caches models in /root/.paddlex/ so they don't need to download at runtime
+RUN python download_models.py
 
 # Cloud Run requires the app to listen on 0.0.0.0 and port 8080
 EXPOSE 8080

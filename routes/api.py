@@ -6,6 +6,7 @@ import json
 import asyncio
 from pathlib import Path
 from typing import Dict, Tuple
+from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 import cv2
@@ -32,6 +33,9 @@ from services.text_overlay import overlay_english_text
 from gcp_storage import gcp_storage
 
 router = APIRouter()
+
+# Thread pool for CPU-bound operations
+executor = ThreadPoolExecutor(max_workers=4)
 
 
 @router.get("/")
@@ -264,6 +268,53 @@ async def translate_image(request: TranslateRequest):
         raise HTTPException(status_code=500, detail=f"Translation error: {str(e)}")
 
 
+def process_image_sync(original_path: str, ocr_dir: str) -> Tuple[Dict, str, list]:
+    """
+    Synchronous helper to run OCR and get Chinese items.
+    This runs in a thread pool to avoid blocking the event loop.
+    
+    Returns:
+        Tuple of (ocr_data, fed_path, ch_items)
+    """
+    print(f"   🔍 Running OCR on: {Path(original_path).name}")
+    ocr_data, fed_path = ocr_predict_to_json(original_path, ocr_dir)
+    ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+    print(f"   ✅ OCR complete. Found {len(ch_items)} Chinese text regions")
+    return ocr_data, fed_path, ch_items
+
+
+def translate_and_process_sync(original_path: str, ch_items: list) -> bytes:
+    """
+    Synchronous helper to translate, inpaint, and overlay text.
+    This runs in a thread pool to avoid blocking the event loop.
+    
+    Returns:
+        Translated image as WebP bytes
+    """
+    print(f"   🌐 Translating {len(ch_items)} text regions...")
+    # Translate Chinese to English
+    en_lines = translate_items_gemini(ch_items)
+    for it, en in zip(ch_items, en_lines):
+        it["en"] = en
+    
+    print(f"   🎨 Inpainting and overlaying text...")
+    # Inpaint (remove Chinese text)
+    img_bgr = load_image_to_bgr(original_path)
+    H, W = get_image_dimensions(img_bgr)
+    mask = create_mask_from_items(ch_items, H, W, pad=6)
+    inpainted_bgr = inpaint_image(img_bgr, mask)
+    
+    # Overlay English text
+    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+    
+    print(f"   ✅ Translation and overlay complete")
+    # Convert to WebP bytes
+    import io
+    img_buffer = io.BytesIO()
+    final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
+    return img_buffer.getvalue()
+
+
 async def download_and_translate_image(
     image_url: str,
     image_dir: Path,
@@ -308,11 +359,16 @@ async def download_and_translate_image(
         with open(original_path, "wb") as f:
             f.write(response.content)
         
-        # Run OCR
+        # Run OCR in thread pool (CPU-bound operation)
         ocr_dir = image_dir / f"ocr_{image_index}"
         ocr_dir.mkdir(exist_ok=True)
-        ocr_data, fed_path = ocr_predict_to_json(str(original_path), str(ocr_dir))
-        ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+        loop = asyncio.get_event_loop()
+        ocr_data, fed_path, ch_items = await loop.run_in_executor(
+            executor,
+            process_image_sync,
+            str(original_path),
+            str(ocr_dir)
+        )
         
         if not ch_items:
             # No Chinese text found, upload to GCS (convert to WebP if needed)
@@ -345,35 +401,27 @@ async def download_and_translate_image(
                 error=None
             )
         
-        # Translate Chinese to English
-        en_lines = translate_items_gemini(ch_items)
-        for it, en in zip(ch_items, en_lines):
-            it["en"] = en
-        
-        # Inpaint (remove Chinese text)
-        img_bgr = load_image_to_bgr(str(original_path))
-        H, W = get_image_dimensions(img_bgr)
-        mask = create_mask_from_items(ch_items, H, W, pad=6)
-        inpainted_bgr = inpaint_image(img_bgr, mask)
-        
-        # Overlay English text
-        final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+        # Translate and process in thread pool (CPU-bound operations)
+        loop = asyncio.get_event_loop()
+        img_bytes = await loop.run_in_executor(
+            executor,
+            translate_and_process_sync,
+            str(original_path),
+            ch_items
+        )
         
         # Save translated image locally
         output_path = image_dir / f"translated_{image_index}.webp"
-        final_pil.convert("RGB").save(str(output_path), format="WEBP", lossless=True)
+        with open(output_path, "wb") as f:
+            f.write(img_bytes)
         
         # Upload to GCS and get public URL (as WebP)
         public_url = None
         if gcp_storage.is_available():
-            import io
-            img_buffer = io.BytesIO()
-            final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
-            img_bytes = img_buffer.getvalue()
             public_url = gcp_storage.upload_from_bytes(
                 img_bytes,
                 folder_name=f"translated/{offer_id}",
-                 image_name=f"image_{image_index}"
+                image_name=f"image_{image_index}"
             )
             print(f"   ☁️  Uploaded to GCS: {public_url}")
         
