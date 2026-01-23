@@ -1,5 +1,11 @@
 """
 API routes for the Image Translation API.
+
+Performance optimizations:
+- Parallel image processing using asyncio.gather() for concurrent downloads/translations
+- ThreadPoolExecutor with 8 workers for CPU-bound operations (OCR, inpainting)
+- Thread-local OCR instances for thread safety during parallel execution
+- Individual translation per image allows maximum parallelism
 """
 import sys
 import uuid
@@ -35,8 +41,8 @@ from gcp_storage import gcp_storage
 
 router = APIRouter()
 
-# Thread pool for CPU-bound operations
-executor = ThreadPoolExecutor(max_workers=4)
+# Thread pool for CPU-bound operations (increased for parallel image processing)
+executor = ThreadPoolExecutor(max_workers=8)
 
 
 @router.get("/")
@@ -503,29 +509,47 @@ async def translate_batch(request: BatchTranslateRequest):
         images_dir = session_dir / "images"
         images_dir.mkdir(exist_ok=True)
         
-        # Process images sequentially (to avoid overwhelming OCR/translation services)
+        # Process all images in parallel for better performance
+        print(f"📷 Processing {len(image_urls)} images in parallel...")
+        sys.stdout.flush()
+        
+        tasks = [
+            download_and_translate_image(url, images_dir, idx, offer_id)
+            for idx, url in enumerate(image_urls)
+        ]
+        
+        # Execute all tasks concurrently
+        parallel_results = await asyncio.gather(*tasks, return_exceptions=True)
+        
+        # Process results and build URL mapping
         results = []
         url_mapping: Dict[str, str] = {}
         
-        for idx, url in enumerate(image_urls):
-            print(f"📷 Processing image {idx + 1}/{len(image_urls)}: {url[:80]}...")
-            sys.stdout.flush()
-            try:
-                original_url, result = await download_and_translate_image(url, images_dir, idx, offer_id)
+        for idx, task_result in enumerate(parallel_results):
+            if isinstance(task_result, Exception):
+                error_msg = f"{type(task_result).__name__}: {str(task_result)}"
+                print(f"❌ Image {idx + 1}/{len(image_urls)} failed: {error_msg}")
+                sys.stdout.flush()
+                results.append(ImageTranslationResult(
+                    original_url=image_urls[idx],
+                    local_path="",
+                    public_url=None,
+                    chinese_count=0,
+                    success=False,
+                    error=error_msg[:200]
+                ))
+            else:
+                original_url, result = task_result
                 results.append(result)
                 print(f"✅ Image {idx + 1}/{len(image_urls)} completed: {result.success}")
                 sys.stdout.flush()
-            except Exception as e:
-                print(f"❌ Image {idx + 1}/{len(image_urls)} failed: {str(e)}")
-                sys.stdout.flush()
-                raise
-            
-            # Use public URL if available, otherwise fall back to local path
-            if result.success:
-                if result.public_url:
-                    url_mapping[original_url] = result.public_url
-                elif result.local_path:
-                    url_mapping[original_url] = result.local_path
+                
+                # Use public URL if available, otherwise fall back to local path
+                if result.success:
+                    if result.public_url:
+                        url_mapping[original_url] = result.public_url
+                    elif result.local_path:
+                        url_mapping[original_url] = result.local_path
         
         # Replace URLs in HTML with GCS public URLs (or local paths as fallback)
         translated_html = replace_image_urls(request.description, url_mapping)

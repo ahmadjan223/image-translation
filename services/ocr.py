@@ -8,20 +8,20 @@ import cv2
 from typing import List, Dict, Any, Optional, Tuple
 
 from paddleocr import PaddleOCR
+import threading
 
 from config import CJK_RE, OCR_CONFIG
 from utils.image import load_image_to_bgr
 
-# Initialize PaddleOCR (global instance)
-_ocr_instance = None
+# Thread-local storage for PaddleOCR instances (thread-safe)
+_thread_local = threading.local()
 
 
 def get_ocr_instance() -> PaddleOCR:
-    """Get or create the PaddleOCR instance."""
-    global _ocr_instance
-    if _ocr_instance is None:
-        _ocr_instance = PaddleOCR(**OCR_CONFIG)
-    return _ocr_instance
+    """Get or create a thread-local PaddleOCR instance for thread safety."""
+    if not hasattr(_thread_local, 'ocr'):
+        _thread_local.ocr = PaddleOCR(**OCR_CONFIG)
+    return _thread_local.ocr
 
 
 def ocr_predict_to_json(image_path: str, outdir: str) -> Tuple[Dict, str]:
@@ -41,7 +41,7 @@ def ocr_predict_to_json(image_path: str, outdir: str) -> Tuple[Dict, str]:
     os.makedirs(outdir, exist_ok=True)
     
     img_bgr = load_image_to_bgr(image_path)
-    
+
     # Save the exact bitmap fed to OCR
     fed_path = os.path.join(outdir, "fed_to_ocr.png")
     cv2.imwrite(fed_path, img_bgr)
