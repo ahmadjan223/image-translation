@@ -32,6 +32,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_CORETYPE"] = "generic"
 
 # --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
 os.environ["FLAGS_use_mkldnn"] = "false"

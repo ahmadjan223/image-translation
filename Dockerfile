@@ -4,12 +4,22 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies (incl. Pillow build deps and fonts)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     g++ \
+    build-essential \
+    python3-dev \
     libgl1 \
     libglib2.0-0 \
+    libjpeg-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libtiff-dev \
+    libopenjp2-7-dev \
+    libwebp-dev \
+    libfreetype6-dev \
+    fonts-liberation \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
@@ -29,6 +39,14 @@ COPY . .
 ENV FLAGS_use_mkldnn=false
 ENV PADDLE_USE_MKLDNN=0
 ENV FLAGS_use_onednn=false
+
+# Disable NumPy/OpenBLAS threading and SIMD to prevent SIGFPE on Cloud Run
+ENV OMP_NUM_THREADS=1
+ENV MKL_NUM_THREADS=1
+ENV OPENBLAS_NUM_THREADS=1
+ENV NUMEXPR_NUM_THREADS=1
+ENV KMP_DUPLICATE_LIB_OK=TRUE
+ENV OPENBLAS_CORETYPE=generic
 
 # Pre-download PaddleOCR models during build
 # This caches models in /root/.paddlex/ so they don't need to download at runtime
