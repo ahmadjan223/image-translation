@@ -1,0 +1,220 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/002/images/ocr_6/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                184,
+                132
+            ],
+            [
+                566,
+                132
+            ],
+            [
+                566,
+                179
+            ],
+            [
+                184,
+                179
+            ]
+        ],
+        [
+            [
+                90,
+                183
+            ],
+            [
+                658,
+                183
+            ],
+            [
+                658,
+                211
+            ],
+            [
+                90,
+                211
+            ]
+        ],
+        [
+            [
+                422,
+                645
+            ],
+            [
+                430,
+                645
+            ],
+            [
+                430,
+                655
+            ],
+            [
+                422,
+                655
+            ]
+        ],
+        [
+            [
+                618,
+                882
+            ],
+            [
+                646,
+                882
+            ],
+            [
+                646,
+                904
+            ],
+            [
+                618,
+                904
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.2,
+        "max_side_limit": 4000,
+        "box_thresh": 0.3,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        1,
+        1
+    ],
+    "text_rec_score_thresh": 0.0,
+    "return_word_box": false,
+    "rec_texts": [
+        "不锈钢材质防水耐用",
+        "使用后用清水冲洗干净，擦干置于干燥处，使用更持久",
+        "2",
+        "福"
+    ],
+    "rec_scores": [
+        0.999134361743927,
+        0.9944358468055725,
+        0.09736377000808716,
+        0.05308918654918671
+    ],
+    "rec_polys": [
+        [
+            [
+                184,
+                132
+            ],
+            [
+                566,
+                132
+            ],
+            [
+                566,
+                179
+            ],
+            [
+                184,
+                179
+            ]
+        ],
+        [
+            [
+                90,
+                183
+            ],
+            [
+                658,
+                183
+            ],
+            [
+                658,
+                211
+            ],
+            [
+                90,
+                211
+            ]
+        ],
+        [
+            [
+                422,
+                645
+            ],
+            [
+                430,
+                645
+            ],
+            [
+                430,
+                655
+            ],
+            [
+                422,
+                655
+            ]
+        ],
+        [
+            [
+                618,
+                882
+            ],
+            [
+                646,
+                882
+            ],
+            [
+                646,
+                904
+            ],
+            [
+                618,
+                904
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            184,
+            132,
+            566,
+            179
+        ],
+        [
+            90,
+            183,
+            658,
+            211
+        ],
+        [
+            422,
+            645,
+            430,
+            655
+        ],
+        [
+            618,
+            882,
+            646,
+            904
+        ]
+    ]
+}

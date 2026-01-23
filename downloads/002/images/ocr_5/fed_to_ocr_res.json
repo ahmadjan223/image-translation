@@ -1,0 +1,220 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/002/images/ocr_5/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                559,
+                307
+            ],
+            [
+                713,
+                311
+            ],
+            [
+                711,
+                360
+            ],
+            [
+                558,
+                356
+            ]
+        ],
+        [
+            [
+                587,
+                357
+            ],
+            [
+                685,
+                357
+            ],
+            [
+                685,
+                372
+            ],
+            [
+                587,
+                372
+            ]
+        ],
+        [
+            [
+                560,
+                714
+            ],
+            [
+                716,
+                718
+            ],
+            [
+                715,
+                766
+            ],
+            [
+                559,
+                762
+            ]
+        ],
+        [
+            [
+                574,
+                763
+            ],
+            [
+                697,
+                763
+            ],
+            [
+                697,
+                778
+            ],
+            [
+                574,
+                778
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.2,
+        "max_side_limit": 4000,
+        "box_thresh": 0.3,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "text_rec_score_thresh": 0.0,
+    "return_word_box": false,
+    "rec_texts": [
+        "「修体毛」",
+        "BODY REPAIR",
+        "「修眉笔」",
+        "EYEBROWPENCIL"
+    ],
+    "rec_scores": [
+        0.9981683492660522,
+        0.9516211152076721,
+        0.9997625350952148,
+        0.9823804497718811
+    ],
+    "rec_polys": [
+        [
+            [
+                559,
+                307
+            ],
+            [
+                713,
+                311
+            ],
+            [
+                711,
+                360
+            ],
+            [
+                558,
+                356
+            ]
+        ],
+        [
+            [
+                587,
+                357
+            ],
+            [
+                685,
+                357
+            ],
+            [
+                685,
+                372
+            ],
+            [
+                587,
+                372
+            ]
+        ],
+        [
+            [
+                560,
+                714
+            ],
+            [
+                716,
+                718
+            ],
+            [
+                715,
+                766
+            ],
+            [
+                559,
+                762
+            ]
+        ],
+        [
+            [
+                574,
+                763
+            ],
+            [
+                697,
+                763
+            ],
+            [
+                697,
+                778
+            ],
+            [
+                574,
+                778
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            558,
+            307,
+            713,
+            360
+        ],
+        [
+            587,
+            357,
+            685,
+            372
+        ],
+        [
+            559,
+            714,
+            716,
+            766
+        ],
+        [
+            574,
+            763,
+            697,
+            778
+        ]
+    ]
+}

@@ -26,18 +26,18 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-# --- Environment setup for threading issues ---
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_CORETYPE"] = "generic"
+# # --- Environment setup for threading issues ---
+# os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+# os.environ["OMP_NUM_THREADS"] = "1"
+# os.environ["MKL_NUM_THREADS"] = "1"
+# os.environ["OPENBLAS_NUM_THREADS"] = "1"
+# os.environ["NUMEXPR_NUM_THREADS"] = "1"
+# os.environ["OPENBLAS_CORETYPE"] = "generic"
 
-# --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
-os.environ["FLAGS_use_mkldnn"] = "false"
-os.environ["PADDLE_USE_MKLDNN"] = "0"
-os.environ["FLAGS_use_onednn"] = "false"
+# # --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
+# os.environ["FLAGS_use_mkldnn"] = "false"
+# os.environ["PADDLE_USE_MKLDNN"] = "0"
+# os.environ["FLAGS_use_onednn"] = "false"
 
 # --- Directory paths ---
 ROOT_DIR = Path(__file__).parent
