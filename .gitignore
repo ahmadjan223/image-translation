@@ -1,2 +1,10 @@
 venv
 .env
+downloads/
+outputs/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
