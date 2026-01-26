@@ -41,8 +41,9 @@ from gcp_storage import gcp_storage
 
 router = APIRouter()
 
-# Thread pool for CPU-bound operations (increased for parallel image processing)
+# Limit concurrent operations to prevent memory exhaustion
 executor = ThreadPoolExecutor(max_workers=8)
+ocr_semaphore = asyncio.Semaphore(8)
 
 
 @router.get("/")
@@ -162,7 +163,7 @@ async def run_ocr(request: OCRRequest):
         ocr_data, fed_path = ocr_predict_to_json(image_path, str(ocr_dir))
         
         # Extract Chinese items
-        ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+        ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
         
         # Save chinese items to JSON
         ch_items_path = ocr_dir / "chinese_items.json"
@@ -219,7 +220,7 @@ async def translate_image(request: TranslateRequest):
         
         # Step 1: Run OCR
         ocr_data, fed_path = ocr_predict_to_json(image_path, str(output_dir))
-        ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+        ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
         
         if not ch_items:
             # No Chinese text found, just copy original
@@ -287,7 +288,7 @@ def process_image_sync(original_path: str, ocr_dir: str) -> Tuple[Dict, str, lis
     sys.stdout.flush()
     try:
         ocr_data, fed_path = ocr_predict_to_json(original_path, ocr_dir)
-        ch_items = get_chinese_items(ocr_data, conf_thresh=None)
+        ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
         print(f"   ✅ OCR complete. Found {len(ch_items)} Chinese text regions")
         sys.stdout.flush()
         return ocr_data, fed_path, ch_items
@@ -345,6 +346,7 @@ async def download_and_translate_image(
 ) -> Tuple[str, ImageTranslationResult]:
     """
     Download a single image, translate it, upload to GCS, and return the result.
+    Uses semaphore to limit concurrent OCR operations and prevent OOM.
     
     Args:
         image_url: URL of the image to download.
@@ -381,16 +383,19 @@ async def download_and_translate_image(
         with open(original_path, "wb") as f:
             f.write(response.content)
         
-        # Run OCR in thread pool (CPU-bound operation)
+        # Run OCR in thread pool with semaphore to limit concurrent operations
         ocr_dir = image_dir / f"ocr_{image_index}"
         ocr_dir.mkdir(exist_ok=True)
         loop = asyncio.get_running_loop()
-        ocr_data, fed_path, ch_items = await loop.run_in_executor(
-            executor,
-            process_image_sync,
-            str(original_path),
-            str(ocr_dir)
-        )
+        
+        # Use semaphore to limit concurrent OCR operations (prevents OOM)
+        async with ocr_semaphore:
+            ocr_data, fed_path, ch_items = await loop.run_in_executor(
+                executor,
+                process_image_sync,
+                str(original_path),
+                str(ocr_dir)
+            )
         
         if not ch_items:
             # No Chinese text found, upload to GCS (convert to WebP if needed)
