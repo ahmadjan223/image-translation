@@ -1,0 +1,199 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/82817681536/images/ocr_11/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                326,
+                12
+            ],
+            [
+                886,
+                12
+            ],
+            [
+                886,
+                78
+            ],
+            [
+                326,
+                78
+            ]
+        ],
+        [
+            [
+                963,
+                982
+            ],
+            [
+                989,
+                978
+            ],
+            [
+                992,
+                992
+            ],
+            [
+                966,
+                996
+            ]
+        ],
+        [
+            [
+                351,
+                1097
+            ],
+            [
+                567,
+                1038
+            ],
+            [
+                612,
+                1200
+            ],
+            [
+                396,
+                1259
+            ]
+        ],
+        [
+            [
+                847,
+                1132
+            ],
+            [
+                877,
+                1121
+            ],
+            [
+                881,
+                1134
+            ],
+            [
+                851,
+                1144
+            ]
+        ],
+        [
+            [
+                435,
+                1165
+            ],
+            [
+                442,
+                1165
+            ],
+            [
+                442,
+                1176
+            ],
+            [
+                435,
+                1176
+            ]
+        ],
+        [
+            [
+                439,
+                1191
+            ],
+            [
+                451,
+                1191
+            ],
+            [
+                451,
+                1203
+            ],
+            [
+                439,
+                1203
+            ]
+        ],
+        [
+            [
+                757,
+                1208
+            ],
+            [
+                871,
+                1187
+            ],
+            [
+                887,
+                1279
+            ],
+            [
+                773,
+                1299
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.4,
+        "max_side_limit": 4000,
+        "box_thresh": 0.5,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "text_rec_score_thresh": 0.6,
+    "return_word_box": false,
+    "rec_texts": [
+        "六色可选均码80-140斤"
+    ],
+    "rec_scores": [
+        0.9953670501708984
+    ],
+    "rec_polys": [
+        [
+            [
+                326,
+                12
+            ],
+            [
+                886,
+                12
+            ],
+            [
+                886,
+                78
+            ],
+            [
+                326,
+                78
+            ]
+        ]
+    ],
+    "rec_boxes": [
+        [
+            326,
+            12,
+            886,
+            78
+        ]
+    ]
+}

@@ -1,0 +1,207 @@
+{
+    "input_path": "/home/ahmad-jan/Desktop/Markaz/image-translation/downloads/82817681536/images/ocr_5/fed_to_ocr.png",
+    "page_index": null,
+    "model_settings": {
+        "use_doc_preprocessor": true,
+        "use_textline_orientation": true
+    },
+    "doc_preprocessor_res": {
+        "input_path": null,
+        "page_index": null,
+        "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+        },
+        "angle": -1
+    },
+    "dt_polys": [
+        [
+            [
+                543,
+                196
+            ],
+            [
+                717,
+                386
+            ],
+            [
+                568,
+                522
+            ],
+            [
+                394,
+                332
+            ]
+        ],
+        [
+            [
+                738,
+                358
+            ],
+            [
+                1200,
+                672
+            ],
+            [
+                901,
+                1200
+            ],
+            [
+                364,
+                996
+            ]
+        ],
+        [
+            [
+                22,
+                465
+            ],
+            [
+                154,
+                454
+            ],
+            [
+                176,
+                721
+            ],
+            [
+                45,
+                731
+            ]
+        ],
+        [
+            [
+                504,
+                519
+            ],
+            [
+                511,
+                519
+            ],
+            [
+                511,
+                532
+            ],
+            [
+                504,
+                532
+            ]
+        ],
+        [
+            [
+                826,
+                636
+            ],
+            [
+                836,
+                636
+            ],
+            [
+                836,
+                651
+            ],
+            [
+                826,
+                651
+            ]
+        ],
+        [
+            [
+                836,
+                637
+            ],
+            [
+                843,
+                637
+            ],
+            [
+                843,
+                648
+            ],
+            [
+                836,
+                648
+            ]
+        ],
+        [
+            [
+                927,
+                849
+            ],
+            [
+                934,
+                849
+            ],
+            [
+                934,
+                863
+            ],
+            [
+                927,
+                863
+            ]
+        ],
+        [
+            [
+                788,
+                958
+            ],
+            [
+                795,
+                958
+            ],
+            [
+                795,
+                966
+            ],
+            [
+                788,
+                966
+            ]
+        ],
+        [
+            [
+                830,
+                975
+            ],
+            [
+                847,
+                979
+            ],
+            [
+                841,
+                1003
+            ],
+            [
+                824,
+                998
+            ]
+        ]
+    ],
+    "text_det_params": {
+        "limit_side_len": 4000,
+        "limit_type": "max",
+        "thresh": 0.4,
+        "max_side_limit": 4000,
+        "box_thresh": 0.5,
+        "unclip_ratio": 1.8
+    },
+    "text_type": "general",
+    "textline_orientation_angles": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+    ],
+    "text_rec_score_thresh": 0.6,
+    "return_word_box": false,
+    "rec_texts": [],
+    "rec_scores": [],
+    "rec_polys": [],
+    "rec_boxes": []
+}
