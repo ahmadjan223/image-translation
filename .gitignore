@@ -8,3 +8,13 @@ __pycache__/
 *.pyd
 *.sqlite3
 *.log
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.zip
+*.json
+*.csv
+.DS_Store
+*.txt
