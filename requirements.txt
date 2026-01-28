@@ -112,8 +112,8 @@ starlette==0.35.1
 sympy==1.14.0
 tenacity==9.1.2
 termcolor==3.3.0
-torch==2.10.0+cpu
-torchvision==0.25.0+cpu
+torch
+torchvision
 tornado==6.5.4
 tqdm==4.67.1
 traitlets==5.14.3
