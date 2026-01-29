@@ -17,4 +17,3 @@ __pycache__/
 *.json
 *.csv
 .DS_Store
-*.txt
