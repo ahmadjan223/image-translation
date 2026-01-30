@@ -3,6 +3,7 @@ Configuration and constants for the Image Translation API.
 """
 import os
 import re
+import sys
 from pathlib import Path
 from pydantic_settings import BaseSettings
 from typing import Optional
@@ -26,18 +27,36 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-# # --- Environment setup for threading issues ---
-# os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-# os.environ["OMP_NUM_THREADS"] = "1"
-# os.environ["MKL_NUM_THREADS"] = "1"
-# os.environ["OPENBLAS_NUM_THREADS"] = "1"
-# os.environ["NUMEXPR_NUM_THREADS"] = "1"
-# os.environ["OPENBLAS_CORETYPE"] = "generic"
+# --- Add CUDA libraries from venv to LD_LIBRARY_PATH ---
+# PaddlePaddle-GPU bundles CUDA libs in venv, but they need to be in LD_LIBRARY_PATH
+if sys.prefix:  # Check if we're in a venv
+    nvidia_libs = Path(sys.prefix) / "lib/python3.11/site-packages/nvidia"
+    if nvidia_libs.exists():
+        cuda_paths = []
+        for subdir in ["cublas/lib", "cudnn/lib", "cuda_runtime/lib"]:
+            lib_path = nvidia_libs / subdir
+            if lib_path.exists():
+                cuda_paths.append(str(lib_path))
+        
+        if cuda_paths:
+            existing_ld_path = os.environ.get("LD_LIBRARY_PATH", "")
+            new_ld_path = ":".join(cuda_paths + ([existing_ld_path] if existing_ld_path else []))
+            os.environ["LD_LIBRARY_PATH"] = new_ld_path
+            print(f"✅ Added CUDA libraries to LD_LIBRARY_PATH: {':'.join(cuda_paths)}")
 
-# # --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
-# os.environ["FLAGS_use_mkldnn"] = "false"
-# os.environ["PADDLE_USE_MKLDNN"] = "0"
-# os.environ["FLAGS_use_onednn"] = "false"
+
+# --- Environment setup for threading issues ---
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_CORETYPE"] = "generic"
+
+# --- Disable oneDNN/MKL-DNN to avoid compatibility issues in Docker ---
+os.environ["FLAGS_use_mkldnn"] = "false"
+os.environ["PADDLE_USE_MKLDNN"] = "0"
+os.environ["FLAGS_use_onednn"] = "false"
 
 # --- Directory paths ---
 ROOT_DIR = Path(__file__).parent
@@ -74,7 +93,7 @@ MAX_LINES_FALLBACK = 2
 LINE_SPACING = 1.025
 SHADOW_BLUR = 1
 SHADOW_OFFSET = (1, 1)
-
+True,  # GPU enabled - CUDA libraries are in venv
 # --- Translation prompt ---
 TRANSLATION_SYSTEM_PROMPT = """
 Translate Chinese OCR lines to English for product images.
@@ -92,6 +111,7 @@ Output JSON ONLY:
 # --- OCR settings ---
 OCR_CONFIG = {
     "lang": "ch",
+    "use_gpu": False,  # Force CPU - LD_LIBRARY_PATH must be set BEFORE process starts
     "use_doc_unwarping": False,
     "use_doc_orientation_classify": False,
     "text_det_limit_type": "max",
