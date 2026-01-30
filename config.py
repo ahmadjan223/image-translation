@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     GCP_PROJECT_ID: Optional[str] = None
     GCP_BUCKET_NAME: Optional[str] = None
     GCP_CDN_URL: Optional[str] = None
+    GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
+    GEMINI_API_KEY: Optional[str] = None
     
     class Config:
         env_file = ".env"
@@ -58,6 +60,14 @@ os.environ["FLAGS_use_mkldnn"] = "false"
 os.environ["PADDLE_USE_MKLDNN"] = "0"
 os.environ["FLAGS_use_onednn"] = "false"
 
+# --- Set GCP credentials path for Cloud Storage client ---
+if settings.GOOGLE_APPLICATION_CREDENTIALS:
+    creds_path = Path(settings.GOOGLE_APPLICATION_CREDENTIALS)
+    if not creds_path.is_absolute():
+        creds_path = Path(__file__).parent / creds_path
+    if creds_path.exists():
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(creds_path)
+
 # --- Directory paths ---
 ROOT_DIR = Path(__file__).parent
 DOWNLOADS_DIR = ROOT_DIR / "downloads"
@@ -67,8 +77,9 @@ OUTPUTS_DIR = ROOT_DIR / "outputs"
 DOWNLOADS_DIR.mkdir(exist_ok=True)
 OUTPUTS_DIR.mkdir(exist_ok=True)
 
-# --- API Keys ---
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyAe33GrwIicD5N4JIwxYSO6Nb7b35s2fH4")
+# --- API Keys & Credentials ---
+GEMINI_API_KEY = settings.GEMINI_API_KEY
+GOOGLE_APPLICATION_CREDENTIALS = settings.GOOGLE_APPLICATION_CREDENTIALS
 
 # --- Regex patterns ---
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
@@ -79,8 +90,7 @@ WEBP_QUALITY = 100    # Only used when WEBP_LOSSLESS=False
 WEBP_METHOD = 6       # 0-6, higher = better compression (slower)
 
 # --- Font settings ---
-FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
-
+FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 # --- Text overlay parameters ---
 PAD_IN = 2
 MIN_BOX_W = 20

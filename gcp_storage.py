@@ -22,7 +22,7 @@ class GCPCloudStorage:
         
         if self.bucket_name and settings.GCP_PROJECT_ID:
             try:
-                # Don't pass credentials parameter - use Application Default Credentials
+                # Use Application Default Credentials (set via config.py)
                 self.client = storage.Client(project=settings.GCP_PROJECT_ID)
                 self.bucket = self.client.bucket(self.bucket_name)
                 logger.info(f"Initialized GCP Cloud Storage for bucket: {self.bucket_name}")
