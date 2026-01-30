@@ -1,12 +1,11 @@
 """
 API routes for the Image Translation API.
 
-Performance optimizations (GPU-optimized):
-- Phase 1: Parallel image downloads (I/O)
-- Phase 2: Sequential OCR processing (GPU constraint)
-- Phase 3: Parallel translation API calls (I/O)
-- Phase 4: Sequential inpainting (GPU constraint)
-- Phase 5: Parallel GCS uploads (I/O)
+Performance optimizations (GPU-optimized streaming pipeline):
+- Each image flows: Download → OCR → Translate → Inpaint → Upload immediately
+- GPU operations (OCR, inpainting) use semaphores for sequential execution
+- I/O operations (download, translate, upload) run in parallel
+- No waiting for batch phases - maximum throughput
 """
 import sys
 import uuid
@@ -40,6 +39,10 @@ from services.text_overlay import overlay_english_text
 from gcp_storage import gcp_storage
 
 router = APIRouter()
+
+# GPU operation semaphores - ensure sequential execution to prevent OOM
+ocr_semaphore = asyncio.Semaphore(1)
+inpainting_semaphore = asyncio.Semaphore(1)
 
 
 @router.get("/")
@@ -273,158 +276,240 @@ async def translate_image(request: TranslateRequest):
 
 
 # ============================================================================
-# Phase-based helper functions for GPU-optimized processing
+# Streaming pipeline worker function
 # ============================================================================
 
-async def download_image_helper(
+async def process_single_image_pipeline(
     image_url: str,
-    image_dir: Path,
-    image_index: int
-) -> Tuple[str, int, str]:
-    """
-    Phase 1: Download a single image (I/O operation).
-    
-    Returns:
-        Tuple of (original_url, image_index, local_path)
-    """
-    async with httpx.AsyncClient(timeout=60.0) as client:
-        response = await client.get(
-            image_url,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
-        )
-        response.raise_for_status()
-    
-    # Determine file extension
-    content_type = response.headers.get("content-type", "").lower()
-    if "jpeg" in content_type or "jpg" in content_type:
-        ext = ".jpg"
-    elif "webp" in content_type:
-        ext = ".webp"
-    elif "png" in content_type:
-        ext = ".png"
-    else:
-        url_path = image_url.split("?")[0]
-        ext = Path(url_path).suffix or ".jpg"
-    
-    # Save original image
-    original_path = image_dir / f"original_{image_index}{ext}"
-    with open(original_path, "wb") as f:
-        f.write(response.content)
-    
-    print(f"   📥 Downloaded image {image_index + 1}: {Path(original_path).name}")
-    sys.stdout.flush()
-    return image_url, image_index, str(original_path)
-
-
-def process_ocr_phase(original_path: str, ocr_dir: str) -> Tuple[list, str]:
-    """
-    Phase 2: Run OCR on a single image (GPU operation - must be sequential).
-    
-    Returns:
-        Tuple of (ch_items, fed_path)
-    """
-    print(f"   🔍 Running OCR: {Path(original_path).name}")
-    sys.stdout.flush()
-    
-    ocr_data, fed_path = ocr_predict_to_json(original_path, ocr_dir)
-    ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
-    
-    print(f"   ✅ OCR complete: Found {len(ch_items)} Chinese text regions")
-    sys.stdout.flush()
-    return ch_items, fed_path
-
-
-async def process_translation_phase(ch_items: list, image_index: int) -> list:
-    """
-    Phase 3: Translate Chinese text to English (I/O operation - API call).
-    
-    Returns:
-        List of ch_items with 'en' field added
-    """
-    if not ch_items:
-        return ch_items
-    
-    print(f"   🌐 Translating {len(ch_items)} text regions for image {image_index + 1}...")
-    sys.stdout.flush()
-    
-    # Run translation in the event loop (it's async-friendly)
-    en_lines = translate_items_gemini(ch_items)
-    for it, en in zip(ch_items, en_lines):
-        it["en"] = en
-    
-    print(f"   ✅ Translation complete for image {image_index + 1}")
-    sys.stdout.flush()
-    return ch_items
-
-
-def process_inpainting_phase(
-    original_path: str,
-    ch_items: list
-) -> bytes:
-    """
-    Phase 4: Inpaint and overlay text (GPU operation - must be sequential).
-    
-    Returns:
-        Translated image as WebP bytes
-    """
-    print(f"   🎨 Inpainting and overlaying: {Path(original_path).name}")
-    sys.stdout.flush()
-    
-    # Inpaint (remove Chinese text)
-    img_bgr = load_image_to_bgr(original_path)
-    H, W = get_image_dimensions(img_bgr)
-    mask = create_mask_from_items(ch_items, H, W, pad=6)
-    inpainted_bgr = inpaint_image(img_bgr, mask)
-    
-    # Overlay English text
-    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
-    
-    # Convert to WebP bytes
-    import io
-    img_buffer = io.BytesIO()
-    final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
-    
-    print(f"   ✅ Inpainting complete: {Path(original_path).name}")
-    sys.stdout.flush()
-    return img_buffer.getvalue()
-
-
-async def upload_to_gcs_helper(
-    image_bytes: bytes,
+    image_index: int,
+    images_dir: Path,
     offer_id: str,
-    image_index: int
-) -> str:
+    results: List,
+    url_mapping: Dict[str, str]
+):
     """
-    Phase 5: Upload image to GCS (I/O operation).
+    Streaming pipeline for a single image:
+    Download → OCR → Translate → Inpaint → Upload
     
-    Returns:
-        Public URL of the uploaded image
+    Each stage starts immediately after the previous completes.
+    GPU operations use semaphores for sequential execution.
     """
-    if not gcp_storage.is_available():
-        return None
+    original_path = None
+    try:
+        # =====================================================================
+        # STAGE 1: Download (I/O - parallel)
+        # =====================================================================
+        print(f"   [{image_index + 1}] 📥 Downloading...")
+        sys.stdout.flush()
+        
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.get(
+                image_url,
+                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+            )
+            response.raise_for_status()
+        
+        # Determine file extension
+        content_type = response.headers.get("content-type", "").lower()
+        if "jpeg" in content_type or "jpg" in content_type:
+            ext = ".jpg"
+        elif "webp" in content_type:
+            ext = ".webp"
+        elif "png" in content_type:
+            ext = ".png"
+        else:
+            url_path = image_url.split("?")[0]
+            ext = Path(url_path).suffix or ".jpg"
+        
+        # Save original image
+        original_path = images_dir / f"original_{image_index}{ext}"
+        with open(original_path, "wb") as f:
+            f.write(response.content)
+        
+        print(f"   [{image_index + 1}] ✅ Downloaded")
+        sys.stdout.flush()
+        
+        # =====================================================================
+        # STAGE 2: OCR (GPU - sequential via semaphore)
+        # =====================================================================
+        print(f"   [{image_index + 1}] 🔍 Waiting for OCR...")
+        sys.stdout.flush()
+        
+        async with ocr_semaphore:  # Only 1 OCR at a time
+            print(f"   [{image_index + 1}] 🔍 Running OCR...")
+            sys.stdout.flush()
+            
+            ocr_dir = images_dir / f"ocr_{image_index}"
+            ocr_dir.mkdir(exist_ok=True)
+            
+            # Run OCR in thread pool
+            loop = asyncio.get_running_loop()
+            ocr_data, fed_path = await loop.run_in_executor(
+                None,
+                ocr_predict_to_json,
+                str(original_path),
+                str(ocr_dir)
+            )
+            ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
+            
+            print(f"   [{image_index + 1}] ✅ OCR done: {len(ch_items)} Chinese regions")
+            sys.stdout.flush()
+        
+        # If no Chinese text, skip translation/inpainting
+        if not ch_items:
+            print(f"   [{image_index + 1}] ⏭️  No Chinese text, converting...")
+            sys.stdout.flush()
+            
+            from PIL import Image
+            import io
+            img = Image.open(original_path).convert("RGB")
+            img_buffer = io.BytesIO()
+            img.save(img_buffer, format="WEBP", lossless=True)
+            img_bytes = img_buffer.getvalue()
+            
+            output_path = images_dir / f"translated_{image_index}.webp"
+            with open(output_path, "wb") as f:
+                f.write(img_bytes)
+            
+            # Upload to GCS
+            public_url = None
+            if gcp_storage.is_available():
+                print(f"   [{image_index + 1}] ☁️  Uploading...")
+                sys.stdout.flush()
+                loop = asyncio.get_running_loop()
+                public_url = await loop.run_in_executor(
+                    None,
+                    gcp_storage.upload_from_bytes,
+                    img_bytes,
+                    f"translated/{offer_id}",
+                    f"image_{image_index}"
+                )
+                print(f"   [{image_index + 1}] ✅ Uploaded")
+                sys.stdout.flush()
+            
+            results[image_index] = ImageTranslationResult(
+                original_url=image_url,
+                local_path=str(output_path),
+                public_url=public_url,
+                chinese_count=0,
+                success=True,
+                error=None
+            )
+            url_mapping[image_url] = public_url or str(output_path)
+            print(f"   [{image_index + 1}] 🎉 Complete!")
+            sys.stdout.flush()
+            return
+        
+        # =====================================================================
+        # STAGE 3: Translation (I/O - parallel API calls)
+        # =====================================================================
+        print(f"   [{image_index + 1}] 🌐 Translating {len(ch_items)} regions...")
+        sys.stdout.flush()
+        
+        loop = asyncio.get_running_loop()
+        en_lines = await loop.run_in_executor(
+            None,
+            translate_items_gemini,
+            ch_items
+        )
+        for it, en in zip(ch_items, en_lines):
+            it["en"] = en
+        
+        print(f"   [{image_index + 1}] ✅ Translated")
+        sys.stdout.flush()
+        
+        # =====================================================================
+        # STAGE 4: Inpainting (GPU - sequential via semaphore)
+        # =====================================================================
+        print(f"   [{image_index + 1}] 🎨 Waiting for inpainting...")
+        sys.stdout.flush()
+        
+        async with inpainting_semaphore:  # Only 1 inpainting at a time
+            print(f"   [{image_index + 1}] 🎨 Inpainting...")
+            sys.stdout.flush()
+            
+            loop = asyncio.get_running_loop()
+            
+            def inpaint_and_overlay():
+                img_bgr = load_image_to_bgr(str(original_path))
+                H, W = get_image_dimensions(img_bgr)
+                mask = create_mask_from_items(ch_items, H, W, pad=6)
+                inpainted_bgr = inpaint_image(img_bgr, mask)
+                final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+                
+                import io
+                img_buffer = io.BytesIO()
+                final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
+                return img_buffer.getvalue()
+            
+            img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
+            
+            print(f"   [{image_index + 1}] ✅ Inpainted")
+            sys.stdout.flush()
+        
+        # Save locally
+        output_path = images_dir / f"translated_{image_index}.webp"
+        with open(output_path, "wb") as f:
+            f.write(img_bytes)
+        
+        # =====================================================================
+        # STAGE 5: Upload to GCS (I/O - parallel)
+        # =====================================================================
+        public_url = None
+        if gcp_storage.is_available():
+            print(f"   [{image_index + 1}] ☁️  Uploading...")
+            sys.stdout.flush()
+            loop = asyncio.get_running_loop()
+            public_url = await loop.run_in_executor(
+                None,
+                gcp_storage.upload_from_bytes,
+                img_bytes,
+                f"translated/{offer_id}",
+                f"image_{image_index}"
+            )
+            print(f"   [{image_index + 1}] ✅ Uploaded")
+            sys.stdout.flush()
+        
+        # Store result
+        results[image_index] = ImageTranslationResult(
+            original_url=image_url,
+            local_path=str(output_path),
+            public_url=public_url,
+            chinese_count=len(ch_items),
+            success=True,
+            error=None
+        )
+        url_mapping[image_url] = public_url or str(output_path)
+        
+        print(f"   [{image_index + 1}] 🎉 Complete!")
+        sys.stdout.flush()
     
-    public_url = gcp_storage.upload_from_bytes(
-        image_bytes,
-        folder_name=f"translated/{offer_id}",
-        image_name=f"image_{image_index}"
-    )
-    
-    print(f"   ☁️  Uploaded to GCS: image_{image_index}")
-    sys.stdout.flush()
-    return public_url
+    except Exception as e:
+        import traceback
+        error_msg = f"{type(e).__name__}: {str(e)}"
+        print(f"   [{image_index + 1}] ❌ ERROR: {error_msg}")
+        sys.stdout.flush()
+        
+        results[image_index] = ImageTranslationResult(
+            original_url=image_url,
+            local_path=str(original_path) if original_path else "",
+            public_url=None,
+            chinese_count=0,
+            success=False,
+            error=error_msg[:200]
+        )
 
 
 @router.post("/translate-batch", response_model=BatchTranslateResponse)
 async def translate_batch(request: BatchTranslateRequest):
     """
-    Batch translate images in HTML content using GPU-optimized phase-based processing.
+    Batch translate images using streaming pipeline architecture.
     
-    Architecture:
-    1. Phase 1: Download all images in parallel (I/O)
-    2. Phase 2: Process OCR sequentially (GPU constraint)
-    3. Phase 3: Translate all texts in parallel (I/O - API calls)
-    4. Phase 4: Inpaint all images sequentially (GPU constraint)
-    5. Phase 5: Upload all to GCS in parallel (I/O)
+    Each image flows through all stages immediately:
+    Download → OCR → Translate → Inpaint → Upload
+    
+    No waiting for batch phases. GPU operations use semaphores for
+    sequential execution while I/O operations run in parallel.
     
     Args:
         request: Contains HTML content (description) with image tags and optional offer ID.
@@ -455,221 +540,53 @@ async def translate_batch(request: BatchTranslateRequest):
         images_dir = session_dir / "images"
         images_dir.mkdir(exist_ok=True)
         
-        print(f"📷 Processing {len(image_urls)} images with GPU-optimized pipeline...")
+        print(f"🚀 Streaming pipeline: {len(image_urls)} images")
+        print(f"   Each flows: Download → OCR → Translate → Inpaint → Upload")
+        print(f"   GPU ops sequential, I/O parallel\n")
         sys.stdout.flush()
         
-        # ========================================================================
-        # PHASE 1: Download all images in parallel (I/O)
-        # ========================================================================
-        print(f"\n📥 Phase 1: Downloading {len(image_urls)} images in parallel...")
-        sys.stdout.flush()
-        
-        download_tasks = [
-            download_image_helper(url, images_dir, idx)
-            for idx, url in enumerate(image_urls)
-        ]
-        download_results = await asyncio.gather(*download_tasks, return_exceptions=True)
-        
-        # Build mapping of successful downloads
-        downloaded_images = []
-        results = []
-        
-        for idx, result in enumerate(download_results):
-            if isinstance(result, Exception):
-                error_msg = f"{type(result).__name__}: {str(result)}"
-                print(f"❌ Download failed for image {idx + 1}: {error_msg}")
-                sys.stdout.flush()
-                results.append(ImageTranslationResult(
-                    original_url=image_urls[idx],
-                    local_path="",
-                    public_url=None,
-                    chinese_count=0,
-                    success=False,
-                    error=error_msg[:200]
-                ))
-            else:
-                original_url, image_index, local_path = result
-                downloaded_images.append((original_url, image_index, local_path))
-                # Placeholder - will update after processing
-                results.append(None)
-        
-        print(f"✅ Phase 1 complete: {len(downloaded_images)}/{len(image_urls)} images downloaded")
-        sys.stdout.flush()
-        
-        if not downloaded_images:
-            return BatchTranslateResponse(
-                offer_id=offer_id,
-                message="❌ All image downloads failed.",
-                total_images=len(results),
-                successful_translations=0,
-                failed_translations=len(results),
-                translated_html=request.description,
-                image_results=results
-            )
-        
-        # ========================================================================
-        # PHASE 2: Process OCR sequentially (GPU constraint)
-        # ========================================================================
-        print(f"\n🔍 Phase 2: Running OCR sequentially on {len(downloaded_images)} images...")
-        sys.stdout.flush()
-        
-        ocr_results = []
-        for original_url, image_index, local_path in downloaded_images:
-            try:
-                ocr_dir = images_dir / f"ocr_{image_index}"
-                ocr_dir.mkdir(exist_ok=True)
-                ch_items, fed_path = process_ocr_phase(local_path, str(ocr_dir))
-                ocr_results.append((original_url, image_index, local_path, ch_items))
-            except Exception as e:
-                error_msg = f"{type(e).__name__}: {str(e)}"
-                print(f"❌ OCR failed for image {image_index + 1}: {error_msg}")
-                sys.stdout.flush()
-                results[image_index] = ImageTranslationResult(
-                    original_url=original_url,
-                    local_path=local_path,
-                    public_url=None,
-                    chinese_count=0,
-                    success=False,
-                    error=error_msg[:200]
-                )
-        
-        print(f"✅ Phase 2 complete: OCR processed {len(ocr_results)} images")
-        sys.stdout.flush()
-        
-        # ========================================================================
-        # PHASE 3: Translate all texts in parallel (I/O - API calls)
-        # ========================================================================
-        print(f"\n🌐 Phase 3: Translating texts in parallel...")
-        sys.stdout.flush()
-        
-        translation_tasks = [
-            process_translation_phase(ch_items, image_index)
-            for original_url, image_index, local_path, ch_items in ocr_results
-        ]
-        translation_results = await asyncio.gather(*translation_tasks, return_exceptions=True)
-        
-        # Update ocr_results with translations
-        translated_images = []
-        for idx, trans_result in enumerate(translation_results):
-            original_url, image_index, local_path, ch_items = ocr_results[idx]
-            if isinstance(trans_result, Exception):
-                error_msg = f"{type(trans_result).__name__}: {str(trans_result)}"
-                print(f"❌ Translation failed for image {image_index + 1}: {error_msg}")
-                sys.stdout.flush()
-                results[image_index] = ImageTranslationResult(
-                    original_url=original_url,
-                    local_path=local_path,
-                    public_url=None,
-                    chinese_count=len(ch_items),
-                    success=False,
-                    error=error_msg[:200]
-                )
-            else:
-                translated_ch_items = trans_result
-                translated_images.append((original_url, image_index, local_path, translated_ch_items))
-        
-        print(f"✅ Phase 3 complete: Translated {len(translated_images)} images")
-        sys.stdout.flush()
-        
-        # ========================================================================
-        # PHASE 4: Inpaint sequentially (GPU constraint)
-        # ========================================================================
-        print(f"\n🎨 Phase 4: Inpainting and overlaying sequentially...")
-        sys.stdout.flush()
-        
-        inpainted_images = []
-        for original_url, image_index, local_path, ch_items in translated_images:
-            try:
-                if not ch_items:
-                    # No Chinese text - convert original to WebP
-                    from PIL import Image
-                    import io
-                    img = Image.open(local_path).convert("RGB")
-                    img_buffer = io.BytesIO()
-                    img.save(img_buffer, format="WEBP", lossless=True)
-                    img_bytes = img_buffer.getvalue()
-                else:
-                    # Inpaint and overlay
-                    img_bytes = process_inpainting_phase(local_path, ch_items)
-                
-                # Save locally
-                output_path = images_dir / f"translated_{image_index}.webp"
-                with open(output_path, "wb") as f:
-                    f.write(img_bytes)
-                
-                inpainted_images.append((original_url, image_index, str(output_path), img_bytes, len(ch_items)))
-            except Exception as e:
-                error_msg = f"{type(e).__name__}: {str(e)}"
-                print(f"❌ Inpainting failed for image {image_index + 1}: {error_msg}")
-                sys.stdout.flush()
-                results[image_index] = ImageTranslationResult(
-                    original_url=original_url,
-                    local_path=local_path,
-                    public_url=None,
-                    chinese_count=len(ch_items),
-                    success=False,
-                    error=error_msg[:200]
-                )
-        
-        print(f"✅ Phase 4 complete: Inpainted {len(inpainted_images)} images")
-        sys.stdout.flush()
-        
-        # ========================================================================
-        # PHASE 5: Upload to GCS in parallel (I/O)
-        # ========================================================================
-        print(f"\n☁️  Phase 5: Uploading to GCS in parallel...")
-        sys.stdout.flush()
-        
-        upload_tasks = [
-            upload_to_gcs_helper(img_bytes, offer_id, image_index)
-            for original_url, image_index, output_path, img_bytes, chinese_count in inpainted_images
-        ]
-        upload_results = await asyncio.gather(*upload_tasks, return_exceptions=True)
-        
-        # Build final results
+        # Shared state for results
+        results = [None] * len(image_urls)
         url_mapping: Dict[str, str] = {}
         
-        for idx, upload_result in enumerate(upload_results):
-            original_url, image_index, output_path, img_bytes, chinese_count = inpainted_images[idx]
-            
-            if isinstance(upload_result, Exception):
-                public_url = None
-                print(f"⚠️  Upload failed for image {image_index + 1}, using local path")
-                sys.stdout.flush()
-            else:
-                public_url = upload_result
-            
-            results[image_index] = ImageTranslationResult(
-                original_url=original_url,
-                local_path=output_path,
-                public_url=public_url,
-                chinese_count=chinese_count,
-                success=True,
-                error=None
+        # Create pipeline tasks - all images start processing immediately
+        pipeline_tasks = [
+            process_single_image_pipeline(
+                url,
+                idx,
+                images_dir,
+                offer_id,
+                results,
+                url_mapping
             )
-            
-            # Use public URL if available, otherwise local path
-            if public_url:
-                url_mapping[original_url] = public_url
-            else:
-                url_mapping[original_url] = output_path
+            for idx, url in enumerate(image_urls)
+        ]
         
-        print(f"✅ Phase 5 complete: Uploaded {len([r for r in upload_results if not isinstance(r, Exception)])} images")
+        # Execute all pipelines concurrently
+        # Each image downloads and flows through stages immediately
+        # GPU stages (OCR, inpainting) are controlled by semaphores
+        await asyncio.gather(*pipeline_tasks, return_exceptions=True)
+        
+        print(f"\n✅ All {len(image_urls)} images processed")
         sys.stdout.flush()
         
         # Replace URLs in HTML
         translated_html = replace_image_urls(request.description, url_mapping)
         
+        # Save translated HTML to file
+        html_output_path = session_dir / f"{offer_id}.html"
+        with open(html_output_path, "w", encoding="utf-8") as f:
+            f.write(translated_html)
+        print(f"💾 Saved: {html_output_path}")
+        sys.stdout.flush()
+        
         # Count successes and failures
         successful = sum(1 for r in results if r and r.success)
         failed = len(results) - successful
         
-        print(f"\n🎉 All phases complete: {successful}/{len(results)} images successfully translated")
-        sys.stdout.flush()
-        
         return BatchTranslateResponse(
             offer_id=offer_id,
-            message=f"✅ Batch translation completed. {successful}/{len(results)} images translated.",
+            message=f"✅ Pipeline complete. {successful}/{len(results)} images translated.",
             total_images=len(results),
             successful_translations=successful,
             failed_translations=failed,
