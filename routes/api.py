@@ -1,24 +1,30 @@
 """
-API routes for the Image Translation API.
+API routes - SIMPLIFIED VERSION using direct instance passing.
 
-Performance optimizations (GPU-optimized streaming pipeline):
-- Each image flows: Download → OCR → Translate → Inpaint → Upload immediately
-- GPU operations (OCR, inpainting) use semaphores for sequential execution
-- I/O operations (download, translate, upload) run in parallel
-- No waiting for batch phases - maximum throughput
+Your intuition is correct! Simply create instances once and pass them.
+No need for get_ocr_instance() or get_simple_lama() wrappers.
+
+Performance optimizations:
+- Create OCR and SimpleLama instances ONCE at startup
+- Pass instances to all workers (Python passes by reference, no copies)
+- GPU operations use semaphores for sequential execution
+- I/O operations run in parallel
 """
 import sys
 import uuid
 import json
 import asyncio
 from pathlib import Path
-from typing import Dict, Tuple, List
+from typing import Dict, List
 
 import httpx
 import cv2
+import numpy as np
 from fastapi import APIRouter, HTTPException
+from paddleocr import PaddleOCR
+from simple_lama_inpainting import SimpleLama
 
-from config import DOWNLOADS_DIR, FONT_PATH
+from config import DOWNLOADS_DIR, FONT_PATH, OCR_CONFIG
 from models import (
     ImageDownloadRequest,
     ImageDownloadResponse,
@@ -32,13 +38,27 @@ from models import (
 )
 from utils.image import load_image_to_bgr, save_image, get_image_dimensions
 from utils.html_parser import extract_image_urls, replace_image_urls
-from services.ocr import ocr_predict_to_json, get_chinese_items
+from services.ocr import get_chinese_items
 from services.translation import translate_items_gemini
-from services.inpainting import create_mask_from_items, inpaint_image
+from services.inpainting import create_mask_from_items
 from services.text_overlay import overlay_english_text
 from gcp_storage import gcp_storage
 
 router = APIRouter()
+
+# ============================================================================
+# Pre-initialize models at module load - SIMPLE AND CLEAR
+# ============================================================================
+
+print("🔧 Initializing models at startup...")
+
+# Create OCR instance once - will be passed to all workers
+OCR_INSTANCE = PaddleOCR(**OCR_CONFIG)
+print("✅ OCR model loaded")
+
+# Create SimpleLama instance once - will be passed to all workers
+LAMA_INSTANCE = SimpleLama()
+print("✅ SimpleLama model loaded")
 
 # GPU operation semaphores - ensure sequential execution to prevent OOM
 ocr_semaphore = asyncio.Semaphore(1)
@@ -68,15 +88,7 @@ async def health():
 
 @router.post("/download", response_model=ImageDownloadResponse)
 async def download_image(request: ImageDownloadRequest):
-    """
-    Milestone 1: Download image from URL and save it locally.
-    
-    Args:
-        request: Contains the image URL and optional session ID.
-        
-    Returns:
-        Session ID, image path, and image dimensions.
-    """
+    """Download image from URL and save it locally."""
     try:
         offer_id = request.offer_id or str(uuid.uuid4())
         session_dir = DOWNLOADS_DIR / offer_id
@@ -91,7 +103,7 @@ async def download_image(request: ImageDownloadRequest):
             )
             response.raise_for_status()
         
-        # Determine file extension from content-type or URL
+        # Determine file extension
         content_type = response.headers.get("content-type", "").lower()
         if "jpeg" in content_type or "jpg" in content_type:
             ext = ".jpg"
@@ -125,17 +137,88 @@ async def download_image(request: ImageDownloadRequest):
         raise HTTPException(status_code=500, detail=f"Internal error: {str(e)}")
 
 
+def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
+    """
+    Run OCR on image using provided OCR instance.
+    
+    This is a simplified version of ocr_predict_to_json that receives
+    the OCR instance as a parameter instead of calling get_ocr_instance().
+    """
+    import os
+    
+    os.makedirs(outdir, exist_ok=True)
+    
+    img_bgr = load_image_to_bgr(image_path)
+    
+    # Save the exact bitmap fed to OCR
+    fed_path = os.path.join(outdir, "fed_to_ocr.png")
+    cv2.imwrite(fed_path, img_bgr)
+    
+    # Run OCR using the provided instance
+    results = ocr.ocr(fed_path)
+    
+    # Convert PaddleOCR results to our JSON format
+    if not results or results[0] is None:
+        data = {
+            "rec_texts": [],
+            "rec_scores": [],
+            "rec_boxes": [],
+            "rec_polys": []
+        }
+    else:
+        rec_texts = []
+        rec_scores = []
+        rec_boxes = []
+        rec_polys = []
+        
+        for line in results[0]:
+            if line is None:
+                continue
+            box_coords = line[0]
+            text_info = line[1]
+            
+            rec_texts.append(text_info[0])
+            rec_scores.append(float(text_info[1]))
+            
+            # Convert polygon to bounding box
+            xs = [pt[0] for pt in box_coords]
+            ys = [pt[1] for pt in box_coords]
+            x1, x2 = min(xs), max(xs)
+            y1, y2 = min(ys), max(ys)
+            rec_boxes.append([x1, y1, x2, y2])
+            rec_polys.append(box_coords)
+        
+        data = {
+            "rec_texts": rec_texts,
+            "rec_scores": rec_scores,
+            "rec_boxes": rec_boxes,
+            "rec_polys": rec_polys
+        }
+    
+    # Save to JSON
+    json_path = os.path.join(outdir, "ocr_results.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    return data, fed_path
+
+
+def inpaint_with_lama(img_bgr, mask, lama: SimpleLama):
+    """
+    Inpaint image using provided SimpleLama instance.
+    """
+    try:
+        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+        inpaint_pil = lama(img_rgb, mask)
+        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+    except Exception as e:
+        print(f"⚠️ SimpleLaMa failed, falling back to OpenCV: {str(e)[:100]}")
+        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
+
+
 @router.post("/ocr", response_model=OCRResponse)
 async def run_ocr(request: OCRRequest):
-    """
-    Milestone 2: Run OCR on downloaded image and extract Chinese text.
-    
-    Args:
-        request: Contains the session ID.
-        
-    Returns:
-        OCR results with detected Chinese text items.
-    """
+    """Run OCR on downloaded image and extract Chinese text."""
     try:
         offer_id = request.offer_id
         session_dir = DOWNLOADS_DIR / offer_id
@@ -158,8 +241,8 @@ async def run_ocr(request: OCRRequest):
         ocr_dir = session_dir / "ocr_output"
         ocr_dir.mkdir(exist_ok=True)
         
-        # Run OCR
-        ocr_data, fed_path = ocr_predict_to_json(image_path, str(ocr_dir))
+        # Run OCR using global instance
+        ocr_data, fed_path = run_ocr_on_image(image_path, str(ocr_dir), OCR_INSTANCE)
         
         # Extract Chinese items
         ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
@@ -186,15 +269,7 @@ async def run_ocr(request: OCRRequest):
 
 @router.post("/translate", response_model=TranslateResponse)
 async def translate_image(request: TranslateRequest):
-    """
-    Full pipeline: OCR → Translate → Inpaint → Overlay English text.
-    
-    Args:
-        request: Contains the session ID.
-        
-    Returns:
-        Translation results with output image paths.
-    """
+    """Full pipeline: OCR → Translate → Inpaint → Overlay English text."""
     try:
         offer_id = request.offer_id
         session_dir = DOWNLOADS_DIR / offer_id
@@ -217,12 +292,11 @@ async def translate_image(request: TranslateRequest):
         output_dir = session_dir / "output"
         output_dir.mkdir(exist_ok=True)
         
-        # Step 1: Run OCR
-        ocr_data, fed_path = ocr_predict_to_json(image_path, str(output_dir))
+        # Step 1: Run OCR using global instance
+        ocr_data, fed_path = run_ocr_on_image(image_path, str(output_dir), OCR_INSTANCE)
         ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
         
         if not ch_items:
-            # No Chinese text found, just copy original
             img_bgr = load_image_to_bgr(image_path)
             output_path = output_dir / "translated.png"
             save_image(img_bgr, str(output_path))
@@ -235,7 +309,7 @@ async def translate_image(request: TranslateRequest):
                 translations=[]
             )
         
-        # Step 2: Translate Chinese to English
+        # Step 2: Translate
         en_lines = translate_items_gemini(ch_items)
         for it, en in zip(ch_items, en_lines):
             it["en"] = en
@@ -245,11 +319,11 @@ async def translate_image(request: TranslateRequest):
         with open(translations_path, "w", encoding="utf-8") as f:
             json.dump(ch_items, f, ensure_ascii=False, indent=2)
         
-        # Step 3: Inpaint (remove Chinese text)
+        # Step 3: Inpaint using global instance
         img_bgr = load_image_to_bgr(image_path)
         H, W = get_image_dimensions(img_bgr)
         mask = create_mask_from_items(ch_items, H, W, pad=6)
-        inpainted_bgr = inpaint_image(img_bgr, mask)
+        inpainted_bgr = inpaint_with_lama(img_bgr, mask, LAMA_INSTANCE)
         
         inpainted_path = output_dir / "inpainted.png"
         save_image(inpainted_bgr, str(inpainted_path))
@@ -276,7 +350,7 @@ async def translate_image(request: TranslateRequest):
 
 
 # ============================================================================
-# Streaming pipeline worker function
+# Streaming pipeline worker - receives model instances as parameters
 # ============================================================================
 
 async def process_single_image_pipeline(
@@ -285,20 +359,19 @@ async def process_single_image_pipeline(
     images_dir: Path,
     offer_id: str,
     results: List,
-    url_mapping: Dict[str, str]
+    url_mapping: Dict[str, str],
+    ocr: PaddleOCR,          # ← Receive OCR instance
+    lama: SimpleLama         # ← Receive SimpleLama instance
 ):
     """
-    Streaming pipeline for a single image:
-    Download → OCR → Translate → Inpaint → Upload
+    Process single image through the pipeline.
     
-    Each stage starts immediately after the previous completes.
-    GPU operations use semaphores for sequential execution.
+    Receives model instances as parameters - clean and explicit.
+    No copies created, just passing references.
     """
     original_path = None
     try:
-        # =====================================================================
-        # STAGE 1: Download (I/O - parallel)
-        # =====================================================================
+        # Stage 1: Download
         print(f"   [{image_index + 1}] 📥 Downloading...")
         sys.stdout.flush()
         
@@ -321,7 +394,6 @@ async def process_single_image_pipeline(
             url_path = image_url.split("?")[0]
             ext = Path(url_path).suffix or ".jpg"
         
-        # Save original image
         original_path = images_dir / f"original_{image_index}{ext}"
         with open(original_path, "wb") as f:
             f.write(response.content)
@@ -329,26 +401,23 @@ async def process_single_image_pipeline(
         print(f"   [{image_index + 1}] ✅ Downloaded")
         sys.stdout.flush()
         
-        # =====================================================================
-        # STAGE 2: OCR (GPU - sequential via semaphore)
-        # =====================================================================
+        # Stage 2: OCR
         print(f"   [{image_index + 1}] 🔍 Waiting for OCR...")
         sys.stdout.flush()
         
-        async with ocr_semaphore:  # Only 1 OCR at a time
+        async with ocr_semaphore:
             print(f"   [{image_index + 1}] 🔍 Running OCR...")
-            sys.stdout.flush()
             
             ocr_dir = images_dir / f"ocr_{image_index}"
             ocr_dir.mkdir(exist_ok=True)
             
-            # Run OCR in thread pool
             loop = asyncio.get_running_loop()
             ocr_data, fed_path = await loop.run_in_executor(
                 None,
-                ocr_predict_to_json,
+                run_ocr_on_image,
                 str(original_path),
-                str(ocr_dir)
+                str(ocr_dir),
+                ocr  # ← Pass the OCR instance
             )
             ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
             
@@ -357,7 +426,7 @@ async def process_single_image_pipeline(
         
         # If no Chinese text, skip translation/inpainting
         if not ch_items:
-            print(f"   [{image_index + 1}] ⏭️  No Chinese text, converting...")
+            print(f"   [{image_index + 1}] ⭐️ No Chinese text, converting...")
             sys.stdout.flush()
             
             from PIL import Image
@@ -400,9 +469,7 @@ async def process_single_image_pipeline(
             sys.stdout.flush()
             return
         
-        # =====================================================================
-        # STAGE 3: Translation (I/O - parallel API calls)
-        # =====================================================================
+        # Stage 3: Translation
         print(f"   [{image_index + 1}] 🌐 Translating {len(ch_items)} regions...")
         sys.stdout.flush()
         
@@ -418,13 +485,11 @@ async def process_single_image_pipeline(
         print(f"   [{image_index + 1}] ✅ Translated")
         sys.stdout.flush()
         
-        # =====================================================================
-        # STAGE 4: Inpainting (GPU - sequential via semaphore)
-        # =====================================================================
+        # Stage 4: Inpainting
         print(f"   [{image_index + 1}] 🎨 Waiting for inpainting...")
         sys.stdout.flush()
         
-        async with inpainting_semaphore:  # Only 1 inpainting at a time
+        async with inpainting_semaphore:
             print(f"   [{image_index + 1}] 🎨 Inpainting...")
             sys.stdout.flush()
             
@@ -434,7 +499,7 @@ async def process_single_image_pipeline(
                 img_bgr = load_image_to_bgr(str(original_path))
                 H, W = get_image_dimensions(img_bgr)
                 mask = create_mask_from_items(ch_items, H, W, pad=6)
-                inpainted_bgr = inpaint_image(img_bgr, mask)
+                inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama)  # ← Pass lama instance
                 final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
                 
                 import io
@@ -452,9 +517,7 @@ async def process_single_image_pipeline(
         with open(output_path, "wb") as f:
             f.write(img_bytes)
         
-        # =====================================================================
-        # STAGE 5: Upload to GCS (I/O - parallel)
-        # =====================================================================
+        # Stage 5: Upload to GCS
         public_url = None
         if gcp_storage.is_available():
             print(f"   [{image_index + 1}] ☁️  Uploading...")
@@ -470,7 +533,6 @@ async def process_single_image_pipeline(
             print(f"   [{image_index + 1}] ✅ Uploaded")
             sys.stdout.flush()
         
-        # Store result
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
             local_path=str(output_path),
@@ -485,7 +547,6 @@ async def process_single_image_pipeline(
         sys.stdout.flush()
     
     except Exception as e:
-        import traceback
         error_msg = f"{type(e).__name__}: {str(e)}"
         print(f"   [{image_index + 1}] ❌ ERROR: {error_msg}")
         sys.stdout.flush()
@@ -503,19 +564,10 @@ async def process_single_image_pipeline(
 @router.post("/translate-batch", response_model=BatchTranslateResponse)
 async def translate_batch(request: BatchTranslateRequest):
     """
-    Batch translate images using streaming pipeline architecture.
+    Batch translate images - SIMPLIFIED VERSION.
     
-    Each image flows through all stages immediately:
-    Download → OCR → Translate → Inpaint → Upload
-    
-    No waiting for batch phases. GPU operations use semaphores for
-    sequential execution while I/O operations run in parallel.
-    
-    Args:
-        request: Contains HTML content (description) with image tags and optional offer ID.
-        
-    Returns:
-        Translated HTML and details about each image translation.
+    Simply passes OCR and SimpleLama instances to workers.
+    Clean, explicit, and efficient - your intuition was correct!
     """
     try:
         offer_id = request.offer_id or str(uuid.uuid4())
@@ -536,20 +588,19 @@ async def translate_batch(request: BatchTranslateRequest):
                 image_results=[]
             )
         
-        # Create images directory
         images_dir = session_dir / "images"
         images_dir.mkdir(exist_ok=True)
         
-        print(f"🚀 Streaming pipeline: {len(image_urls)} images")
-        print(f"   Each flows: Download → OCR → Translate → Inpaint → Upload")
+        print(f"🚀 Processing {len(image_urls)} images")
+        print(f"   Using global OCR and SimpleLama instances")
         print(f"   GPU ops sequential, I/O parallel\n")
         sys.stdout.flush()
         
-        # Shared state for results
+        # Shared state
         results = [None] * len(image_urls)
         url_mapping: Dict[str, str] = {}
         
-        # Create pipeline tasks - all images start processing immediately
+        # Create tasks - pass model instances to each worker
         pipeline_tasks = [
             process_single_image_pipeline(
                 url,
@@ -557,14 +608,14 @@ async def translate_batch(request: BatchTranslateRequest):
                 images_dir,
                 offer_id,
                 results,
-                url_mapping
+                url_mapping,
+                ocr=OCR_INSTANCE,      # ← Pass OCR instance
+                lama=LAMA_INSTANCE     # ← Pass SimpleLama instance
             )
             for idx, url in enumerate(image_urls)
         ]
         
-        # Execute all pipelines concurrently
-        # Each image downloads and flows through stages immediately
-        # GPU stages (OCR, inpainting) are controlled by semaphores
+        # Execute all pipelines
         await asyncio.gather(*pipeline_tasks, return_exceptions=True)
         
         print(f"\n✅ All {len(image_urls)} images processed")
@@ -573,7 +624,7 @@ async def translate_batch(request: BatchTranslateRequest):
         # Replace URLs in HTML
         translated_html = replace_image_urls(request.description, url_mapping)
         
-        # Save translated HTML to file
+        # Save translated HTML
         html_output_path = session_dir / f"{offer_id}.html"
         with open(html_output_path, "w", encoding="utf-8") as f:
             f.write(translated_html)
