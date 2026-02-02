@@ -3,10 +3,15 @@
 Local script to translate product descriptions using FastAPI translate-batch endpoint.
 
 Usage:
-    python translate_offer.py <offer_id>
+    python translate_offer.py <offer_id1> <offer_id2> <offer_id3> ...
 
-Example:
+Examples:
     python translate_offer.py 828176815369
+    python translate_offer.py 845889051211 576465233813 694502306556
+    python translate_offer.py 694502306556 686907786697 682407541428 722940744852 689643946134 645169076794
+
+Output:
+  Translated HTML files will be saved to: translated_offers/{offer_id}.html
 """
 
 import argparse
@@ -133,25 +138,8 @@ def save_translated_html(translated_html: str, offer_id: str):
     logger.info(f"📏 File size: {len(translated_html)} characters")
 
 
-def main():
-    """Main function."""
-    parser = argparse.ArgumentParser(
-        description='Translate product description using FastAPI',
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python translate_offer.py 828176815369
-  python translate_offer.py 845889051211
-
-Output:
-  Translated HTML will be saved to: translated_offers/{offer_id}.html
-        """
-    )
-    parser.add_argument('offer_id', type=str, help='Offer ID to translate')
-    
-    args = parser.parse_args()
-    offer_id = args.offer_id
-    
+def process_single_offer(offer_id: str) -> bool:
+    """Process a single offer. Returns True if successful."""
     try:
         logger.info(f"🚀 Starting translation for offerId: {offer_id}")
         logger.info("=" * 60)
@@ -166,15 +154,61 @@ Output:
         save_translated_html(translated_html, offer_id)
         
         logger.info("=" * 60)
-        logger.info(f"✅ Translation completed successfully for offerId {offer_id}")
+        logger.info(f"✅ Translation completed successfully for offerId {offer_id}\n")
+        return True
         
-    except KeyboardInterrupt:
-        logger.warning("\n⚠️  Process interrupted by user")
-        sys.exit(1)
     except Exception as e:
         logger.error("=" * 60)
-        logger.error(f"❌ Error: {e}")
-        logger.error("=" * 60)
+        logger.error(f"❌ Error processing offerId {offer_id}: {e}")
+        logger.error("=" * 60 + "\n")
+        return False
+
+
+def main():
+    """Main function."""
+    parser = argparse.ArgumentParser(
+        description='Translate product descriptions using FastAPI',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python translate_offer.py 828176815369
+  python translate_offer.py 845889051211 576465233813
+  python translate_offer.py 694502306556 686907786697 682407541428 722940744852 689643946134 645169076794
+
+Output:
+  Translated HTML files will be saved to: translated_offers/{offer_id}.html
+        """
+    )
+    parser.add_argument('offer_ids', nargs='+', type=str, help='One or more offer IDs to translate')
+    
+    args = parser.parse_args()
+    offer_ids = args.offer_ids
+    
+    logger.info(f"\n🚀 Processing {len(offer_ids)} offer(s) sequentially\n")
+    
+    successful = 0
+    failed = 0
+    failed_ids = []
+    
+    for idx, offer_id in enumerate(offer_ids, 1):
+        logger.info(f"\n📍 [{idx}/{len(offer_ids)}] Processing offer: {offer_id}")
+        if process_single_offer(offer_id):
+            successful += 1
+        else:
+            failed += 1
+            failed_ids.append(offer_id)
+    
+    # Summary
+    logger.info("\n" + "=" * 60)
+    logger.info("📊 SUMMARY")
+    logger.info("=" * 60)
+    logger.info(f"✅ Successful: {successful}/{len(offer_ids)}")
+    logger.info(f"❌ Failed: {failed}/{len(offer_ids)}")
+    if failed_ids:
+        logger.info(f"Failed offer IDs: {', '.join(failed_ids)}")
+    logger.info("=" * 60)
+    
+    if failed > 0:
         sys.exit(1)
 
 
