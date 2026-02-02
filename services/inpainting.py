@@ -1,11 +1,15 @@
-"""
-Inpainting service using SimpleLama.
-"""
+"""Inpainting service - mask creation and inpainting utility."""
 import cv2
 import numpy as np
-from typing import List, Dict
+import logging
+from typing import List, Dict, Optional
 
 from simple_lama_inpainting import SimpleLama
+
+# Note: Inpainting is now handled in routes/api.py by inpaint_with_lama()
+# This service only contains the mask creation helper function
+
+logger = logging.getLogger(__name__)
 
 
 def create_mask_from_items(

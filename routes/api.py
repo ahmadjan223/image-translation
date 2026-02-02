@@ -37,7 +37,8 @@ from config import (
     OCR_CONFIDENCE_THRESH,
     MASK_PAD,
     HTTP_TIMEOUT,
-    USER_AGENT
+    USER_AGENT,
+    CJK_RE
 )
 from models import (
     BatchTranslateRequest,
@@ -45,7 +46,13 @@ from models import (
     ImageTranslationResult
 )
 from utils.image import load_image_to_bgr, save_image, get_image_dimensions, convert_to_webp, get_file_extension
-from utils.html_parser import extract_image_urls, replace_image_urls
+from utils.html_parser import (
+    extract_image_urls,
+    replace_image_urls,
+    extract_chinese_text_from_html,
+    replace_chinese_with_markers,
+    replace_markers_with_translations
+)
 from services.ocr import get_chinese_items, run_ocr_on_image
 from services.translation import translate_items_gemini
 from services.inpainting import create_mask_from_items, inpaint_with_lama
@@ -327,10 +334,12 @@ async def process_single_image_pipeline(
 @router.post("/translate-batch", response_model=BatchTranslateResponse)
 async def translate_batch(request: BatchTranslateRequest):
     """
-    Batch translate images - SIMPLIFIED VERSION.
+    Batch translate images AND Chinese text in HTML.
     
-    Simply passes OCR and SimpleLama instances to workers.
-    Clean, explicit, and efficient - your intuition was correct!
+    Flow:
+    1. Extract and translate Chinese text from HTML
+    2. Process images (OCR, translate, inpaint)
+    3. Return HTML with both text and images translated
     """
     try:
         offer_id = request.offer_id or str(uuid.uuid4())
@@ -338,18 +347,50 @@ async def translate_batch(request: BatchTranslateRequest):
         session_dir = DOWNLOADS_DIR / offer_id
         session_dir.mkdir(exist_ok=True)
         
-        # Extract image URLs from HTML
-        image_urls = extract_image_urls(request.description)
+        # ============ Step 0: Extract image URLs from ORIGINAL HTML first ============
+        original_html = request.description
+        image_urls = extract_image_urls(original_html)
         logger.info(f"[{offer_id}] Found {len(image_urls)} images in HTML")
         
+        # ============ Step 1: Extract and translate Chinese text from HTML ============
+        html_content = original_html
+        chinese_items, soup = extract_chinese_text_from_html(html_content, CJK_RE)
+        
+        if chinese_items:
+            logger.info(f"[{offer_id}] Found {len(chinese_items)} Chinese text segments in HTML")
+            print(f"📝 Found {len(chinese_items)} Chinese text segments")
+            
+            # Replace Chinese text with markers
+            html_content = replace_chinese_with_markers(soup, chinese_items)
+            
+            # Translate text using Gemini
+            print(f"   Translating HTML text...")
+            text_items = [{"text": item["original"], "i": item["index"]} for item in chinese_items]
+            loop = asyncio.get_running_loop()
+            translations = await loop.run_in_executor(None, translate_items_gemini, text_items)
+            
+            # Replace markers with translations
+            html_content = replace_markers_with_translations(html_content, chinese_items, translations)
+            logger.info(f"[{offer_id}] Translated {len(translations)} text segments")
+            print(f"   ✅ HTML text translated")
+        else:
+            logger.info(f"[{offer_id}] No Chinese text found in HTML")
+        
+        # ============ Step 2: Process images ============
+        
         if not image_urls:
+            # Save HTML with translated text (even if no images)
+            html_output_path = session_dir / f"{offer_id}.html"
+            with open(html_output_path, "w", encoding="utf-8") as f:
+                f.write(html_content)
+            
             return BatchTranslateResponse(
                 offer_id=offer_id,
-                message="⚠️ No images found in HTML content.",
+                message="⚠️ No images found in HTML content. Text translated.",
                 total_images=0,
                 successful_translations=0,
                 failed_translations=0,
-                translated_html=request.description,
+                translated_html=html_content,
                 image_results=[]
             )
         
@@ -384,8 +425,8 @@ async def translate_batch(request: BatchTranslateRequest):
         logger.info(f"[{offer_id}] All {len(image_urls)} images processed")
         print(f"\n✅ All {len(image_urls)} images processed")
         
-        # Replace URLs in HTML
-        translated_html = replace_image_urls(request.description, url_mapping)
+        # Replace URLs in HTML (html_content already has translated text)
+        translated_html = replace_image_urls(html_content, url_mapping)
         
         # Save translated HTML
         html_output_path = session_dir / f"{offer_id}.html"

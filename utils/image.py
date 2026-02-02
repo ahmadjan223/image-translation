@@ -1,9 +1,10 @@
-"""
-Image loading and manipulation utilities.
-"""
+"""Image loading and manipulation utilities."""
 import os
+import io
 import cv2
 import numpy as np
+from pathlib import Path
+from typing import Optional
 from PIL import Image
 
 
