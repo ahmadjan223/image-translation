@@ -141,10 +141,10 @@ def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
     """
     Run OCR on image using provided OCR instance.
     
-    This is a simplified version of ocr_predict_to_json that receives
-    the OCR instance as a parameter instead of calling get_ocr_instance().
+    Uses ocr.predict() like the working notebook version.
     """
     import os
+    import glob
     
     os.makedirs(outdir, exist_ok=True)
     
@@ -154,11 +154,18 @@ def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
     fed_path = os.path.join(outdir, "fed_to_ocr.png")
     cv2.imwrite(fed_path, img_bgr)
     
-    # Run OCR using the provided instance
-    results = ocr.ocr(fed_path)
+    # Run OCR using predict() which returns OCRResult objects
+    outputs = ocr.predict(fed_path)
     
-    # Convert PaddleOCR results to our JSON format
-    if not results or results[0] is None:
+    # Save OCRResult to JSON (like the working notebook code)
+    for res in outputs:
+        if res is not None:
+            res.save_to_json(outdir)
+    
+    # Find the JSON file that was just created
+    jfiles = sorted(glob.glob(os.path.join(outdir, "*.json")), key=os.path.getmtime)
+    if not jfiles:
+        # No detections - return empty structure
         data = {
             "rec_texts": [],
             "rec_scores": [],
@@ -166,39 +173,9 @@ def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
             "rec_polys": []
         }
     else:
-        rec_texts = []
-        rec_scores = []
-        rec_boxes = []
-        rec_polys = []
-        
-        for line in results[0]:
-            if line is None:
-                continue
-            box_coords = line[0]
-            text_info = line[1]
-            
-            rec_texts.append(text_info[0])
-            rec_scores.append(float(text_info[1]))
-            
-            # Convert polygon to bounding box
-            xs = [pt[0] for pt in box_coords]
-            ys = [pt[1] for pt in box_coords]
-            x1, x2 = min(xs), max(xs)
-            y1, y2 = min(ys), max(ys)
-            rec_boxes.append([x1, y1, x2, y2])
-            rec_polys.append(box_coords)
-        
-        data = {
-            "rec_texts": rec_texts,
-            "rec_scores": rec_scores,
-            "rec_boxes": rec_boxes,
-            "rec_polys": rec_polys
-        }
-    
-    # Save to JSON
-    json_path = os.path.join(outdir, "ocr_results.json")
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        # Load the JSON file
+        with open(jfiles[-1], "r", encoding="utf-8") as f:
+            data = json.load(f)
     
     return data, fed_path
 

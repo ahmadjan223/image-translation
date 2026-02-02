@@ -121,7 +121,6 @@ Output JSON ONLY:
 # --- OCR settings ---
 OCR_CONFIG = {
     "lang": "ch",
-    "use_gpu": False,  # Force CPU - LD_LIBRARY_PATH must be set BEFORE process starts
     "use_doc_unwarping": False,
     "use_doc_orientation_classify": False,
     "text_det_limit_type": "max",
