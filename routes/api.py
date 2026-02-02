@@ -76,7 +76,7 @@ async def health():
     """Health check endpoint."""
     return {"status": "ok"}
 
-
+# sara ocr related stuff is function mein he
 def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
     """
     Run OCR on image using provided OCR instance.

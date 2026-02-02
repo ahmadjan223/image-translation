@@ -7,17 +7,6 @@ from typing import List, Dict
 
 from simple_lama_inpainting import SimpleLama
 
-# Initialize SimpleLama (global instance)
-_simple_lama = None
-
-
-def get_simple_lama() -> SimpleLama:
-    """Get or create the SimpleLama instance."""
-    global _simple_lama
-    if _simple_lama is None:
-        _simple_lama = SimpleLama()
-    return _simple_lama
-
 
 def create_mask_from_items(
     ch_items: List[Dict],
@@ -55,24 +44,3 @@ def create_mask_from_items(
     mask = cv2.dilate(mask, k, iterations=1)
     
     return mask
-
-
-def inpaint_image(img_bgr: np.ndarray, mask: np.ndarray) -> np.ndarray:
-    """
-    Inpaint image using SimpleLama (with OpenCV fallback).
-    
-    Args:
-        img_bgr: Input BGR image.
-        mask: Binary mask indicating regions to inpaint.
-        
-    Returns:
-        Inpainted BGR image.
-    """
-    try:
-        simple_lama = get_simple_lama()
-        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-        inpaint_pil = simple_lama(img_rgb, mask)
-        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
-    except Exception as e:
-        print(f"⚠️ SimpleLaMa failed, falling back to OpenCV: {str(e)[:100]}")
-        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
