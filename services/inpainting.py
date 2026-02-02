@@ -44,3 +44,38 @@ def create_mask_from_items(
     mask = cv2.dilate(mask, k, iterations=1)
     
     return mask
+
+
+def inpaint_with_lama(
+    img_bgr: np.ndarray,
+    mask: np.ndarray,
+    lama: Optional[SimpleLama],
+    request_id: str = "unknown"
+) -> np.ndarray:
+    """
+    Inpaint image using SimpleLama with OpenCV fallback.
+    
+    Args:
+        img_bgr: Input BGR image
+        mask: Binary mask for inpainting
+        lama: SimpleLama instance (can be None if initialization failed)
+        request_id: Request identifier for logging
+    
+    Returns:
+        Inpainted BGR image
+    """
+    # If SimpleLama not available, use OpenCV directly
+    if lama is None:
+        logger.debug(f"[{request_id}] Using OpenCV inpainting (SimpleLama not available)")
+        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
+    
+    # Try SimpleLama first
+    try:
+        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+        inpaint_pil = lama(img_rgb, mask)
+        logger.debug(f"[{request_id}] SimpleLama inpainting successful")
+        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+    except Exception as e:
+        logger.error(f"[{request_id}] SimpleLama failed: {type(e).__name__}: {str(e)[:200]}")
+        logger.info(f"[{request_id}] Falling back to OpenCV inpainting")
+        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)

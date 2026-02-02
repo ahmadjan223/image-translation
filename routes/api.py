@@ -44,11 +44,11 @@ from models import (
     BatchTranslateResponse,
     ImageTranslationResult
 )
-from utils.image import load_image_to_bgr, save_image, get_image_dimensions
+from utils.image import load_image_to_bgr, save_image, get_image_dimensions, convert_to_webp, get_file_extension
 from utils.html_parser import extract_image_urls, replace_image_urls
-from services.ocr import get_chinese_items
+from services.ocr import get_chinese_items, run_ocr_on_image
 from services.translation import translate_items_gemini
-from services.inpainting import create_mask_from_items
+from services.inpainting import create_mask_from_items, inpaint_with_lama
 from services.text_overlay import overlay_english_text
 from gcp_storage import gcp_storage
 
@@ -107,109 +107,6 @@ async def health():
     """Health check endpoint."""
     return {"status": "ok"}
 
-# sara ocr related stuff is function mein he
-def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
-    """
-    Run OCR on image using provided OCR instance.
-    
-    Uses ocr.predict() like the working notebook version.
-    """
-    import os
-    import glob
-    
-    os.makedirs(outdir, exist_ok=True)
-    
-    img_bgr = load_image_to_bgr(image_path)
-    
-    # Save the exact bitmap fed to OCR
-    fed_path = os.path.join(outdir, "fed_to_ocr.png")
-    cv2.imwrite(fed_path, img_bgr)
-    
-    # Run OCR using predict() which returns OCRResult objects
-    outputs = ocr.predict(fed_path)
-    
-    # Save OCRResult to JSON (like the working notebook code)
-    for res in outputs:
-        if res is not None:
-            res.save_to_json(outdir)
-    
-    # Find the JSON file that was just created
-    jfiles = sorted(glob.glob(os.path.join(outdir, "*.json")), key=os.path.getmtime)
-    if not jfiles:
-        # No detections - return empty structure
-        data = {
-            "rec_texts": [],
-            "rec_scores": [],
-            "rec_boxes": [],
-            "rec_polys": []
-        }
-    else:
-        # Load the JSON file
-        with open(jfiles[-1], "r", encoding="utf-8") as f:
-            data = json.load(f)
-    
-    return data, fed_path
-
-
-def inpaint_with_lama(img_bgr, mask, lama: Optional[SimpleLama], request_id: str = "unknown"):
-    """
-    Inpaint image using SimpleLama with OpenCV fallback.
-    
-    Args:
-        img_bgr: Input BGR image
-        mask: Binary mask for inpainting
-        lama: SimpleLama instance (can be None if initialization failed)
-        request_id: Request identifier for logging
-    
-    Returns:
-        Inpainted BGR image
-    """
-    # If SimpleLama not available, use OpenCV directly
-    if lama is None:
-        logger.debug(f"[{request_id}] Using OpenCV inpainting (SimpleLama not available)")
-        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
-    
-    # Try SimpleLama first
-    try:
-        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-        inpaint_pil = lama(img_rgb, mask)
-        logger.debug(f"[{request_id}] SimpleLama inpainting successful")
-        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
-    except Exception as e:
-        logger.error(f"[{request_id}] SimpleLama failed: {type(e).__name__}: {str(e)[:200]}")
-        logger.info(f"[{request_id}] Falling back to OpenCV inpainting")
-        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
-
-
-def convert_to_webp(image_source, output_path: Optional[Path] = None) -> bytes:
-    """
-    Convert image to WebP format using configured settings.
-    
-    Args:
-        image_source: Either a file path (str/Path) or PIL Image object
-        output_path: Optional path to save the WebP file
-        
-    Returns:
-        WebP image as bytes
-    """
-    # Load image if path provided, otherwise use PIL Image directly
-    if isinstance(image_source, (str, Path)):
-        img = Image.open(image_source).convert("RGB")
-    else:
-        img = image_source.convert("RGB")
-    
-    # Convert to WebP
-    img_buffer = io.BytesIO()
-    img.save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
-    img_bytes = img_buffer.getvalue()
-    
-    # Optionally save to file
-    if output_path:
-        with open(output_path, "wb") as f:
-            f.write(img_bytes)
-    
-    return img_bytes
-
 
 # ============================================================================
 # Pipeline stage helper functions
@@ -231,20 +128,6 @@ async def download_image(
         f.write(response.content)
 
 
-def get_file_extension(image_url: str, content_type: str) -> str:
-    """Determine file extension from content type or URL."""
-    content_type = content_type.lower()
-    if "jpeg" in content_type or "jpg" in content_type:
-        return ".jpg"
-    elif "webp" in content_type:
-        return ".webp"
-    elif "png" in content_type:
-        return ".png"
-    else:
-        url_path = image_url.split("?")[0]
-        return Path(url_path).suffix or ".jpg"
-
-
 async def handle_no_chinese_text(
     original_path: Path,
     output_path: Path,
@@ -255,7 +138,13 @@ async def handle_no_chinese_text(
     """Convert image to WebP when no Chinese text detected."""
     logger.info(f"[{request_id}] No Chinese text detected, converting to WebP")
     
-    img_bytes = convert_to_webp(original_path, output_path)
+    img_bytes = convert_to_webp(
+        original_path,
+        output_path,
+        lossless=WEBP_LOSSLESS,
+        quality=WEBP_QUALITY,
+        method=WEBP_METHOD
+    )
     
     # Upload to GCS
     public_url = None
@@ -303,15 +192,12 @@ async def translate_and_inpaint(
             final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
             
             # Convert to WebP
-            img_buffer = io.BytesIO()
-            final_pil.convert("RGB").save(
-                img_buffer, 
-                format="WEBP", 
-                lossless=WEBP_LOSSLESS, 
-                quality=WEBP_QUALITY, 
+            return convert_to_webp(
+                final_pil,
+                lossless=WEBP_LOSSLESS,
+                quality=WEBP_QUALITY,
                 method=WEBP_METHOD
             )
-            return img_buffer.getvalue()
         
         img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
     

@@ -12,8 +12,51 @@ from paddleocr import PaddleOCR
 from config import CJK_RE, OCR_CONFIG
 from utils.image import load_image_to_bgr
 
-# Note: OCR execution is now handled in routes/api.py by run_ocr_on_image()
-# This service only contains the helper function to filter Chinese items
+
+def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR) -> Tuple[Dict, str]:
+    """
+    Run OCR on image using provided OCR instance.
+    
+    Args:
+        image_path: Path to the input image
+        outdir: Directory to save OCR outputs
+        ocr: PaddleOCR instance to use
+        
+    Returns:
+        Tuple of (ocr_data_dict, fed_image_path)
+    """
+    os.makedirs(outdir, exist_ok=True)
+    
+    img_bgr = load_image_to_bgr(image_path)
+    
+    # Save the exact bitmap fed to OCR
+    fed_path = os.path.join(outdir, "fed_to_ocr.png")
+    cv2.imwrite(fed_path, img_bgr)
+    
+    # Run OCR using predict() which returns OCRResult objects
+    outputs = ocr.predict(fed_path)
+    
+    # Save OCRResult to JSON
+    for res in outputs:
+        if res is not None:
+            res.save_to_json(outdir)
+    
+    # Find the JSON file that was just created
+    jfiles = sorted(glob.glob(os.path.join(outdir, "*.json")), key=os.path.getmtime)
+    if not jfiles:
+        # No detections - return empty structure
+        data = {
+            "rec_texts": [],
+            "rec_scores": [],
+            "rec_boxes": [],
+            "rec_polys": []
+        }
+    else:
+        # Load the JSON file
+        with open(jfiles[-1], "r", encoding="utf-8") as f:
+            data = json.load(f)
+    
+    return data, fed_path
 
 
 def get_chinese_items(ocr_json: Dict, conf_thresh: Optional[float] = None) -> List[Dict[str, Any]]:
