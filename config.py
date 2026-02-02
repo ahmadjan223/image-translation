@@ -85,9 +85,9 @@ GOOGLE_APPLICATION_CREDENTIALS = settings.GOOGLE_APPLICATION_CREDENTIALS
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 
 # --- WebP conversion settings ---
-WEBP_LOSSLESS = True  # Set to True for lossless WebP (best quality, larger files)
-WEBP_QUALITY = 100    # Only used when WEBP_LOSSLESS=False
-WEBP_METHOD = 6       # 0-6, higher = better compression (slower)
+WEBP_LOSSLESS = False  # False = use quality mode (70% smaller, no visible loss)
+WEBP_QUALITY = 85      # 85 = excellent quality with great compression
+WEBP_METHOD = 4        # 0-6, 4 = good balance of speed and compression
 
 # --- Font settings ---
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"

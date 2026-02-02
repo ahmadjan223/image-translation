@@ -14,8 +14,9 @@ import sys
 import uuid
 import json
 import asyncio
+import logging
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import httpx
 import cv2
@@ -38,21 +39,38 @@ from services.inpainting import create_mask_from_items
 from services.text_overlay import overlay_english_text
 from gcp_storage import gcp_storage
 
+# Configure structured logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - [%(funcName)s] %(message)s'
+)
+
 router = APIRouter()
 
 # ============================================================================
 # Pre-initialize models at module load - SIMPLE AND CLEAR
 # ============================================================================
 
-print("🔧 Initializing models at startup...")
+logger.info("🔧 Initializing models at startup...")
 
 # Create OCR instance once - will be passed to all workers
-OCR_INSTANCE = PaddleOCR(**OCR_CONFIG)
-print("✅ OCR model loaded")
+try:
+    OCR_INSTANCE = PaddleOCR(**OCR_CONFIG)
+    logger.info("✅ OCR model loaded successfully")
+except Exception as e:
+    logger.error(f"❌ Failed to load OCR model: {e}")
+    raise RuntimeError(f"OCR model initialization failed: {e}") from e
 
 # Create SimpleLama instance once - will be passed to all workers
-LAMA_INSTANCE = SimpleLama()
-print("✅ SimpleLama model loaded")
+LAMA_INSTANCE: Optional[SimpleLama] = None
+try:
+    LAMA_INSTANCE = SimpleLama()
+    logger.info("✅ SimpleLama model loaded successfully")
+except Exception as e:
+    logger.warning(f"⚠️  SimpleLama initialization failed: {e}")
+    logger.warning("   Will use OpenCV inpainting as fallback")
+    # Continue without SimpleLama - will use cv2.inpaint fallback
 
 # GPU operation semaphores - ensure sequential execution to prevent OOM
 ocr_semaphore = asyncio.Semaphore(1)
@@ -120,16 +138,33 @@ def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
     return data, fed_path
 
 
-def inpaint_with_lama(img_bgr, mask, lama: SimpleLama):
+def inpaint_with_lama(img_bgr, mask, lama: Optional[SimpleLama], request_id: str = "unknown"):
     """
-    Inpaint image using provided SimpleLama instance.
+    Inpaint image using SimpleLama with OpenCV fallback.
+    
+    Args:
+        img_bgr: Input BGR image
+        mask: Binary mask for inpainting
+        lama: SimpleLama instance (can be None if initialization failed)
+        request_id: Request identifier for logging
+    
+    Returns:
+        Inpainted BGR image
     """
+    # If SimpleLama not available, use OpenCV directly
+    if lama is None:
+        logger.debug(f"[{request_id}] Using OpenCV inpainting (SimpleLama not available)")
+        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
+    
+    # Try SimpleLama first
     try:
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
         inpaint_pil = lama(img_rgb, mask)
+        logger.debug(f"[{request_id}] SimpleLama inpainting successful")
         return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
     except Exception as e:
-        print(f"⚠️ SimpleLaMa failed, falling back to OpenCV: {str(e)[:100]}")
+        logger.error(f"[{request_id}] SimpleLama failed: {type(e).__name__}: {str(e)[:200]}")
+        logger.info(f"[{request_id}] Falling back to OpenCV inpainting")
         return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
 
 
@@ -144,8 +179,8 @@ async def process_single_image_pipeline(
     offer_id: str,
     results: List,
     url_mapping: Dict[str, str],
-    ocr: PaddleOCR,          # ← Receive OCR instance
-    lama: SimpleLama         # ← Receive SimpleLama instance
+    ocr: PaddleOCR,                    # ← Receive OCR instance
+    lama: Optional[SimpleLama]         # ← Receive SimpleLama instance (can be None)
 ):
     """
     Process single image through the pipeline.
@@ -153,9 +188,11 @@ async def process_single_image_pipeline(
     Receives model instances as parameters - clean and explicit.
     No copies created, just passing references.
     """
+    request_id = f"{offer_id}-img{image_index}"
     original_path = None
     try:
         # Stage 1: Download
+        logger.info(f"[{request_id}] 📥 Downloading...")
         print(f"   [{image_index + 1}] 📥 Downloading...")
         sys.stdout.flush()
         
@@ -215,9 +252,10 @@ async def process_single_image_pipeline(
             
             from PIL import Image
             import io
+            from config import WEBP_LOSSLESS, WEBP_QUALITY, WEBP_METHOD
             img = Image.open(original_path).convert("RGB")
             img_buffer = io.BytesIO()
-            img.save(img_buffer, format="WEBP", lossless=True)
+            img.save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
             img_bytes = img_buffer.getvalue()
             
             output_path = images_dir / f"translated_{image_index}.webp"
@@ -283,12 +321,13 @@ async def process_single_image_pipeline(
                 img_bgr = load_image_to_bgr(str(original_path))
                 H, W = get_image_dimensions(img_bgr)
                 mask = create_mask_from_items(ch_items, H, W, pad=6)
-                inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama)  # ← Pass lama instance
+                inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)  # ← Pass lama instance and request_id
                 final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
                 
                 import io
+                from config import WEBP_LOSSLESS, WEBP_QUALITY, WEBP_METHOD
                 img_buffer = io.BytesIO()
-                final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=True)
+                final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
                 return img_buffer.getvalue()
             
             img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
@@ -332,6 +371,7 @@ async def process_single_image_pipeline(
     
     except Exception as e:
         error_msg = f"{type(e).__name__}: {str(e)}"
+        logger.error(f"[{request_id}] ❌ Pipeline failed: {error_msg}")
         print(f"   [{image_index + 1}] ❌ ERROR: {error_msg}")
         sys.stdout.flush()
         
@@ -355,11 +395,13 @@ async def translate_batch(request: BatchTranslateRequest):
     """
     try:
         offer_id = request.offer_id or str(uuid.uuid4())
+        logger.info(f"[{offer_id}] Starting batch translation request")
         session_dir = DOWNLOADS_DIR / offer_id
         session_dir.mkdir(exist_ok=True)
         
         # Extract image URLs from HTML
         image_urls = extract_image_urls(request.description)
+        logger.info(f"[{offer_id}] Found {len(image_urls)} images in HTML")
         
         if not image_urls:
             return BatchTranslateResponse(
@@ -419,6 +461,8 @@ async def translate_batch(request: BatchTranslateRequest):
         successful = sum(1 for r in results if r and r.success)
         failed = len(results) - successful
         
+        logger.info(f"[{offer_id}] Batch complete: {successful}/{len(results)} successful, {failed} failed")
+        
         return BatchTranslateResponse(
             offer_id=offer_id,
             message=f"✅ Pipeline complete. {successful}/{len(results)} images translated.",
@@ -431,6 +475,9 @@ async def translate_batch(request: BatchTranslateRequest):
     
     except Exception as e:
         import traceback
+        error_details = f"{type(e).__name__}: {str(e)}"
+        logger.error(f"Batch translation error: {error_details}")
+        logger.debug(f"Traceback: {traceback.format_exc()}")
         print(f"❌ Batch translation error: {str(e)}")
         print(f"📋 Traceback: {traceback.format_exc()}")
         sys.stdout.flush()
