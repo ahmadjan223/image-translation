@@ -91,6 +91,7 @@ WEBP_METHOD = 4        # 0-6, 4 = good balance of speed and compression
 
 # --- Font settings ---
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
 # --- Text overlay parameters ---
 PAD_IN = 2
 MIN_BOX_W = 20
@@ -98,6 +99,14 @@ MIN_BOX_H = 14
 MIN_FONT_SIZE = 12
 MAX_FONT_SIZE = 120
 FONT_SIZE_STEP = 2
+
+# --- Image processing parameters ---
+OCR_CONFIDENCE_THRESH = 0.6  # Minimum confidence threshold for OCR text detection
+MASK_PAD = 6                  # Padding around detected text for inpainting mask
+
+# --- HTTP settings ---
+HTTP_TIMEOUT = 60.0  # Timeout in seconds for image downloads
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 SPLIT_THRESHOLD = 12
 MAX_LINES_FALLBACK = 2
 LINE_SPACING = 1.025

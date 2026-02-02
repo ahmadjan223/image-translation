@@ -15,17 +15,30 @@ import uuid
 import json
 import asyncio
 import logging
+import io
 from pathlib import Path
 from typing import Dict, List, Optional
 
 import httpx
 import cv2
 import numpy as np
+from PIL import Image
 from fastapi import APIRouter, HTTPException
 from paddleocr import PaddleOCR
 from simple_lama_inpainting import SimpleLama
 
-from config import DOWNLOADS_DIR, FONT_PATH, OCR_CONFIG
+from config import (
+    DOWNLOADS_DIR,
+    FONT_PATH,
+    OCR_CONFIG,
+    WEBP_LOSSLESS,
+    WEBP_QUALITY,
+    WEBP_METHOD,
+    OCR_CONFIDENCE_THRESH,
+    MASK_PAD,
+    HTTP_TIMEOUT,
+    USER_AGENT
+)
 from models import (
     BatchTranslateRequest,
     BatchTranslateResponse,
@@ -168,6 +181,36 @@ def inpaint_with_lama(img_bgr, mask, lama: Optional[SimpleLama], request_id: str
         return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
 
 
+def convert_to_webp(image_source, output_path: Optional[Path] = None) -> bytes:
+    """
+    Convert image to WebP format using configured settings.
+    
+    Args:
+        image_source: Either a file path (str/Path) or PIL Image object
+        output_path: Optional path to save the WebP file
+        
+    Returns:
+        WebP image as bytes
+    """
+    # Load image if path provided, otherwise use PIL Image directly
+    if isinstance(image_source, (str, Path)):
+        img = Image.open(image_source).convert("RGB")
+    else:
+        img = image_source.convert("RGB")
+    
+    # Convert to WebP
+    img_buffer = io.BytesIO()
+    img.save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
+    img_bytes = img_buffer.getvalue()
+    
+    # Optionally save to file
+    if output_path:
+        with open(output_path, "wb") as f:
+            f.write(img_bytes)
+    
+    return img_bytes
+
+
 # ============================================================================
 # Streaming pipeline worker - receives model instances as parameters
 # ============================================================================
@@ -196,10 +239,10 @@ async def process_single_image_pipeline(
         print(f"   [{image_index + 1}] 📥 Downloading...")
         sys.stdout.flush()
         
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
             response = await client.get(
                 image_url,
-                headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+                headers={"User-Agent": USER_AGENT}
             )
             response.raise_for_status()
         
@@ -240,7 +283,7 @@ async def process_single_image_pipeline(
                 str(ocr_dir),
                 ocr  # ← Pass the OCR instance
             )
-            ch_items = get_chinese_items(ocr_data, conf_thresh=0.6)
+            ch_items = get_chinese_items(ocr_data, conf_thresh=OCR_CONFIDENCE_THRESH)
             
             print(f"   [{image_index + 1}] ✅ OCR done: {len(ch_items)} Chinese regions")
             sys.stdout.flush()
@@ -250,17 +293,8 @@ async def process_single_image_pipeline(
             print(f"   [{image_index + 1}] ⭐️ No Chinese text, converting...")
             sys.stdout.flush()
             
-            from PIL import Image
-            import io
-            from config import WEBP_LOSSLESS, WEBP_QUALITY, WEBP_METHOD
-            img = Image.open(original_path).convert("RGB")
-            img_buffer = io.BytesIO()
-            img.save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
-            img_bytes = img_buffer.getvalue()
-            
             output_path = images_dir / f"translated_{image_index}.webp"
-            with open(output_path, "wb") as f:
-                f.write(img_bytes)
+            img_bytes = convert_to_webp(original_path, output_path)
             
             # Upload to GCS
             public_url = None
@@ -320,12 +354,11 @@ async def process_single_image_pipeline(
             def inpaint_and_overlay():
                 img_bgr = load_image_to_bgr(str(original_path))
                 H, W = get_image_dimensions(img_bgr)
-                mask = create_mask_from_items(ch_items, H, W, pad=6)
+                mask = create_mask_from_items(ch_items, H, W, pad=MASK_PAD)
                 inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)  # ← Pass lama instance and request_id
                 final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
                 
-                import io
-                from config import WEBP_LOSSLESS, WEBP_QUALITY, WEBP_METHOD
+                # Convert to WebP
                 img_buffer = io.BytesIO()
                 final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
                 return img_buffer.getvalue()
