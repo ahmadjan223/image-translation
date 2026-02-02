@@ -212,6 +212,129 @@ def convert_to_webp(image_source, output_path: Optional[Path] = None) -> bytes:
 
 
 # ============================================================================
+# Pipeline stage helper functions
+# ============================================================================
+
+async def download_image(
+    image_url: str,
+    output_path: Path,
+    request_id: str
+) -> None:
+    """Download image from URL and save to disk."""
+    logger.info(f"[{request_id}] Downloading image")
+    
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
+        response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
+        response.raise_for_status()
+    
+    with open(output_path, "wb") as f:
+        f.write(response.content)
+
+
+def get_file_extension(image_url: str, content_type: str) -> str:
+    """Determine file extension from content type or URL."""
+    content_type = content_type.lower()
+    if "jpeg" in content_type or "jpg" in content_type:
+        return ".jpg"
+    elif "webp" in content_type:
+        return ".webp"
+    elif "png" in content_type:
+        return ".png"
+    else:
+        url_path = image_url.split("?")[0]
+        return Path(url_path).suffix or ".jpg"
+
+
+async def handle_no_chinese_text(
+    original_path: Path,
+    output_path: Path,
+    offer_id: str,
+    image_index: int,
+    request_id: str
+) -> tuple[bytes, Optional[str]]:
+    """Convert image to WebP when no Chinese text detected."""
+    logger.info(f"[{request_id}] No Chinese text detected, converting to WebP")
+    
+    img_bytes = convert_to_webp(original_path, output_path)
+    
+    # Upload to GCS
+    public_url = None
+    if gcp_storage.is_available():
+        logger.info(f"[{request_id}] Uploading to GCS")
+        loop = asyncio.get_running_loop()
+        public_url = await loop.run_in_executor(
+            None,
+            gcp_storage.upload_from_bytes,
+            img_bytes,
+            f"translated/{offer_id}",
+            f"image_{image_index}"
+        )
+    
+    return img_bytes, public_url
+
+
+async def translate_and_inpaint(
+    original_path: Path,
+    ch_items: List[Dict],
+    output_path: Path,
+    offer_id: str,
+    image_index: int,
+    request_id: str,
+    lama: Optional[SimpleLama]
+) -> tuple[bytes, Optional[str]]:
+    """Translate Chinese text and inpaint image."""
+    # Translation
+    logger.info(f"[{request_id}] Translating {len(ch_items)} text regions")
+    loop = asyncio.get_running_loop()
+    en_lines = await loop.run_in_executor(None, translate_items_gemini, ch_items)
+    
+    for it, en in zip(ch_items, en_lines):
+        it["en"] = en
+    
+    # Inpainting and overlay
+    logger.info(f"[{request_id}] Inpainting and overlaying text")
+    
+    async with inpainting_semaphore:
+        def inpaint_and_overlay():
+            img_bgr = load_image_to_bgr(str(original_path))
+            H, W = get_image_dimensions(img_bgr)
+            mask = create_mask_from_items(ch_items, H, W, pad=MASK_PAD)
+            inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)
+            final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+            
+            # Convert to WebP
+            img_buffer = io.BytesIO()
+            final_pil.convert("RGB").save(
+                img_buffer, 
+                format="WEBP", 
+                lossless=WEBP_LOSSLESS, 
+                quality=WEBP_QUALITY, 
+                method=WEBP_METHOD
+            )
+            return img_buffer.getvalue()
+        
+        img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
+    
+    # Save locally
+    with open(output_path, "wb") as f:
+        f.write(img_bytes)
+    
+    # Upload to GCS
+    public_url = None
+    if gcp_storage.is_available():
+        logger.info(f"[{request_id}] Uploading to GCS")
+        public_url = await loop.run_in_executor(
+            None,
+            gcp_storage.upload_from_bytes,
+            img_bytes,
+            f"translated/{offer_id}",
+            f"image_{image_index}"
+        )
+    
+    return img_bytes, public_url
+
+
+# ============================================================================
 # Streaming pipeline worker - receives model instances as parameters
 # ============================================================================
 
@@ -226,52 +349,35 @@ async def process_single_image_pipeline(
     lama: Optional[SimpleLama]         # ← Receive SimpleLama instance (can be None)
 ):
     """
-    Process single image through the pipeline.
+    Process single image through the translation pipeline.
     
-    Receives model instances as parameters - clean and explicit.
-    No copies created, just passing references.
+    Coordinates the full pipeline: download → OCR → translate → inpaint → upload.
     """
     request_id = f"{offer_id}-img{image_index}"
     original_path = None
+    
     try:
         # Stage 1: Download
-        logger.info(f"[{request_id}] 📥 Downloading...")
         print(f"   [{image_index + 1}] 📥 Downloading...")
-        sys.stdout.flush()
         
+        # Get content type for extension detection
         async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
-            response = await client.get(
-                image_url,
-                headers={"User-Agent": USER_AGENT}
-            )
+            response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
             response.raise_for_status()
+            content_type = response.headers.get("content-type", "")
         
-        # Determine file extension
-        content_type = response.headers.get("content-type", "").lower()
-        if "jpeg" in content_type or "jpg" in content_type:
-            ext = ".jpg"
-        elif "webp" in content_type:
-            ext = ".webp"
-        elif "png" in content_type:
-            ext = ".png"
-        else:
-            url_path = image_url.split("?")[0]
-            ext = Path(url_path).suffix or ".jpg"
-        
+        ext = get_file_extension(image_url, content_type)
         original_path = images_dir / f"original_{image_index}{ext}"
+        
         with open(original_path, "wb") as f:
             f.write(response.content)
         
         print(f"   [{image_index + 1}] ✅ Downloaded")
-        sys.stdout.flush()
         
         # Stage 2: OCR
-        print(f"   [{image_index + 1}] 🔍 Waiting for OCR...")
-        sys.stdout.flush()
+        print(f"   [{image_index + 1}] 🔍 Running OCR...")
         
         async with ocr_semaphore:
-            print(f"   [{image_index + 1}] 🔍 Running OCR...")
-            
             ocr_dir = images_dir / f"ocr_{image_index}"
             ocr_dir.mkdir(exist_ok=True)
             
@@ -281,132 +387,45 @@ async def process_single_image_pipeline(
                 run_ocr_on_image,
                 str(original_path),
                 str(ocr_dir),
-                ocr  # ← Pass the OCR instance
+                ocr
             )
             ch_items = get_chinese_items(ocr_data, conf_thresh=OCR_CONFIDENCE_THRESH)
             
-            print(f"   [{image_index + 1}] ✅ OCR done: {len(ch_items)} Chinese regions")
-            sys.stdout.flush()
+            print(f"   [{image_index + 1}] ✅ OCR: {len(ch_items)} Chinese regions")
         
-        # If no Chinese text, skip translation/inpainting
-        if not ch_items:
-            print(f"   [{image_index + 1}] ⭐️ No Chinese text, converting...")
-            sys.stdout.flush()
-            
-            output_path = images_dir / f"translated_{image_index}.webp"
-            img_bytes = convert_to_webp(original_path, output_path)
-            
-            # Upload to GCS
-            public_url = None
-            if gcp_storage.is_available():
-                print(f"   [{image_index + 1}] ☁️  Uploading...")
-                sys.stdout.flush()
-                loop = asyncio.get_running_loop()
-                public_url = await loop.run_in_executor(
-                    None,
-                    gcp_storage.upload_from_bytes,
-                    img_bytes,
-                    f"translated/{offer_id}",
-                    f"image_{image_index}"
-                )
-                print(f"   [{image_index + 1}] ✅ Uploaded")
-                sys.stdout.flush()
-            
-            results[image_index] = ImageTranslationResult(
-                original_url=image_url,
-                local_path=str(output_path),
-                public_url=public_url,
-                chinese_count=0,
-                success=True,
-                error=None
-            )
-            url_mapping[image_url] = public_url or str(output_path)
-            print(f"   [{image_index + 1}] 🎉 Complete!")
-            sys.stdout.flush()
-            return
-        
-        # Stage 3: Translation
-        print(f"   [{image_index + 1}] 🌐 Translating {len(ch_items)} regions...")
-        sys.stdout.flush()
-        
-        loop = asyncio.get_running_loop()
-        en_lines = await loop.run_in_executor(
-            None,
-            translate_items_gemini,
-            ch_items
-        )
-        for it, en in zip(ch_items, en_lines):
-            it["en"] = en
-        
-        print(f"   [{image_index + 1}] ✅ Translated")
-        sys.stdout.flush()
-        
-        # Stage 4: Inpainting
-        print(f"   [{image_index + 1}] 🎨 Waiting for inpainting...")
-        sys.stdout.flush()
-        
-        async with inpainting_semaphore:
-            print(f"   [{image_index + 1}] 🎨 Inpainting...")
-            sys.stdout.flush()
-            
-            loop = asyncio.get_running_loop()
-            
-            def inpaint_and_overlay():
-                img_bgr = load_image_to_bgr(str(original_path))
-                H, W = get_image_dimensions(img_bgr)
-                mask = create_mask_from_items(ch_items, H, W, pad=MASK_PAD)
-                inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)  # ← Pass lama instance and request_id
-                final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
-                
-                # Convert to WebP
-                img_buffer = io.BytesIO()
-                final_pil.convert("RGB").save(img_buffer, format="WEBP", lossless=WEBP_LOSSLESS, quality=WEBP_QUALITY, method=WEBP_METHOD)
-                return img_buffer.getvalue()
-            
-            img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
-            
-            print(f"   [{image_index + 1}] ✅ Inpainted")
-            sys.stdout.flush()
-        
-        # Save locally
         output_path = images_dir / f"translated_{image_index}.webp"
-        with open(output_path, "wb") as f:
-            f.write(img_bytes)
         
-        # Stage 5: Upload to GCS
-        public_url = None
-        if gcp_storage.is_available():
-            print(f"   [{image_index + 1}] ☁️  Uploading...")
-            sys.stdout.flush()
-            loop = asyncio.get_running_loop()
-            public_url = await loop.run_in_executor(
-                None,
-                gcp_storage.upload_from_bytes,
-                img_bytes,
-                f"translated/{offer_id}",
-                f"image_{image_index}"
+        # Stage 3: Process based on Chinese text presence
+        if not ch_items:
+            print(f"   [{image_index + 1}] ⭐️ No Chinese text")
+            img_bytes, public_url = await handle_no_chinese_text(
+                original_path, output_path, offer_id, image_index, request_id
             )
-            print(f"   [{image_index + 1}] ✅ Uploaded")
-            sys.stdout.flush()
+            chinese_count = 0
+        else:
+            print(f"   [{image_index + 1}] 🌐 Translating...")
+            img_bytes, public_url = await translate_and_inpaint(
+                original_path, ch_items, output_path, offer_id, image_index, request_id, lama
+            )
+            chinese_count = len(ch_items)
         
+        # Store results
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
             local_path=str(output_path),
             public_url=public_url,
-            chinese_count=len(ch_items),
+            chinese_count=chinese_count,
             success=True,
             error=None
         )
         url_mapping[image_url] = public_url or str(output_path)
-        
-        print(f"   [{image_index + 1}] 🎉 Complete!")
-        sys.stdout.flush()
+        print(f"   [{image_index + 1}] ✅ Complete!")
     
     except Exception as e:
         error_msg = f"{type(e).__name__}: {str(e)}"
-        logger.error(f"[{request_id}] ❌ Pipeline failed: {error_msg}")
-        print(f"   [{image_index + 1}] ❌ ERROR: {error_msg}")
-        sys.stdout.flush()
+        logger.error(f"[{request_id}] Pipeline failed: {error_msg}")
+        print(f"   [{image_index + 1}] ❌ {error_msg}")
+        print(f"   [{image_index + 1}] ❌ {error_msg}")
         
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
@@ -416,6 +435,7 @@ async def process_single_image_pipeline(
             success=False,
             error=error_msg[:200]
         )
+
 
 
 @router.post("/translate-batch", response_model=BatchTranslateResponse)
@@ -450,10 +470,8 @@ async def translate_batch(request: BatchTranslateRequest):
         images_dir = session_dir / "images"
         images_dir.mkdir(exist_ok=True)
         
+        logger.info(f"[{offer_id}] Processing {len(image_urls)} images")
         print(f"🚀 Processing {len(image_urls)} images")
-        print(f"   Using global OCR and SimpleLama instances")
-        print(f"   GPU ops sequential, I/O parallel\n")
-        sys.stdout.flush()
         
         # Shared state
         results = [None] * len(image_urls)
@@ -477,8 +495,8 @@ async def translate_batch(request: BatchTranslateRequest):
         # Execute all pipelines
         await asyncio.gather(*pipeline_tasks, return_exceptions=True)
         
+        logger.info(f"[{offer_id}] All {len(image_urls)} images processed")
         print(f"\n✅ All {len(image_urls)} images processed")
-        sys.stdout.flush()
         
         # Replace URLs in HTML
         translated_html = replace_image_urls(request.description, url_mapping)
@@ -487,8 +505,7 @@ async def translate_batch(request: BatchTranslateRequest):
         html_output_path = session_dir / f"{offer_id}.html"
         with open(html_output_path, "w", encoding="utf-8") as f:
             f.write(translated_html)
-        print(f"💾 Saved: {html_output_path}")
-        sys.stdout.flush()
+        logger.info(f"[{offer_id}] Saved HTML to {html_output_path}")
         
         # Count successes and failures
         successful = sum(1 for r in results if r and r.success)
@@ -511,7 +528,5 @@ async def translate_batch(request: BatchTranslateRequest):
         error_details = f"{type(e).__name__}: {str(e)}"
         logger.error(f"Batch translation error: {error_details}")
         logger.debug(f"Traceback: {traceback.format_exc()}")
-        print(f"❌ Batch translation error: {str(e)}")
-        print(f"📋 Traceback: {traceback.format_exc()}")
         sys.stdout.flush()
         raise HTTPException(status_code=500, detail=f"Batch translation error: {str(e)}")
