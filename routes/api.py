@@ -26,12 +26,6 @@ from simple_lama_inpainting import SimpleLama
 
 from config import DOWNLOADS_DIR, FONT_PATH, OCR_CONFIG
 from models import (
-    ImageDownloadRequest,
-    ImageDownloadResponse,
-    OCRRequest,
-    OCRResponse,
-    TranslateRequest,
-    TranslateResponse,
     BatchTranslateRequest,
     BatchTranslateResponse,
     ImageTranslationResult

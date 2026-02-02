@@ -7,16 +7,6 @@ from typing import Optional, List, Dict, Any
 
 # --- Request Models ---
 
-class ImageDownloadRequest(BaseModel):
-    """Request model for downloading an image from URL."""
-    image_url: HttpUrl
-    offer_id: Optional[str] = None
-
-
-class OCRRequest(BaseModel):
-    """Request model for running OCR on a session."""
-    offer_id: str
-
 
 class TranslateRequest(BaseModel):
     """Request model for translating an image."""
@@ -25,41 +15,12 @@ class TranslateRequest(BaseModel):
 
 # --- Response Models ---
 
-class ImageDownloadResponse(BaseModel):
-    """Response model after downloading an image."""
-    offer_id: str
-    message: str
-    image_path: str
-    image_size: dict
-
-
 class ChineseItem(BaseModel):
     """Model for a detected Chinese text item."""
     text: str
     conf: float
     poly: Optional[List[List[float]]] = None
     box: Optional[List[float]] = None
-
-
-class OCRResponse(BaseModel):
-    """Response model after running OCR."""
-    offer_id: str
-    message: str
-    chinese_count: int
-    chinese_items: List[Dict[str, Any]]
-    ocr_json_path: str
-    fed_image_path: str
-
-
-class TranslateResponse(BaseModel):
-    """Response model after full translation pipeline."""
-    offer_id: str
-    message: str
-    chinese_count: int
-    output_image_path: str
-    inpainted_image_path: str
-    translations: List[Dict[str, Any]]
-
 
 # --- Batch Translation Models ---
 
