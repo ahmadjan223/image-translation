@@ -317,8 +317,17 @@ def overlay_english_text(
         block_w = max(widths) if widths else 0
         block_h = int(line_h * len(lines) * LINE_SPACING)
         
-        tx = x1 + (bw - block_w) // 2
-        ty = y1 + (bh - block_h) // 2
+        # Allow text to extend beyond box boundaries if needed (prevents overlap)
+        # Center if text fits, otherwise align to box edge
+        if block_w <= bw:
+            tx = x1 + (bw - block_w) // 2
+        else:
+            tx = x1  # Align left if too wide
+        
+        if block_h <= bh:
+            ty = y1 + (bh - block_h) // 2
+        else:
+            ty = y1  # Align top if too tall
         
         pil_img, _ = draw_text_with_shadow(
             pil_img, (tx, ty), lines, font,

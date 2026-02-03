@@ -96,12 +96,12 @@ FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 PAD_IN = 2
 MIN_BOX_W = 20
 MIN_BOX_H = 14
-MIN_FONT_SIZE = 12
+MIN_FONT_SIZE = 11
 MAX_FONT_SIZE = 120
 FONT_SIZE_STEP = 2
 
 # --- Image processing parameters ---
-OCR_CONFIDENCE_THRESH = 0.6  # Minimum confidence threshold for OCR text detection
+OCR_CONFIDENCE_THRESH = 0.8  # Minimum confidence threshold for OCR text detection
 MASK_PAD = 6                  # Padding around detected text for inpainting mask
 
 # --- HTTP settings ---
@@ -138,5 +138,5 @@ OCR_CONFIG = {
     "text_det_thresh": 0.4,
     "text_det_box_thresh": 0.5,
     "text_det_unclip_ratio": 1.8,
-    "text_rec_score_thresh": 0.6
+    "text_rec_score_thresh": 0.8
 }
