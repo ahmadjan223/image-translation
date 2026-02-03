@@ -158,7 +158,8 @@ async def extract_chinese_from_image(
     image_index: int,
     images_dir: Path,
     offer_id: str,
-    ocr: PaddleOCR
+    ocr: PaddleOCR,
+    client: httpx.AsyncClient  # ← Shared HTTP client
 ) -> tuple[Optional[Path], List[Dict]]:
     """
     Download image and extract Chinese text via OCR.
@@ -167,11 +168,10 @@ async def extract_chinese_from_image(
     request_id = f"{offer_id}-img{image_index}"
     
     try:
-        # Download
-        async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as client:
-            response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
-            response.raise_for_status()
-            content_type = response.headers.get("content-type", "")
+        # Download using shared client
+        response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
+        response.raise_for_status()
+        content_type = response.headers.get("content-type", "")
         
         ext = get_file_extension(image_url, content_type)
         original_path = images_dir / f"original_{image_index}{ext}"
@@ -375,12 +375,14 @@ async def translate_batch(request: BatchTranslateRequest):
         logger.info(f"[{offer_id}] Processing {len(image_urls)} images")
         print(f"🚀 Phase 1: Extracting Chinese from {len(image_urls)} images (parallel OCR)...")
         
-        # OCR extraction phase - parallel
-        ocr_tasks = [
-            extract_chinese_from_image(url, idx, images_dir, offer_id, OCR_INSTANCE)
-            for idx, url in enumerate(image_urls)
-        ]
-        ocr_results = await asyncio.gather(*ocr_tasks, return_exceptions=True)
+        # Create shared HTTP client for all downloads (connection pooling/reuse)
+        async with httpx.AsyncClient(timeout=HTTP_TIMEOUT) as shared_client:
+            # OCR extraction phase - parallel with shared client
+            ocr_tasks = [
+                extract_chinese_from_image(url, idx, images_dir, offer_id, OCR_INSTANCE, shared_client)
+                for idx, url in enumerate(image_urls)
+            ]
+            ocr_results = await asyncio.gather(*ocr_tasks, return_exceptions=True)
         
         # Collect all Chinese text from images
         image_chinese_items = {}  # image_index -> list of chinese items
