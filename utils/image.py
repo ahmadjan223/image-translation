@@ -39,6 +39,30 @@ def load_image_to_bgr(path: str) -> np.ndarray:
     return cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
 
 
+def load_image_from_bytes(img_bytes: bytes) -> np.ndarray:
+    """
+    Load image from bytes into BGR (OpenCV style).
+    Efficient in-memory loading without disk I/O.
+    
+    Args:
+        img_bytes: Image data as bytes.
+        
+    Returns:
+        BGR numpy array of the image.
+    """
+    # Decode using OpenCV (faster for JPEG/WebP)
+    nparr = np.frombuffer(img_bytes, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    
+    if img is None:
+        # Fallback to PIL for other formats
+        img_pil = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+        img = np.array(img_pil)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    
+    return img
+
+
 def bgr_to_rgb(img_bgr: np.ndarray) -> np.ndarray:
     """Convert BGR image to RGB."""
     return cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)

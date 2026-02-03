@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # GCP Settings
     GCP_PROJECT_ID: Optional[str] = None
     GCP_BUCKET_NAME: Optional[str] = None
-    GCP_CDN_URL: Optional[str] = None
+    GCP_CDN_URL: str = "https://media.public.markaz.app/"
     GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
     GEMINI_API_KEY: Optional[str] = None
     

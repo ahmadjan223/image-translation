@@ -116,42 +116,8 @@ async def health():
 
 
 # ============================================================================
-# Phase 1: OCR Extraction (parallel)
+# Phase 1: OCR Extraction (parallel, in-memory)
 # ============================================================================
-
-async def handle_no_chinese_text(
-    original_path: Path,
-    output_path: Path,
-    offer_id: str,
-    image_index: int,
-    request_id: str
-) -> tuple[bytes, Optional[str]]:
-    """Convert image to WebP when no Chinese text detected."""
-    logger.info(f"[{request_id}] No Chinese text detected, converting to WebP")
-    
-    img_bytes = convert_to_webp(
-        original_path,
-        output_path,
-        lossless=WEBP_LOSSLESS,
-        quality=WEBP_QUALITY,
-        method=WEBP_METHOD
-    )
-    
-    # Upload to GCS
-    public_url = None
-    if gcp_storage.is_available():
-        logger.info(f"[{request_id}] Uploading to GCS")
-        loop = asyncio.get_running_loop()
-        public_url = await loop.run_in_executor(
-            None,
-            gcp_storage.upload_from_bytes,
-            img_bytes,
-            f"translated/{offer_id}",
-            f"image_{image_index}"
-        )
-    
-    return img_bytes, public_url
-
 
 async def extract_chinese_from_image(
     image_url: str,
@@ -160,45 +126,76 @@ async def extract_chinese_from_image(
     offer_id: str,
     ocr: PaddleOCR,
     client: httpx.AsyncClient  # ← Shared HTTP client
-) -> tuple[Optional[Path], List[Dict]]:
+) -> tuple[Optional[bytes], List[Dict]]:
     """
-    Download image and extract Chinese text via OCR.
-    Returns (original_path, ch_items)
+    Download image and extract Chinese text via OCR (in-memory, no disk I/O).
+    Returns (image_bytes, ch_items)
     """
     request_id = f"{offer_id}-img{image_index}"
     
     try:
-        # Download using shared client
+        # Download to memory
         response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
         response.raise_for_status()
-        content_type = response.headers.get("content-type", "")
-        
-        ext = get_file_extension(image_url, content_type)
-        original_path = images_dir / f"original_{image_index}{ext}"
-        
-        with open(original_path, "wb") as f:
-            f.write(response.content)
+        img_bytes = response.content
         
         print(f"   [{image_index + 1}] ✅ Downloaded")
         
-        # OCR
+        # OCR from memory
         async with ocr_semaphore:
-            ocr_dir = images_dir / f"ocr_{image_index}"
-            ocr_dir.mkdir(exist_ok=True)
-            
             loop = asyncio.get_running_loop()
-            ocr_data, fed_path = await loop.run_in_executor(
-                None,
-                run_ocr_on_image,
-                str(original_path),
-                str(ocr_dir),
-                ocr
-            )
+            
+            def run_ocr_in_memory():
+                from utils.image import load_image_from_bytes
+                img_bgr = load_image_from_bytes(img_bytes)
+                
+                # Run OCR
+                results = ocr.ocr(img_bgr, cls=False)
+                
+                # Transform to expected format (same as run_ocr_on_image)
+                if not results or results[0] is None:
+                    return {
+                        "rec_texts": [],
+                        "rec_scores": [],
+                        "rec_boxes": [],
+                        "rec_polys": []
+                    }
+                
+                rec_texts = []
+                rec_scores = []
+                rec_boxes = []
+                rec_polys = []
+                
+                for line in results[0]:
+                    if line is None:
+                        continue
+                    box_coords = line[0]
+                    text_info = line[1]
+                    
+                    rec_texts.append(text_info[0])
+                    rec_scores.append(float(text_info[1]))
+                    
+                    # Convert polygon to bounding box
+                    xs = [pt[0] for pt in box_coords]
+                    ys = [pt[1] for pt in box_coords]
+                    x1, x2 = min(xs), max(xs)
+                    y1, y2 = min(ys), max(ys)
+                    rec_boxes.append([x1, y1, x2, y2])
+                    rec_polys.append(box_coords)
+                
+                return {
+                    "rec_texts": rec_texts,
+                    "rec_scores": rec_scores,
+                    "rec_boxes": rec_boxes,
+                    "rec_polys": rec_polys
+                }
+            
+            ocr_data = await loop.run_in_executor(None, run_ocr_in_memory)
             ch_items = get_chinese_items(ocr_data, conf_thresh=OCR_CONFIDENCE_THRESH)
             
             print(f"   [{image_index + 1}] ✅ OCR: {len(ch_items)} Chinese regions")
         
-        return original_path, ch_items
+        return img_bytes, ch_items
     
     except Exception as e:
         error_msg = f"{type(e).__name__}: {str(e)}"
@@ -214,7 +211,7 @@ async def extract_chinese_from_image(
 async def inpaint_and_overlay_image(
     image_url: str,
     image_index: int,
-    original_path: Optional[Path],
+    image_bytes: Optional[bytes],
     ch_items: List[Dict],
     en_translations: List[str],
     images_dir: Path,
@@ -224,15 +221,16 @@ async def inpaint_and_overlay_image(
     lama: Optional[SimpleLama]
 ):
     """
-    Inpaint and overlay English text on image with pre-translated text.
+    Inpaint and overlay English text on image (in-memory, no disk I/O).
     """
     request_id = f"{offer_id}-img{image_index}"
     
     try:
-        if not original_path:
-            raise ValueError("No original image path")
+        if not image_bytes:
+            raise ValueError("No image data")
         
-        output_path = images_dir / f"translated_{image_index}.webp"
+        # Get event loop for async operations
+        loop = asyncio.get_running_loop()
         
         # Add translations to ch_items
         for it, en in zip(ch_items, en_translations):
@@ -241,19 +239,21 @@ async def inpaint_and_overlay_image(
         # No Chinese text - just convert to WebP
         if not ch_items:
             print(f"   [{image_index + 1}] ⭐️ No Chinese text")
-            img_bytes, public_url = await handle_no_chinese_text(
-                original_path, output_path, offer_id, image_index, request_id
+            img_bytes = convert_to_webp(
+                Image.open(io.BytesIO(image_bytes)),
+                lossless=WEBP_LOSSLESS,
+                quality=WEBP_QUALITY,
+                method=WEBP_METHOD
             )
             chinese_count = 0
         else:
-            # Inpaint and overlay
+            # Inpaint and overlay in-memory
             print(f"   [{image_index + 1}] 🎨 Inpainting...")
             
             async with inpainting_semaphore:
-                loop = asyncio.get_running_loop()
-                
                 def inpaint_and_overlay():
-                    img_bgr = load_image_to_bgr(str(original_path))
+                    from utils.image import load_image_from_bytes
+                    img_bgr = load_image_from_bytes(image_bytes)
                     H, W = get_image_dimensions(img_bgr)
                     mask = create_mask_from_items(ch_items, H, W, pad=MASK_PAD)
                     inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)
@@ -268,33 +268,29 @@ async def inpaint_and_overlay_image(
                 
                 img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
             
-            # Save locally
-            with open(output_path, "wb") as f:
-                f.write(img_bytes)
-            
-            # Upload to GCS
-            public_url = None
-            if gcp_storage.is_available():
-                public_url = await loop.run_in_executor(
-                    None,
-                    gcp_storage.upload_from_bytes,
-                    img_bytes,
-                    f"translated/{offer_id}",
-                    f"image_{image_index}"
-                )
-            
             chinese_count = len(ch_items)
+        
+        # Upload to GCS (no local save)
+        public_url = None
+        if gcp_storage.is_available():
+            public_url = await loop.run_in_executor(
+                None,
+                gcp_storage.upload_from_bytes,
+                img_bytes,
+                "",
+                f"{offer_id}_{image_index}"
+            )
         
         # Store results
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
-            local_path=str(output_path),
+            local_path="",  # No local file
             public_url=public_url,
             chinese_count=chinese_count,
             success=True,
             error=None
         )
-        url_mapping[image_url] = public_url or str(output_path)
+        url_mapping[image_url] = public_url or image_url  # Fallback to original if no GCS
         print(f"   [{image_index + 1}] ✅ Complete!")
     
     except Exception as e:
@@ -304,7 +300,7 @@ async def inpaint_and_overlay_image(
         
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
-            local_path=str(original_path) if original_path else "",
+            local_path="",
             public_url=None,
             chinese_count=0,
             success=False,
@@ -386,17 +382,17 @@ async def translate_batch(request: BatchTranslateRequest):
         
         # Collect all Chinese text from images
         image_chinese_items = {}  # image_index -> list of chinese items
-        image_paths = {}  # image_index -> original_path
+        image_data = {}  # image_index -> image_bytes
         
         for idx, result in enumerate(ocr_results):
             if isinstance(result, Exception):
                 logger.error(f"[{offer_id}] Image {idx} OCR failed: {result}")
                 continue
             
-            original_path, ch_items = result
-            # Store path if download succeeded (even if no Chinese text)
-            if original_path:
-                image_paths[idx] = original_path
+            img_bytes, ch_items = result
+            # Store image bytes if download succeeded
+            if img_bytes:
+                image_data[idx] = img_bytes
             # Store Chinese items only if they exist
             if ch_items:
                 image_chinese_items[str(idx)] = ch_items
@@ -434,7 +430,7 @@ async def translate_batch(request: BatchTranslateRequest):
             inpaint_and_overlay_image(
                 image_urls[idx],
                 idx,
-                image_paths.get(idx),
+                image_data.get(idx),
                 image_chinese_items.get(str(idx), []),
                 image_translations.get(str(idx), []),
                 images_dir,
