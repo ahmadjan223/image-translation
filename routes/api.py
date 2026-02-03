@@ -277,8 +277,8 @@ async def inpaint_and_overlay_image(
                 None,
                 gcp_storage.upload_from_bytes,
                 img_bytes,
-                "",
-                f"{offer_id}_{image_index}"
+                offer_id,
+                f"image_{image_index}"
             )
         
         # Store results
