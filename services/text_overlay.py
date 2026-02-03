@@ -60,19 +60,9 @@ def wrap_text(
     
     words = text.split()
     if len(words) == 1:
-        lines, cur = [], ""
-        for ch in text:
-            test = cur + ch
-            if text_size(draw, test, font)[0] <= max_w or not cur:
-                cur = test
-            else:
-                lines.append(cur)
-                cur = ch
-                if len(lines) >= max_lines:
-                    break
-        if len(lines) < max_lines and cur:
-            lines.append(cur)
-        return lines[:max_lines]
+        # Single word - keep it on one line, don't break by character
+        # This forces font sizing to reduce until word fits
+        return [text]
     
     lines, cur = [], ""
     for w in words:
@@ -101,6 +91,11 @@ def truncate_line_to_width(
         return ""
     if text_size(draw, s, font)[0] <= max_w:
         return s
+    
+    # Don't truncate single words - return as is to allow font sizing to handle it
+    if len(s.split()) == 1:
+        return s
+    
     ell = "…"
     if text_size(draw, ell, font)[0] > max_w:
         return ""
