@@ -46,8 +46,14 @@ MONGODB_CONNECTION_STRING = os.environ.get('mongodb_connection_string')
 MONGODB_DATABASE_NAME = os.environ.get('mongodb_database_name')
 MONGODB_COLLECTION_NAME = os.environ.get('mongodb_collection_name', 'productsV2')
 
-# FastAPI local endpoint
-FASTAPI_URL = "http://localhost:8080/translate-batch"
+# FastAPI local endpoint configuration
+# Multiple instances for load balancing (ports 8080-8083 by default)
+NUM_API_INSTANCES = 4
+BASE_PORT = 8080
+FASTAPI_URLS = [
+    f"http://localhost:{BASE_PORT + i}/translate-batch"
+    for i in range(NUM_API_INSTANCES)
+]
 
 # Output directory and CSV file
 OUTPUT_DIR = Path("translated_offers")
@@ -55,14 +61,13 @@ CSV_OUTPUT = "translated_offers.csv"
 
 # Hardcoded list of offer IDs to process
 OFFER_IDS = [
+    "624730890959",
+    "568953817440",
+    "621796987802",
+    "602766644649",
+    "818322307945",
+    "732252682536",
     "601747573294",
-    # "624730890959",
-    # "568953817440",
-    # "621796987802",
-    # "602766644649",
-    # "818322307945",
-    # "732252682536",
-    # "601747573294",
     # "626589994862",
     # "597042514466",
     # "635994130681",
@@ -161,8 +166,10 @@ OFFER_IDS = [
 # CSV lock for thread-safe writing
 csv_lock = asyncio.Lock()
 
-# Concurrent request limit - only 15 API calls at a time
-MAX_CONCURRENT_REQUESTS = 15
+# Concurrent request limit - optimized for 2x RTX 5060 Ti
+# With 8 OCR + 5 inpainting parallel ops, can handle ~35-40 concurrent requests
+# Each request processes 5-10 images, so this keeps GPU saturated
+MAX_CONCURRENT_REQUESTS = 40
 
 
 def get_already_processed_offers() -> Set[str]:
@@ -260,7 +267,8 @@ async def call_translate_api_async(
     client: httpx.AsyncClient,
     description: str,
     offer_id: str,
-    semaphore: asyncio.Semaphore
+    semaphore: asyncio.Semaphore,
+    api_url: str
 ) -> Tuple[str, Optional[str], Optional[str]]:
     """
     Call FastAPI translate-batch endpoint asynchronously.
@@ -268,7 +276,8 @@ async def call_translate_api_async(
     Returns: (offer_id, translated_html, error_message)
     """
     async with semaphore:  # Limit concurrent requests
-        logger.info(f"🚀 [{offer_id}] Starting translation...")
+        port = api_url.split(':')[-1].split('/')[0]
+        logger.info(f"🚀 [{offer_id}] Starting translation... (port {port})")
         
         headers = {
             "Content-Type": "application/json",
@@ -279,7 +288,7 @@ async def call_translate_api_async(
         }
         
         try:
-            response = await client.post(FASTAPI_URL, headers=headers, json=data, timeout=300.0)
+            response = await client.post(api_url, headers=headers, json=data, timeout=300.0)
             
             if response.status_code == 200:
                 response_data = response.json()
@@ -291,7 +300,7 @@ async def call_translate_api_async(
                     await append_result_to_csv(offer_id, None, error_msg)
                     return (offer_id, None, error_msg)
                 
-                logger.info(f"✅ [{offer_id}] Translation successful ({len(translated_html)} chars)")
+                logger.info(f"✅ [{offer_id}] Translation successful ({len(translated_html)} chars) [port {port}]")
                 await append_result_to_csv(offer_id, translated_html, None)
                 return (offer_id, translated_html, None)
             else:
@@ -306,7 +315,7 @@ async def call_translate_api_async(
             await append_result_to_csv(offer_id, None, error_msg)
             return (offer_id, None, error_msg)
         except httpx.ConnectError:
-            error_msg = "Connection error - is FastAPI running on localhost:8080?"
+            error_msg = f"Connection error - is FastAPI running on {api_url}?"
             logger.error(f"❌ [{offer_id}] {error_msg}")
             await append_result_to_csv(offer_id, None, error_msg)
             return (offer_id, None, error_msg)
@@ -319,20 +328,27 @@ async def call_translate_api_async(
 
 async def process_all_offers_async(offer_ids: List[str], descriptions: Dict[str, str]) -> List[Tuple[str, Optional[str], Optional[str]]]:
     """
-    Process all offers with limited concurrency (15 at a time).
+    Process all offers with limited concurrency and load balancing across multiple API instances.
     Returns: List of (offer_id, translated_html, error_message)
     """
-    logger.info(f"\n🚀 Processing {len(offer_ids)} offers with max {MAX_CONCURRENT_REQUESTS} concurrent requests...\n")
+    logger.info(f"\n🚀 Processing {len(offer_ids)} offers with max {MAX_CONCURRENT_REQUESTS} concurrent requests")
+    logger.info(f"⚖️  Load balancing across {len(FASTAPI_URLS)} API instances (ports {BASE_PORT}-{BASE_PORT + NUM_API_INSTANCES - 1})\n")
     
     # Create semaphore to limit concurrent requests
     semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
     
     async with httpx.AsyncClient() as client:
         tasks = []
+        url_index = 0
+        
         for offer_id in offer_ids:
             description = descriptions.get(offer_id)
             if description:
-                task = call_translate_api_async(client, description, offer_id, semaphore)
+                # Round-robin load balancing across API instances
+                api_url = FASTAPI_URLS[url_index % len(FASTAPI_URLS)]
+                url_index += 1
+                
+                task = call_translate_api_async(client, description, offer_id, semaphore, api_url)
                 tasks.append(task)
             else:
                 logger.warning(f"⚠️  Skipping {offer_id} - no description found")
