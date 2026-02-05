@@ -270,21 +270,38 @@ async def inpaint_and_overlay_image(
             
             chinese_count = len(ch_items)
         
-        # Upload to GCS (no local save)
+        # Save to disk so user can inspect translated image
+        local_filename = f"translated_{image_index}.webp"
+        local_path = images_dir / local_filename
+        await loop.run_in_executor(
+            None,
+            lambda: local_path.write_bytes(img_bytes)
+        )
+        print(f"   [{image_index + 1}] 💾 Saved to {local_path}")
+        
+        # Upload the EXACT same bytes to GCS (no re-conversion)
         public_url = None
         if gcp_storage.is_available():
-            public_url = await loop.run_in_executor(
+            blob_path = await loop.run_in_executor(
                 None,
-                gcp_storage.upload_from_bytes,
+                gcp_storage.upload_image,
                 img_bytes,
                 offer_id,
-                f"image_{image_index}"
+                f"image_{image_index}",
+                "image/webp"
             )
+            if blob_path:
+                public_url = await loop.run_in_executor(
+                    None,
+                    gcp_storage.get_public_url,
+                    blob_path,
+                    True  # use_cdn
+                )
         
         # Store results
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
-            local_path="",  # No local file
+            local_path=str(local_path),
             public_url=public_url,
             chinese_count=chinese_count,
             success=True,
@@ -300,7 +317,7 @@ async def inpaint_and_overlay_image(
         
         results[image_index] = ImageTranslationResult(
             original_url=image_url,
-            local_path="",
+            local_path="",  # No file saved on error
             public_url=None,
             chinese_count=0,
             success=False,
