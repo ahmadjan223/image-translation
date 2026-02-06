@@ -11,6 +11,7 @@ Performance optimizations:
 - I/O operations run in parallel
 """
 import sys
+import os
 import uuid
 import json
 import asyncio
@@ -104,7 +105,8 @@ async def root():
         "message": "Image Translation API",
         "endpoints": {
             "/translate-batch": "POST - Batch translate images in HTML content",
-            "/health": "GET - Health check"
+            "/health": "GET - Health check",
+            "/memory": "GET - Memory usage monitoring"
         }
     }
 
@@ -113,6 +115,30 @@ async def root():
 async def health():
     """Health check endpoint."""
     return {"status": "ok"}
+
+
+@router.get("/memory")
+async def memory_status():
+    """Memory usage monitoring endpoint."""
+    import psutil
+    import gc
+    
+    process = psutil.Process()
+    mem_info = process.memory_info()
+    
+    # Get garbage collector stats
+    gc_stats = {
+        f"generation_{i}": gc.get_count()[i] 
+        for i in range(3)
+    }
+    
+    return {
+        "memory_mb": round(mem_info.rss / 1024 / 1024, 2),
+        "memory_percent": round(process.memory_percent(), 2),
+        "gc_stats": gc_stats,
+        "open_files": len(process.open_files()),
+        "threads": process.num_threads()
+    }
 
 
 # ============================================================================
@@ -147,10 +173,16 @@ async def extract_chinese_from_image(
             
             def run_ocr_in_memory():
                 from utils.image import load_image_from_bytes
+                import gc
+                
                 img_bgr = load_image_from_bytes(img_bytes)
                 
                 # Run OCR
                 results = ocr.ocr(img_bgr, cls=False)
+                
+                # Free the image immediately after OCR
+                del img_bgr
+                gc.collect()
                 
                 # Transform to expected format (same as run_ocr_on_image)
                 if not results or results[0] is None:
@@ -253,18 +285,30 @@ async def inpaint_and_overlay_image(
             async with inpainting_semaphore:
                 def inpaint_and_overlay():
                     from utils.image import load_image_from_bytes
+                    import gc
+                    
                     img_bgr = load_image_from_bytes(image_bytes)
                     H, W = get_image_dimensions(img_bgr)
                     mask = create_mask_from_items(ch_items, H, W, pad=MASK_PAD)
                     inpainted_bgr = inpaint_with_lama(img_bgr, mask, lama, request_id)
-                    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
                     
-                    return convert_to_webp(
+                    # Free large NumPy arrays immediately
+                    del img_bgr
+                    del mask
+                    
+                    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+                    del inpainted_bgr  # Free ~10-40MB
+                    
+                    result_bytes = convert_to_webp(
                         final_pil,
                         lossless=WEBP_LOSSLESS,
                         quality=WEBP_QUALITY,
                         method=WEBP_METHOD
                     )
+                    del final_pil  # Free ~40MB RGBA image
+                    gc.collect()  # Force cleanup of large objects
+                    
+                    return result_bytes
                 
                 img_bytes = await loop.run_in_executor(None, inpaint_and_overlay)
             
@@ -297,6 +341,11 @@ async def inpaint_and_overlay_image(
                     blob_path,
                     True  # use_cdn
                 )
+                # Delete local file after successful upload to save disk space
+                try:
+                    await loop.run_in_executor(None, os.remove, local_path)
+                except Exception as e:
+                    logger.warning(f"[{request_id}] Failed to delete local file: {e}")
         
         # Store results
         results[image_index] = ImageTranslationResult(
@@ -308,6 +357,10 @@ async def inpaint_and_overlay_image(
             error=None
         )
         url_mapping[image_url] = public_url or image_url  # Fallback to original if no GCS
+        
+        # Free img_bytes after all processing is complete
+        del img_bytes
+        
         print(f"   [{image_index + 1}] ✅ Complete!")
     
     except Exception as e:
@@ -461,6 +514,17 @@ async def translate_batch(request: BatchTranslateRequest):
         
         await asyncio.gather(*inpainting_tasks, return_exceptions=True)
         
+        # CRITICAL: Clear image data from memory immediately after processing
+        logger.info(f"[{offer_id}] Clearing image data from memory...")
+        image_data.clear()
+        del image_data
+        del ocr_results
+        del image_chinese_items
+        
+        # Force garbage collection for large objects
+        import gc
+        gc.collect()
+        
         logger.info(f"[{offer_id}] All {len(image_urls)} images processed")
         print(f"\n✅ All {len(image_urls)} images processed")
         
@@ -496,3 +560,16 @@ async def translate_batch(request: BatchTranslateRequest):
         logger.debug(f"Traceback: {traceback.format_exc()}")
         sys.stdout.flush()
         raise HTTPException(status_code=500, detail=f"Batch translation error: {str(e)}")
+    
+    finally:
+        # Clean up session directory to prevent disk space exhaustion
+        import shutil
+        try:
+            if session_dir.exists():
+                await asyncio.get_running_loop().run_in_executor(
+                    None,
+                    lambda: shutil.rmtree(session_dir, ignore_errors=True)
+                )
+                logger.info(f"[{offer_id}] Cleaned up session directory: {session_dir}")
+        except Exception as e:
+            logger.warning(f"[{offer_id}] Failed to clean up session directory: {e}")

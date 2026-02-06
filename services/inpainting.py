@@ -77,8 +77,14 @@ def inpaint_with_lama(
     try:
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
         inpaint_pil = lama(img_rgb, mask)
+        result = cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+        
+        # Free intermediate objects
+        del img_rgb
+        del inpaint_pil
+        
         logger.debug(f"[{request_id}] SimpleLama inpainting successful")
-        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+        return result
     except Exception as e:
         logger.error(f"[{request_id}] SimpleLama failed: {type(e).__name__}: {str(e)[:200]}")
         logger.info(f"[{request_id}] Falling back to OpenCV inpainting")

@@ -314,6 +314,10 @@ def overlay_english_text(
     H, W = inpainted_bgr.shape[:2]
     rgb = cv2.cvtColor(inpainted_bgr, cv2.COLOR_BGR2RGB)
     pil_img = Image.fromarray(rgb).convert("RGBA")
+    
+    # Free the RGB array immediately after converting
+    del rgb
+    
     draw = ImageDraw.Draw(pil_img)
     
     # Track already-placed text bounding boxes to prevent overlap
