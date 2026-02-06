@@ -22,7 +22,7 @@ def get_gemini_client() -> genai.Client:
 
 def translate_items_gemini(
     ch_items: List[Dict],
-    model: str = "models/gemini-flash-lite-latest"
+    model: str = "models/gemini-2.5-pro"
 ) -> List[str]:
     """
     Translate Chinese items to English using Gemini.
@@ -64,7 +64,7 @@ def translate_items_gemini(
 def translate_batch_all(
     html_items: List[Dict],
     image_items: Dict[str, List[Dict]],
-    model: str = "models/gemini-flash-lite-latest"
+    model: str = "models/gemini-2.5-pro"
 ) -> tuple[List[str], Dict[str, List[str]]]:
     """
     Translate ALL Chinese text (HTML + all images) in a SINGLE API call.
@@ -111,6 +111,9 @@ CRITICAL REQUIREMENTS:
 1. CONSISTENCY: If the same Chinese word/phrase appears multiple times (in HTML text or images), translate it THE SAME WAY every time
 2. CONTEXT: Examine ALL Chinese text to understand the product before translating
 3. BREVITY: Keep translations concise (en length <= max_chars)
+   - Use SHORT synonyms and compact phrases (e.g., "Slim Fit" not "Slender Body Type")
+   - Prefer single words over phrases when possible (e.g., "Size" not "Product Size")
+   - Use abbreviations for common terms (e.g., "L" not "Large", "XL" not "Extra Large")
 4. NATURAL: Use natural English that fits in UI elements
 5. TECHNICAL: Preserve technical terms, model numbers, specifications
 
@@ -128,7 +131,7 @@ Return JSON with same structure:
   }
 }
 
-Remember: Same Chinese → Same English throughout!"""
+Remember: Same Chinese → Same English throughout! Keep it SHORT!"""
     
     client = get_gemini_client()
     resp = client.models.generate_content(
@@ -157,3 +160,6 @@ Remember: Same Chinese → Same English throughout!"""
             image_translations[img_idx] = [item_map.get(i, "") for i in range(len(image_items.get(img_idx, [])))]
     
     return html_translations, image_translations
+
+
+
