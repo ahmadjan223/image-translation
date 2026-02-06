@@ -273,11 +273,11 @@ async def inpaint_and_overlay_image(
         # Save to disk so user can inspect translated image
         local_filename = f"translated_{image_index}.webp"
         local_path = images_dir / local_filename
-        await loop.run_in_executor(
-            None,
-            lambda: local_path.write_bytes(img_bytes)
-        )
-        print(f"   [{image_index + 1}] 💾 Saved to {local_path}")
+        # await loop.run_in_executor(
+        #     None,
+        #     lambda: local_path.write_bytes(img_bytes)
+        # )
+        # print(f"   [{image_index + 1}] 💾 Saved to {local_path}")
         
         # Upload the EXACT same bytes to GCS (no re-conversion)
         public_url = None
@@ -468,10 +468,10 @@ async def translate_batch(request: BatchTranslateRequest):
         translated_html = replace_image_urls(html_content, url_mapping)
         
         # Save translated HTML
-        html_output_path = session_dir / f"{offer_id}.html"
-        with open(html_output_path, "w", encoding="utf-8") as f:
-            f.write(translated_html)
-        logger.info(f"[{offer_id}] Saved HTML to {html_output_path}")
+        # html_output_path = session_dir / f"{offer_id}.html"
+        # with open(html_output_path, "w", encoding="utf-8") as f:
+        #     f.write(translated_html)
+        # logger.info(f"[{offer_id}] Saved HTML to {html_output_path}")
         
         # Count successes and failures
         successful = sum(1 for r in results if r and r.success)

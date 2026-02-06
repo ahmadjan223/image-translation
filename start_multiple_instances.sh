@@ -3,7 +3,7 @@
 # Each instance runs on a different port to handle concurrent requests
 
 # Number of instances (adjust based on your GPU memory)
-NUM_INSTANCES=${1:-4}  # Default 4 instances, override with: ./start_multiple_instances.sh 6
+NUM_INSTANCES=${1:-10}  # Default 10 instances, override with: ./start_multiple_instances.sh 6
 
 # Base port
 BASE_PORT=8080
