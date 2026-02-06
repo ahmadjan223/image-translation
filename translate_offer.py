@@ -299,7 +299,7 @@ async def call_translate_api_async(
         }
         
         try:
-            response = await client.post(api_url, headers=headers, json=data, timeout=300.0)
+            response = await client.post(api_url, headers=headers, json=data)
             
             if response.status_code == 200:
                 response_data = response.json()
