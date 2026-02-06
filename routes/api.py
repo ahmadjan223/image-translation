@@ -273,11 +273,11 @@ async def inpaint_and_overlay_image(
         # Save to disk so user can inspect translated image
         local_filename = f"translated_{image_index}.webp"
         local_path = images_dir / local_filename
-        # await loop.run_in_executor(
-        #     None,
-        #     lambda: local_path.write_bytes(img_bytes)
-        # )
-        # print(f"   [{image_index + 1}] 💾 Saved to {local_path}")
+        await loop.run_in_executor(
+            None,
+            lambda: local_path.write_bytes(img_bytes)
+        )
+        print(f"   [{image_index + 1}] 💾 Saved to {local_path}")
         
         # Upload the EXACT same bytes to GCS (no re-conversion)
         public_url = None

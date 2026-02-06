@@ -49,8 +49,8 @@ def wrap_text(
     max_lines: int = 2
 ) -> List[str]:
     """
-    Wrap text to fit within a maximum width.
-    Uses greedy wrap by spaces; falls back to char wrap.
+    Wrap text to fit within a maximum width with balanced line lengths.
+    Distributes words evenly across lines instead of greedy packing.
     """
     text = (text or "").strip()
     if not text:
@@ -64,18 +64,58 @@ def wrap_text(
         # This forces font sizing to reduce until word fits
         return [text]
     
-    lines, cur = [], ""
+    # First pass: determine how many lines we need (greedy)
+    temp_lines, cur = [], ""
     for w in words:
         test = (cur + " " + w).strip()
         if text_size(draw, test, font)[0] <= max_w or not cur:
             cur = test
         else:
-            lines.append(cur)
+            temp_lines.append(cur)
             cur = w
-            if len(lines) >= max_lines:
+    if cur:
+        temp_lines.append(cur)
+    
+    num_lines = min(len(temp_lines), max_lines)
+    if num_lines <= 1:
+        return temp_lines[:1]
+    
+    # Second pass: distribute words evenly across num_lines
+    words_per_line = len(words) // num_lines
+    remainder = len(words) % num_lines
+    
+    lines = []
+    word_idx = 0
+    
+    for line_idx in range(num_lines):
+        # Distribute remainder words to first lines
+        line_word_count = words_per_line + (1 if line_idx < remainder else 0)
+        
+        # Try to fit this many words, adjust if needed
+        best_line = None
+        for attempt in range(line_word_count, 0, -1):
+            if word_idx + attempt > len(words):
+                continue
+            
+            line_words = words[word_idx:word_idx + attempt]
+            line_text = " ".join(line_words)
+            
+            if text_size(draw, line_text, font)[0] <= max_w:
+                best_line = line_text
+                word_idx += attempt
                 break
-    if len(lines) < max_lines and cur:
-        lines.append(cur)
+        
+        if best_line:
+            lines.append(best_line)
+        else:
+            # Fallback: take at least one word
+            if word_idx < len(words):
+                lines.append(words[word_idx])
+                word_idx += 1
+        
+        if word_idx >= len(words):
+            break
+    
     return lines[:max_lines]
 
 
@@ -237,6 +277,23 @@ def draw_text_with_shadow(
     return Image.alpha_composite(base, tmp), (block_w, block_h)
 
 
+def check_overlap(box1: Tuple[int, int, int, int], box2: Tuple[int, int, int, int]) -> bool:
+    """
+    Check if two boxes overlap.
+    Boxes are in format (x1, y1, x2, y2).
+    """
+    x1_a, y1_a, x2_a, y2_a = box1
+    x1_b, y1_b, x2_b, y2_b = box2
+    
+    # No overlap if one box is to the left/right/above/below the other
+    if x2_a <= x1_b or x2_b <= x1_a:
+        return False
+    if y2_a <= y1_b or y2_b <= y1_a:
+        return False
+    
+    return True
+
+
 def overlay_english_text(
     inpainted_bgr: np.ndarray,
     ch_items: List[Dict],
@@ -244,6 +301,7 @@ def overlay_english_text(
 ) -> Image.Image:
     """
     Overlay translated English text on inpainted image.
+    Skips text that overlaps with already-placed text.
     
     Args:
         inpainted_bgr: Inpainted BGR image.
@@ -257,6 +315,9 @@ def overlay_english_text(
     rgb = cv2.cvtColor(inpainted_bgr, cv2.COLOR_BGR2RGB)
     pil_img = Image.fromarray(rgb).convert("RGBA")
     draw = ImageDraw.Draw(pil_img)
+    
+    # Track already-placed text bounding boxes to prevent overlap
+    placed_text_boxes = []
     
     for it in ch_items:
         en = (it.get("en") or "").strip()
@@ -329,11 +390,28 @@ def overlay_english_text(
         else:
             ty = y1  # Align top if too tall
         
+        # Check if this text placement overlaps with any already-placed text
+        text_bbox = (tx, ty, tx + block_w, ty + block_h)
+        has_overlap = False
+        for placed_box in placed_text_boxes:
+            if check_overlap(text_bbox, placed_box):
+                has_overlap = True
+                break
+        
+        if has_overlap:
+            # Skip this text to avoid overlap
+            print(f"   ⚠️  Skipping overlapping text: '{en[:30]}...'")
+            continue
+        
+        # Draw the text
         pil_img, _ = draw_text_with_shadow(
             pil_img, (tx, ty), lines, font,
             fill_rgba=fill, shadow_rgba=shadow,
             shadow_blur=SHADOW_BLUR, shadow_offset=SHADOW_OFFSET,
             align="center", line_spacing=LINE_SPACING,
         )
+        
+        # Track this placed text box
+        placed_text_boxes.append(text_bbox)
     
     return pil_img
