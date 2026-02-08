@@ -74,7 +74,7 @@ OFFER_IDS = [
     # "602766644649",
     # "818322307945",
     # "732252682536",
-    # "601747573294",
+    "601747573294",
     # "626589994862",
     # "597042514466",
     # "635994130681",
@@ -149,7 +149,7 @@ OFFER_IDS = [
     # "826249040805",
     # "625921399000",
     # "742841052358",
-    "653479347253",
+    # "653479347253",
     # "626239290860",
     # "600116413912",
     # "728995711439",
@@ -157,8 +157,8 @@ OFFER_IDS = [
     # "810369663388",
     # "664330627564",
     # "631169391173",
-    "737831129958",
-    "583174483152",
+    # "737831129958",
+    # "583174483152",
     # "1086665641",
     # "817675662797",
     # "575114027644",
@@ -299,7 +299,7 @@ async def call_translate_api_async(
         }
         
         try:
-            response = await client.post(api_url, headers=headers, json=data, timeout=60.0)
+            response = await client.post(api_url, headers=headers, json=data, timeout=600.0)
             
             if response.status_code == 200:
                 response_data = response.json()
@@ -312,6 +312,14 @@ async def call_translate_api_async(
                     return (offer_id, None, error_msg)
                 
                 logger.info(f"✅ [{offer_id}] Translation successful ({len(translated_html)} chars) [port {port}]")
+                
+                # Save individual HTML file immediately
+                OUTPUT_DIR.mkdir(exist_ok=True)
+                output_path = OUTPUT_DIR / f"{offer_id}.html"
+                loop = asyncio.get_event_loop()
+                await loop.run_in_executor(None, lambda: output_path.write_text(translated_html, encoding='utf-8'))
+                logger.info(f"💾 [{offer_id}] Saved: {output_path}")
+                
                 await append_result_to_csv(offer_id, translated_html, None)
                 return (offer_id, translated_html, None)
             else:
@@ -367,10 +375,6 @@ async def process_all_offers_async(offer_ids: List[str]) -> List[Tuple[str, Opti
     return results
 
 
-def save_results_to_csv(results: List[Tuple[str, Optional[str], Optional[str]]]):
-    """DEPRECATED - Results are now appended incrementally during processing."""
-    pass
-
 
 def save_individual_html_files(results: List[Tuple[str, Optional[str], Optional[str]]]):
     """Save individual HTML files for successful translations."""
@@ -417,7 +421,7 @@ def main():
         results = asyncio.run(process_all_offers_async(offer_ids))
         
         # Step 3: Save individual HTML files
-        save_individual_html_files(results)
+        # save_individual_html_files(results)
         
         # Summary
         successful = sum(1 for _, html, _ in results if html)
