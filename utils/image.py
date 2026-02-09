@@ -1,9 +1,10 @@
-"""
-Image loading and manipulation utilities.
-"""
+"""Image loading and manipulation utilities."""
 import os
+import io
 import cv2
 import numpy as np
+from pathlib import Path
+from typing import Optional
 from PIL import Image
 
 
@@ -38,6 +39,30 @@ def load_image_to_bgr(path: str) -> np.ndarray:
     return cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
 
 
+def load_image_from_bytes(img_bytes: bytes) -> np.ndarray:
+    """
+    Load image from bytes into BGR (OpenCV style).
+    Efficient in-memory loading without disk I/O.
+    
+    Args:
+        img_bytes: Image data as bytes.
+        
+    Returns:
+        BGR numpy array of the image.
+    """
+    # Decode using OpenCV (faster for JPEG/WebP)
+    nparr = np.frombuffer(img_bytes, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    
+    if img is None:
+        # Fallback to PIL for other formats
+        img_pil = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+        img = np.array(img_pil)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    
+    return img
+
+
 def bgr_to_rgb(img_bgr: np.ndarray) -> np.ndarray:
     """Convert BGR image to RGB."""
     return cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -61,3 +86,65 @@ def get_image_dimensions(img: np.ndarray) -> tuple:
         Tuple of (height, width).
     """
     return img.shape[:2]
+
+
+def convert_to_webp(
+    image_source,
+    output_path: Optional[Path] = None,
+    lossless: bool = False,
+    quality: int = 85,
+    method: int = 4
+) -> bytes:
+    """
+    Convert image to WebP format.
+    
+    Args:
+        image_source: Either a file path (str/Path) or PIL Image object
+        output_path: Optional path to save the WebP file
+        lossless: Use lossless compression (larger files)
+        quality: Quality setting (0-100, only used if not lossless)
+        method: Compression method (0-6, higher = better compression but slower)
+        
+    Returns:
+        WebP image as bytes
+    """
+    # Load image if path provided, otherwise use PIL Image directly
+    if isinstance(image_source, (str, Path)):
+        img = Image.open(image_source).convert("RGB")
+    else:
+        img = image_source.convert("RGB")
+    
+    # Convert to WebP
+    img_buffer = io.BytesIO()
+    img.save(img_buffer, format="WEBP", lossless=lossless, quality=quality, method=method)
+    img_bytes = img_buffer.getvalue()
+    
+    # Optionally save to file
+    if output_path:
+        with open(output_path, "wb") as f:
+            f.write(img_bytes)
+    
+    return img_bytes
+
+
+def get_file_extension(image_url: str, content_type: str) -> str:
+    """
+    Determine file extension from content type or URL.
+    
+    Args:
+        image_url: URL of the image
+        content_type: HTTP Content-Type header value
+        
+    Returns:
+        File extension (with leading dot)
+    """
+    content_type = content_type.lower()
+    if "jpeg" in content_type or "jpg" in content_type:
+        return ".jpg"
+    elif "webp" in content_type:
+        return ".webp"
+    elif "png" in content_type:
+        return ".png"
+    else:
+        url_path = image_url.split("?")[0]
+        return Path(url_path).suffix or ".jpg"

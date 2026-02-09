@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # GCP Settings
     GCP_PROJECT_ID: Optional[str] = None
     GCP_BUCKET_NAME: Optional[str] = None
-    GCP_CDN_URL: Optional[str] = None
+    GCP_CDN_URL: str = "https://media.public.markaz.app/"
     GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None
     GEMINI_API_KEY: Optional[str] = None
     
@@ -85,19 +85,28 @@ GOOGLE_APPLICATION_CREDENTIALS = settings.GOOGLE_APPLICATION_CREDENTIALS
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 
 # --- WebP conversion settings ---
-WEBP_LOSSLESS = True  # Set to True for lossless WebP (best quality, larger files)
-WEBP_QUALITY = 100    # Only used when WEBP_LOSSLESS=False
-WEBP_METHOD = 6       # 0-6, higher = better compression (slower)
+WEBP_LOSSLESS = False  # False = use quality mode (70% smaller, no visible loss)
+WEBP_QUALITY = 85      # 85 = excellent quality with great compression
+WEBP_METHOD = 4        # 0-6, 4 = good balance of speed and compression
 
 # --- Font settings ---
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
 # --- Text overlay parameters ---
 PAD_IN = 2
 MIN_BOX_W = 20
 MIN_BOX_H = 14
-MIN_FONT_SIZE = 12
+MIN_FONT_SIZE = 11
 MAX_FONT_SIZE = 120
 FONT_SIZE_STEP = 2
+
+# --- Image processing parameters ---
+OCR_CONFIDENCE_THRESH = 0.8  # Minimum confidence threshold for OCR text detection
+MASK_PAD = 6                  # Padding around detected text for inpainting mask
+
+# --- HTTP settings ---
+HTTP_TIMEOUT = 60.0  # Timeout in seconds for image downloads
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 SPLIT_THRESHOLD = 12
 MAX_LINES_FALLBACK = 2
 LINE_SPACING = 1.025
@@ -121,6 +130,7 @@ Output JSON ONLY:
 # --- OCR settings ---
 OCR_CONFIG = {
     "lang": "ch",
+     "use_gpu": False, 
     "use_doc_unwarping": False,
     "use_doc_orientation_classify": False,
     "text_det_limit_type": "max",
@@ -128,5 +138,5 @@ OCR_CONFIG = {
     "text_det_thresh": 0.4,
     "text_det_box_thresh": 0.5,
     "text_det_unclip_ratio": 1.8,
-    "text_rec_score_thresh": 0.6
+    "text_rec_score_thresh": 0.8
 }

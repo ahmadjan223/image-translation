@@ -8,52 +8,78 @@ import cv2
 from typing import List, Dict, Any, Optional, Tuple
 
 from paddleocr import PaddleOCR
-import threading
 
 from config import CJK_RE, OCR_CONFIG
 from utils.image import load_image_to_bgr
 
-# Thread-local storage for PaddleOCR instances (thread-safe)
-_thread_local = threading.local()
 
-
-def get_ocr_instance() -> PaddleOCR:
-    """Get or create a thread-local PaddleOCR instance for thread safety."""
-    if not hasattr(_thread_local, 'ocr'):
-        _thread_local.ocr = PaddleOCR(**OCR_CONFIG)
-    return _thread_local.ocr
-
-
-def ocr_predict_to_json(image_path: str, outdir: str) -> Tuple[Dict, str]:
-    """
-    Run OCR on image and save results to JSON.
+# def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR) -> Tuple[Dict, str]:
+#     """
+#     Run OCR on image using provided OCR instance.
     
-    Args:
-        image_path: Path to the input image.
-        outdir: Directory to save OCR outputs.
+#     Args:
+#         image_path: Path to the input image
+#         outdir: Directory to save OCR outputs
+#         ocr: PaddleOCR instance to use
         
-    Returns:
-        Tuple of (ocr_data_dict, fed_image_path).
-        
-    Raises:
-        RuntimeError: If OCR fails to produce results.
+#     Returns:
+#         Tuple of (ocr_data_dict, fed_image_path)
+#     """
+#     os.makedirs(outdir, exist_ok=True)
+    
+#     img_bgr = load_image_to_bgr(image_path)
+    
+#     # Save the exact bitmap fed to OCR
+#     fed_path = os.path.join(outdir, "fed_to_ocr.png")
+#     cv2.imwrite(fed_path, img_bgr)
+    
+#     # Run OCR using predict() which returns OCRResult objects
+#     outputs = ocr.predict(fed_path)
+    
+#     # Save OCRResult to JSON
+#     for res in outputs:
+#         if res is not None:
+#             res.save_to_json(outdir)
+    
+#     # Find the JSON file that was just created
+#     jfiles = sorted(glob.glob(os.path.join(outdir, "*.json")), key=os.path.getmtime)
+#     if not jfiles:
+#         # No detections - return empty structure
+#         data = {
+#             "rec_texts": [],
+#             "rec_scores": [],
+#             "rec_boxes": [],
+#             "rec_polys": []
+#         }
+#     else:
+#         # Load the JSON file
+#         with open(jfiles[-1], "r", encoding="utf-8") as f:
+#             data = json.load(f)
+    
+#     return data, fed_path
+
+def run_ocr_on_image(image_path: str, outdir: str, ocr: PaddleOCR):
     """
+    Run OCR on image using provided OCR instance.
+    
+    This is a simplified version of ocr_predict_to_json that receives
+    the OCR instance as a parameter instead of calling get_ocr_instance().
+    """
+    import os
+    
     os.makedirs(outdir, exist_ok=True)
     
     img_bgr = load_image_to_bgr(image_path)
-
+    
     # Save the exact bitmap fed to OCR
     fed_path = os.path.join(outdir, "fed_to_ocr.png")
     cv2.imwrite(fed_path, img_bgr)
     
-    # Run OCR
-    ocr = get_ocr_instance()
+    # Run OCR using the provided instance
     results = ocr.ocr(fed_path)
     
     # Convert PaddleOCR results to our JSON format
-    # results is a list with one element per image
     if not results or results[0] is None:
-        # No text detected
         data = {
             "rec_texts": [],
             "rec_scores": [],
@@ -69,21 +95,18 @@ def ocr_predict_to_json(image_path: str, outdir: str) -> Tuple[Dict, str]:
         for line in results[0]:
             if line is None:
                 continue
-            # Each line is: [box_coords, (text, confidence)]
-            box_coords = line[0]  # [[x1,y1], [x2,y2], [x3,y3], [x4,y4]]
-            text_info = line[1]   # (text, confidence)
+            box_coords = line[0]
+            text_info = line[1]
             
             rec_texts.append(text_info[0])
             rec_scores.append(float(text_info[1]))
             
-            # Convert polygon to bounding box [x1, y1, x2, y2]
+            # Convert polygon to bounding box
             xs = [pt[0] for pt in box_coords]
             ys = [pt[1] for pt in box_coords]
             x1, x2 = min(xs), max(xs)
             y1, y2 = min(ys), max(ys)
             rec_boxes.append([x1, y1, x2, y2])
-            
-            # Keep original polygon coordinates
             rec_polys.append(box_coords)
         
         data = {
@@ -93,13 +116,12 @@ def ocr_predict_to_json(image_path: str, outdir: str) -> Tuple[Dict, str]:
             "rec_polys": rec_polys
         }
     
-    # Save to JSON for debugging
+    # Save to JSON
     json_path = os.path.join(outdir, "ocr_results.json")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
     return data, fed_path
-
 
 def get_chinese_items(ocr_json: Dict, conf_thresh: Optional[float] = None) -> List[Dict[str, Any]]:
     """

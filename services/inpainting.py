@@ -1,22 +1,15 @@
-"""
-Inpainting service using SimpleLama.
-"""
+"""Inpainting service - mask creation and inpainting utility."""
 import cv2
 import numpy as np
-from typing import List, Dict
+import logging
+from typing import List, Dict, Optional
 
 from simple_lama_inpainting import SimpleLama
 
-# Initialize SimpleLama (global instance)
-_simple_lama = None
+# Note: Inpainting is now handled in routes/api.py by inpaint_with_lama()
+# This service only contains the mask creation helper function
 
-
-def get_simple_lama() -> SimpleLama:
-    """Get or create the SimpleLama instance."""
-    global _simple_lama
-    if _simple_lama is None:
-        _simple_lama = SimpleLama()
-    return _simple_lama
+logger = logging.getLogger(__name__)
 
 
 def create_mask_from_items(
@@ -57,22 +50,42 @@ def create_mask_from_items(
     return mask
 
 
-def inpaint_image(img_bgr: np.ndarray, mask: np.ndarray) -> np.ndarray:
+def inpaint_with_lama(
+    img_bgr: np.ndarray,
+    mask: np.ndarray,
+    lama: Optional[SimpleLama],
+    request_id: str = "unknown"
+) -> np.ndarray:
     """
-    Inpaint image using SimpleLama (with OpenCV fallback).
+    Inpaint image using SimpleLama with OpenCV fallback.
     
     Args:
-        img_bgr: Input BGR image.
-        mask: Binary mask indicating regions to inpaint.
-        
+        img_bgr: Input BGR image
+        mask: Binary mask for inpainting
+        lama: SimpleLama instance (can be None if initialization failed)
+        request_id: Request identifier for logging
+    
     Returns:
-        Inpainted BGR image.
+        Inpainted BGR image
     """
+    # If SimpleLama not available, use OpenCV directly
+    if lama is None:
+        logger.debug(f"[{request_id}] Using OpenCV inpainting (SimpleLama not available)")
+        return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)
+    
+    # Try SimpleLama first
     try:
-        simple_lama = get_simple_lama()
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-        inpaint_pil = simple_lama(img_rgb, mask)
-        return cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+        inpaint_pil = lama(img_rgb, mask)
+        result = cv2.cvtColor(np.array(inpaint_pil), cv2.COLOR_RGB2BGR)
+        
+        # Free intermediate objects
+        del img_rgb
+        del inpaint_pil
+        
+        logger.debug(f"[{request_id}] SimpleLama inpainting successful")
+        return result
     except Exception as e:
-        print(f"⚠️ SimpleLaMa failed, falling back to OpenCV: {str(e)[:100]}")
+        logger.error(f"[{request_id}] SimpleLama failed: {type(e).__name__}: {str(e)[:200]}")
+        logger.info(f"[{request_id}] Falling back to OpenCV inpainting")
         return cv2.inpaint(img_bgr, mask, inpaintRadius=3, flags=cv2.INPAINT_TELEA)

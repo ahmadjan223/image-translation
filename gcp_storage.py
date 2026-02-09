@@ -149,8 +149,8 @@ class GCPCloudStorage:
             return None
         
         try:
-            # Construct the blob path: public/{folder_name}/{image_name}.webp
-            blob_path = f"public/{folder_name}/{image_name}.webp"
+            # Construct the blob path: public/products/translated/description/{folder_name}/{image_name}.webp
+            blob_path = f"public/products/translated/description/{folder_name}/{image_name}.webp"
             blob = self.bucket.blob(blob_path)
             
             # Set metadata
@@ -287,7 +287,7 @@ class GCPCloudStorage:
             logger.info(f"✅ Converted to WebP: {len(webp_data)} bytes")
             
             # Upload to GCS
-            logger.info(f"Uploading image to GCS: public/{folder_name}/{image_name}.webp")
+            logger.info(f"Uploading image to GCS: public/products/translated/description/{folder_name}/{image_name}.webp")
             blob_path = self.upload_image(webp_data, folder_name, image_name)
             if not blob_path:
                 logger.error("❌ Failed to upload image to GCS")
