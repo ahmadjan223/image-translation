@@ -60,124 +60,15 @@ FASTAPI_URLS = [
 OUTPUT_DIR = Path("translated_offers")
 CSV_OUTPUT = "translated_offers.csv"
 
-# Hardcoded list of offer IDs to process
-OFFER_IDS = [
-    "614621515785",
-    # "38585490686",
-    # "40586863272",
-    # "587514335665",
-    # "593996039936",
-    # "594984552753",
-    # "610202619575",
-    # "625994828026",
-    # "624730890959",
-    # "568953817440",
-    # "621796987802",
-    # "602766644649",
-    # "818322307945",
-    # "732252682536",
-    # "601747573294",
-    # "626589994862",
-    # "597042514466",
-    # "635994130681",
-    # "711710642712",
-    # "633573097044",
-    # "590409798220",
-    # "603450020772",
-    # "525006763799",
-    # "520829764809",
-    # "626622859354",
-    # "623409844150",
-    # "634123488276",
-    # "579325147274",
-    # "762709360445",
-    # "581477064514",
-    # "520431501518",
-    # "640911335840",
-    # "635094132637",
-    # "657563785032",
-    # "590228198711",
-    # "635181687313",
-    # "560116006891",
-    # "730244388583",
-    # "554992493166",
-    # "630198409357",
-    # "552155078917",
-    # "612899823898",
-    # "589587782649",
-    # "773013554799",
-    # "827887580684",
-    # "828240822385",
-    # "564151541433",
-    # "641430607491",
-    # "745554091928",
-    # "773124674725",
-    # "563864567047",
-    # "642071961825",
-    # "597339298377",
-    # "592211052698",
-    # "734140093224",
-    # "811517155585",
-    # "737582148019",
-    # "626199904545",
-    # "602485551584",
-    # "773053192401",
-    # "629609946248",
-    # "672160611914",
-    # "679126677885",
-    # "660206728469",
-    # "641303285523",
-    # "818819451892",
-    # "682741208700",
-    # "563377715620",
-    # "712258308646",
-    # "816086840615",
-    # "773348662420",
-    # "536577090188",
-    # "716252308319",
-    # "814597802859",
-    # "624595542131",
-    # "770053827786",
-    # "617806400536",
-    # "634542629387",
-    # "641971552897",
-    # "741803799246",
-    # "826569563017",
-    # "547896237507",
-    # "755271783502",
-    # "719950498546",
-    # "813922865294",
-    # "817763111343",
-    # "826249040805",
-    # "625921399000",
-    # "742841052358",
-    # "653479347253",
-    # "626239290860",
-    # "600116413912",
-    # "728995711439",
-    # "614254651476",
-    # "810369663388",
-    # "664330627564",
-    # "631169391173",
-    # "737831129958",
-    # "583174483152",
-    # "1086665641",
-    # "817675662797",
-    # "575114027644",
-    # "638554547463",
-    # "602634316361",
-    # "650748853250",
-    # "626583450545",
-    # "714638138260",
-    # "824023039251",
-]
+# Input CSV file with offer IDs (should have a column named "offerId")
+OFFER_IDS_INPUT_CSV = "offeridsInputBatch.csv"
 
 # CSV lock for thread-safe writing
 csv_lock = asyncio.Lock()
 
 # Concurrent request limit - one request per API instance
 # Each instance handles its own GPU operations internally
-MAX_CONCURRENT_REQUESTS = 5
+MAX_CONCURRENT_REQUESTS = 10
 
 
 def get_already_processed_offers() -> Set[str]:
@@ -207,6 +98,27 @@ def initialize_csv_if_needed():
             writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
             writer.writerow(['offerid', 'html', 'error'])
         logger.info(f"📄 Created new CSV file: {CSV_OUTPUT}")
+
+
+def load_offer_ids_from_csv(csv_file: str) -> List[str]:
+    """Load offer IDs from a CSV file with 'offerId' column."""
+    if not Path(csv_file).exists():
+        logger.error(f"❌ Offer IDs CSV file not found: {csv_file}")
+        return []
+    
+    offer_ids = []
+    try:
+        with open(csv_file, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                offer_id = row.get('offerId') or row.get('offerid')
+                if offer_id and offer_id.strip():
+                    offer_ids.append(offer_id.strip())
+        logger.info(f"📋 Loaded {len(offer_ids)} offer IDs from {csv_file}")
+    except Exception as e:
+        logger.error(f"❌ Error reading offer IDs CSV: {e}")
+    
+    return offer_ids
 
 
 async def append_result_to_csv(offer_id: str, translated_html: Optional[str], error: Optional[str]):
@@ -404,17 +316,24 @@ def main():
     # Initialize CSV if needed
     initialize_csv_if_needed()
     
+    # Load offer IDs from CSV file
+    offer_ids_list = load_offer_ids_from_csv(OFFER_IDS_INPUT_CSV)
+    
+    if not offer_ids_list:
+        logger.error(f"❌ No offer IDs loaded from {OFFER_IDS_INPUT_CSV}")
+        sys.exit(1)
+    
     # Check for already processed offers
     already_processed = get_already_processed_offers()
     
     # Filter out already processed offers
-    offer_ids = [oid for oid in OFFER_IDS if oid not in already_processed]
+    offer_ids = [oid for oid in offer_ids_list if oid not in already_processed]
     
     if not offer_ids:
         logger.info("✅ All offers already processed! Nothing to do.")
         return
     
-    logger.info(f"📋 Total offers in list: {len(OFFER_IDS)}")
+    logger.info(f"📋 Total offers in list: {len(offer_ids_list)}")
     logger.info(f"✅ Already processed: {len(already_processed)}")
     logger.info(f"🔄 Remaining to process: {len(offer_ids)}\n")
     

@@ -18,6 +18,7 @@ import asyncio
 import logging
 import io
 from pathlib import Path
+import shutil
 from typing import Dict, List, Optional
 
 import httpx
@@ -341,11 +342,11 @@ async def inpaint_and_overlay_image(
                     blob_path,
                     True  # use_cdn
                 )
-                # # Delete local file after successful upload to save disk space
-                # try:
-                #     await loop.run_in_executor(None, os.remove, local_path)
-                # except Exception as e:
-                #     logger.warning(f"[{request_id}] Failed to delete local file: {e}")
+                # Delete local file after successful upload to save disk space
+                try:
+                    await loop.run_in_executor(None, os.remove, local_path)
+                except Exception as e:
+                    logger.warning(f"[{request_id}] Failed to delete local file: {e}")
         
         # Store results
         results[image_index] = ImageTranslationResult(
@@ -561,15 +562,15 @@ async def translate_batch(request: BatchTranslateRequest):
         sys.stdout.flush()
         raise HTTPException(status_code=500, detail=f"Batch translation error: {str(e)}")
     
-    # finally:
-    #     # Clean up session directory to prevent disk space exhaustion
-    #     import shutil
-    #     try:
-    #         if session_dir.exists():
-    #             await asyncio.get_running_loop().run_in_executor(
-    #                 None,
-    #                 lambda: shutil.rmtree(session_dir, ignore_errors=True)
-    #             )
-    #             logger.info(f"[{offer_id}] Cleaned up session directory: {session_dir}")
-    #     except Exception as e:
-    #         logger.warning(f"[{offer_id}] Failed to clean up session directory: {e}")
+    finally:
+        # Clean up session directory to prevent disk space exhaustion
+        
+        try:
+            if session_dir.exists():
+                await asyncio.get_running_loop().run_in_executor(
+                    None,
+                    lambda: shutil.rmtree(session_dir, ignore_errors=True)
+                )
+                logger.info(f"[{offer_id}] Cleaned up session directory: {session_dir}")
+        except Exception as e:
+            logger.warning(f"[{offer_id}] Failed to clean up session directory: {e}")
