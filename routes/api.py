@@ -145,6 +145,7 @@ async def memory_status():
 # Phase 1: OCR Extraction (parallel, in-memory)
 # ============================================================================
 
+
 async def extract_chinese_from_image(
     image_url: str,
     image_index: int,
@@ -159,75 +160,73 @@ async def extract_chinese_from_image(
     """
     request_id = f"{offer_id}-img{image_index}"
     
-    logger.info(f"[{request_id}] Starting OCR extraction for image {image_index + 1}")
-    
     try:
         # Download to memory
-        logger.debug(f"[{request_id}] Downloading image from {image_url[:100]}...")
         response = await client.get(image_url, headers={"User-Agent": USER_AGENT})
         response.raise_for_status()
         img_bytes = response.content
         
-        logger.info(f"[{request_id}] Downloaded {len(img_bytes)} bytes")
         print(f"   [{image_index + 1}] ✅ Downloaded")
         
         # OCR from memory
-        logger.debug(f"[{request_id}] Waiting for OCR semaphore...")
         async with ocr_semaphore:
-            logger.info(f"[{request_id}] Acquired OCR semaphore, starting OCR processing")
             loop = asyncio.get_running_loop()
             
             def run_ocr_in_memory():
                 from utils.image import load_image_from_bytes
                 import gc
-                import glob
-                import tempfile
                 
                 img_bgr = load_image_from_bytes(img_bytes)
-                logger.debug(f"[{request_id}] Loaded image to BGR format: {img_bgr.shape}")
                 
                 # Run OCR
-                logger.info(f"[{request_id}] Running PaddleOCR...")
-                outputs = ocr.ocr(img_bgr)
-                logger.info(f"[{request_id}] PaddleOCR completed")
+                results = ocr.ocr(img_bgr, cls=False)
                 
                 # Free the image immediately after OCR
                 del img_bgr
                 gc.collect()
                 
-                # Save OCR result to JSON (correct way to handle PaddleOCR results)
-                with tempfile.TemporaryDirectory() as tmpdir:
-                    for res in outputs:
-                        if res is not None:
-                            res.save_to_json(tmpdir)
-                    
-                    # Find the JSON file that was just created
-                    jfiles = sorted(glob.glob(os.path.join(tmpdir, "*.json")), key=os.path.getmtime)
-                    if not jfiles:
-                        # No detections - return empty structure
-                        logger.info(f"[{request_id}] No OCR detections found")
-                        data = {
-                            "rec_texts": [],
-                            "rec_scores": [],
-                            "rec_boxes": [],
-                            "rec_polys": []
-                        }
-                    else:
-                        # Load the JSON file
-                        with open(jfiles[-1], "r", encoding="utf-8") as f:
-                            data = json.load(f)
-                        logger.info(f"[{request_id}] Loaded OCR data: {len(data.get('rec_texts', []))} detections")
+                # Transform to expected format (same as run_ocr_on_image)
+                if not results or results[0] is None:
+                    return {
+                        "rec_texts": [],
+                        "rec_scores": [],
+                        "rec_boxes": [],
+                        "rec_polys": []
+                    }
                 
-                return data
-            
+                rec_texts = []
+                rec_scores = []
+                rec_boxes = []
+                rec_polys = []
+                
+                for line in results[0]:
+                    if line is None:
+                        continue
+                    box_coords = line[0]
+                    text_info = line[1]
+                    
+                    rec_texts.append(text_info[0])
+                    rec_scores.append(float(text_info[1]))
+                    
+                    # Convert polygon to bounding box
+                    xs = [pt[0] for pt in box_coords]
+                    ys = [pt[1] for pt in box_coords]
+                    x1, x2 = min(xs), max(xs)
+                    y1, y2 = min(ys), max(ys)
+                    rec_boxes.append([x1, y1, x2, y2])
+                    rec_polys.append(box_coords)
+                
+                return {
+                    "rec_texts": rec_texts,
+                    "rec_scores": rec_scores,
+                    "rec_boxes": rec_boxes,
+                    "rec_polys": rec_polys
+                }
             ocr_data = await loop.run_in_executor(None, run_ocr_in_memory)
-            logger.info(f"[{request_id}] OCR executor completed, filtering Chinese items...")
             ch_items = get_chinese_items(ocr_data, conf_thresh=OCR_CONFIDENCE_THRESH)
             
-            logger.info(f"[{request_id}] Released OCR semaphore. Found {len(ch_items)} Chinese regions out of {len(ocr_data.get('rec_texts', []))} total detections")
             print(f"   [{image_index + 1}] ✅ OCR: {len(ch_items)} Chinese regions")
         
-        logger.info(f"[{request_id}] Successfully completed OCR extraction")
         return img_bytes, ch_items
     
     except Exception as e:
@@ -235,7 +234,7 @@ async def extract_chinese_from_image(
         logger.error(f"[{request_id}] OCR extraction failed: {error_msg}")
         print(f"   [{image_index + 1}] ❌ {error_msg}")
         return None, []
-
+    
 
 # ============================================================================
 # Phase 2: Inpainting & Overlay (parallel, with pre-translated text)
@@ -326,22 +325,22 @@ async def inpaint_and_overlay_image(
         
         # Upload the EXACT same bytes to GCS (no re-conversion)
         public_url = None
-        # if gcp_storage.is_available():
-            # blob_path = await loop.run_in_executor(
-            #     None,
-            #     gcp_storage.upload_image,
-            #     img_bytes,
-            #     offer_id,
-            #     f"image_{image_index}",
-            #     "image/webp"
-            # )
-            # if blob_path:
-            #     public_url = await loop.run_in_executor(
-            #         None,
-            #         gcp_storage.get_public_url,
-            #         blob_path,
-            #         True  # use_cdn
-            #     )
+        if gcp_storage.is_available():
+            blob_path = await loop.run_in_executor(
+                None,
+                gcp_storage.upload_image,
+                img_bytes,
+                offer_id,
+                f"image_{image_index}",
+                "image/webp"
+            )
+            if blob_path:
+                public_url = await loop.run_in_executor(
+                    None,
+                    gcp_storage.get_public_url,
+                    blob_path,
+                    True  # use_cdn
+                )
                 # # Delete local file after successful upload to save disk space
                 # try:
                 #     await loop.run_in_executor(None, os.remove, local_path)

@@ -130,7 +130,7 @@ Output JSON ONLY:
 # --- OCR settings ---
 OCR_CONFIG = {
     "lang": "ch",
-    #  "use_gpu": False, 
+     "use_gpu": False, 
     "use_doc_unwarping": False,
     "use_doc_orientation_classify": False,
     "text_det_limit_type": "max",

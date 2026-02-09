@@ -17,6 +17,7 @@ Output:
   - Individual HTML files: translated_offers/{offer_id}.html
 """
 
+
 import asyncio
 import csv
 import json
@@ -61,6 +62,7 @@ CSV_OUTPUT = "translated_offers.csv"
 
 # Hardcoded list of offer IDs to process
 OFFER_IDS = [
+    "614621515785",
     # "38585490686",
     # "40586863272",
     # "587514335665",
@@ -74,7 +76,7 @@ OFFER_IDS = [
     # "602766644649",
     # "818322307945",
     # "732252682536",
-    "601747573294",
+    # "601747573294",
     # "626589994862",
     # "597042514466",
     # "635994130681",
@@ -175,7 +177,7 @@ csv_lock = asyncio.Lock()
 
 # Concurrent request limit - one request per API instance
 # Each instance handles its own GPU operations internally
-MAX_CONCURRENT_REQUESTS = 1
+MAX_CONCURRENT_REQUESTS = 5
 
 
 def get_already_processed_offers() -> Set[str]:
