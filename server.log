@@ -1,39 +1,14 @@
 nohup: ignoring input
-[33mChecking connectivity to the model hosters, this may take a while. To bypass this check, set `DISABLE_MODEL_SOURCE_CHECK` to `True`.[0m
-INFO:     Started server process [25272]
+✅ Added CUDA libraries to LD_LIBRARY_PATH: /root/image-translation/venv/lib/python3.11/site-packages/nvidia/cublas/lib:/root/image-translation/venv/lib/python3.11/site-packages/nvidia/cudnn/lib:/root/image-translation/venv/lib/python3.11/site-packages/nvidia/cuda_runtime/lib
+[2026/02/09 09:26:56] ppocr DEBUG: Namespace(help='==SUPPRESS==', use_gpu=False, use_xpu=False, use_npu=False, use_mlu=False, use_gcu=False, ir_optim=True, use_tensorrt=False, min_subgraph_size=15, precision='fp32', gpu_mem=500, gpu_id=0, image_dir=None, page_num=0, det_algorithm='DB', det_model_dir='/root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer', det_limit_side_len=960, det_limit_type='max', det_box_type='quad', det_db_thresh=0.3, det_db_box_thresh=0.6, det_db_unclip_ratio=1.5, max_batch_size=10, use_dilation=False, det_db_score_mode='fast', det_east_score_thresh=0.8, det_east_cover_thresh=0.1, det_east_nms_thresh=0.2, det_sast_score_thresh=0.5, det_sast_nms_thresh=0.2, det_pse_thresh=0, det_pse_box_thresh=0.85, det_pse_min_area=16, det_pse_scale=1, scales=[8, 16, 32], alpha=1.0, beta=1.0, fourier_degree=5, rec_algorithm='SVTR_LCNet', rec_model_dir='/root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer', rec_image_inverse=True, rec_image_shape='3, 48, 320', rec_batch_num=6, max_text_length=25, rec_char_dict_path='/root/image-translation/venv/lib/python3.11/site-packages/paddleocr/ppocr/utils/ppocr_keys_v1.txt', use_space_char=True, vis_font_path='./doc/fonts/simfang.ttf', drop_score=0.5, e2e_algorithm='PGNet', e2e_model_dir=None, e2e_limit_side_len=768, e2e_limit_type='max', e2e_pgnet_score_thresh=0.5, e2e_char_dict_path='./ppocr/utils/ic15_dict.txt', e2e_pgnet_valid_set='totaltext', e2e_pgnet_mode='fast', use_angle_cls=False, cls_model_dir='/root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer', cls_image_shape='3, 48, 192', label_list=['0', '180'], cls_batch_num=6, cls_thresh=0.9, enable_mkldnn=False, cpu_threads=10, use_pdserving=False, warmup=False, sr_model_dir=None, sr_image_shape='3, 32, 128', sr_batch_num=1, draw_img_save_dir='./inference_results', save_crop_res=False, crop_res_save_dir='./output', use_mp=False, total_process_num=1, process_id=0, benchmark=False, save_log_path='./log_output/', show_log=True, use_onnx=False, onnx_providers=False, onnx_sess_options=False, return_word_box=False, output='./output', table_max_len=488, table_algorithm='TableAttn', table_model_dir=None, merge_no_span_structure=True, table_char_dict_path=None, formula_algorithm='LaTeXOCR', formula_model_dir=None, formula_char_dict_path=None, formula_batch_num=1, layout_model_dir=None, layout_dict_path=None, layout_score_threshold=0.5, layout_nms_threshold=0.5, kie_algorithm='LayoutXLM', ser_model_dir=None, re_model_dir=None, use_visual_backbone=True, ser_dict_path='../train_data/XFUND/class_list_xfun.txt', ocr_order_method=None, mode='structure', image_orientation=False, layout=True, table=True, formula=False, ocr=True, recovery=False, recovery_to_markdown=False, use_pdf2docx_api=False, invert=False, binarize=False, alphacolor=(255, 255, 255), lang='ch', det=True, rec=True, type='ocr', savefile=False, ocr_version='PP-OCRv4', structure_version='PP-StructureV2', use_doc_unwarping=False, use_doc_orientation_classify=False, text_det_limit_type='max', text_det_limit_side_len=4000, text_det_thresh=0.4, text_det_box_thresh=0.5, text_det_unclip_ratio=1.8, text_rec_score_thresh=0.8)
+INFO:     Started server process [37951]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-/home/ahmad-jan/Desktop/Markaz/image-translation/venv/lib/python3.12/site-packages/paddle/utils/cpp_extension/extension_utils.py:718: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
-  warnings.warn(warning_message)
-[32mCreating model: ('PP-LCNet_x1_0_textline_ori', None)[0m
-[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `/home/ahmad-jan/.paddlex/official_models/PP-LCNet_x1_0_textline_ori`.[0m
-[32mCreating model: ('PP-OCRv5_server_det', None)[0m
-[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `/home/ahmad-jan/.paddlex/official_models/PP-OCRv5_server_det`.[0m
-[32mCreating model: ('PP-OCRv5_server_rec', None)[0m
-[32mModel files already exist. Using cached files. To redownload, please delete the directory manually: `/home/ahmad-jan/.paddlex/official_models/PP-OCRv5_server_rec`.[0m
-
-
---------------------------------------
-C++ Traceback (most recent call last):
---------------------------------------
-0   torch::jit::InterpreterState::run(std::vector<c10::IValue, std::allocator<c10::IValue> >&)
-1   at::native::_convolution(at::Tensor const&, at::Tensor const&, std::optional<at::Tensor> const&, c10::ArrayRef<long>, c10::ArrayRef<long>, c10::ArrayRef<long>, bool, c10::ArrayRef<long>, long, bool, bool, bool, bool)
-2   at::native::mkldnn_to_dense(at::Tensor const&, std::optional<c10::ScalarType>, std::optional<bool>)
-3   at::TensorBase::__dispatch_contiguous(c10::MemoryFormat) const
-4   at::_ops::contiguous::call(at::Tensor const&, c10::MemoryFormat)
-5   at::native::contiguous(at::Tensor const&, c10::MemoryFormat)
-6   at::_ops::clone::call(at::Tensor const&, std::optional<c10::MemoryFormat>)
-7   at::native::clone(at::Tensor const&, std::optional<c10::MemoryFormat>)
-8   at::_ops::copy_::call(at::Tensor&, at::Tensor const&, bool)
-9   at::native::copy_(at::Tensor&, at::Tensor const&, bool)
-10  at::TensorIteratorBase::for_each(c10::function_ref<void (char**, long const*, long, long)>, long)
-11  at::TensorIteratorBase::serial_for_each(c10::function_ref<void (char**, long const*, long, long)>, at::Range) const
-
-----------------------
-Error Message Summary:
-----------------------
-FatalError: `Termination signal` is detected by the operating system.
-  [TimeInfo: *** Aborted at 1769009195 (unix time) try "date -d @1769009195" if you are using GNU date ***]
-  [SignalInfo: *** SIGTERM (@0x3e800000797) received by PID 25272 (TID 0x794b99d6a080) from PID 1943 ***]
-
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37951]
+🚀 Starting Image Translation API...
+✅ Models are pre-initialized in routes/api.py (OCR_INSTANCE, LAMA_INSTANCE)
+   Ready to process requests!
