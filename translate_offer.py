@@ -59,12 +59,14 @@ FASTAPI_URLS = [
 # Output directory and CSV file
 OUTPUT_DIR = Path("translated_offers")
 CSV_OUTPUT = "translated_offers.csv"
+FAILED_CSV_OUTPUT = "failed.csv"
 
 # Input CSV file with offer IDs (should have a column named "offerId")
 OFFER_IDS_INPUT_CSV = "offeridsInputBatch.csv"
 
 # CSV lock for thread-safe writing
 csv_lock = asyncio.Lock()
+failed_csv_lock = asyncio.Lock()
 
 # Concurrent request limit - one request per API instance
 # Each instance handles its own GPU operations internally
@@ -81,8 +83,8 @@ def get_already_processed_offers() -> Set[str]:
         with open(CSV_OUTPUT, 'r', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                # Only count as processed if HTML is not empty and no error
-                if row.get('html') and not row.get('error'):
+                # Only count as processed if HTML is not empty
+                if row.get('html'):
                     processed.add(row['offerid'])
         logger.info(f"📋 Found {len(processed)} already processed offers in {CSV_OUTPUT}")
     except Exception as e:
@@ -96,8 +98,14 @@ def initialize_csv_if_needed():
     if not Path(CSV_OUTPUT).exists():
         with open(CSV_OUTPUT, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['offerid', 'html', 'error'])
+            writer.writerow(['offerid', 'html'])
         logger.info(f"📄 Created new CSV file: {CSV_OUTPUT}")
+    
+    if not Path(FAILED_CSV_OUTPUT).exists():
+        with open(FAILED_CSV_OUTPUT, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(['offerid', 'error'])
+        logger.info(f"📄 Created new failed CSV file: {FAILED_CSV_OUTPUT}")
 
 
 def load_offer_ids_from_csv(csv_file: str) -> List[str]:
@@ -138,6 +146,19 @@ async def append_result_to_csv(offer_id: str, translated_html: Optional[str], er
             logger.info(f"💾 [{offer_id}] Appended to CSV")
         except Exception as e:
             logger.error(f"❌ [{offer_id}] Failed to write to CSV: {e}")
+
+
+async def append_failed_to_csv(offer_id: str, error: str):
+    """Append a failed result to failed CSV immediately (thread-safe)."""
+    async with failed_csv_lock:
+        try:
+            with open(FAILED_CSV_OUTPUT, 'a', newline='', encoding='utf-8') as csvfile:
+                writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
+                writer.writerow([offer_id, error or 'Unknown error'])
+            
+            logger.info(f"💾 [{offer_id}] Appended to failed CSV")
+        except Exception as e:
+            logger.error(f"❌ [{offer_id}] Failed to write to failed CSV: {e}")
 
 
 def get_description_from_mongodb(offer_id: str) -> Optional[str]:
@@ -199,7 +220,7 @@ async def call_translate_api_async(
         if not description:
             error_msg = "No description found in MongoDB"
             logger.error(f"❌ [{offer_id}] {error_msg}")
-            await append_result_to_csv(offer_id, None, error_msg)
+            await append_failed_to_csv(offer_id, error_msg)
             return (offer_id, None, error_msg)
         
         logger.info(f"🚀 [{offer_id}] Starting translation... (port {port})")
@@ -222,7 +243,7 @@ async def call_translate_api_async(
                 if not translated_html:
                     error_msg = "Empty translated_html in response"
                     logger.error(f"❌ [{offer_id}] {error_msg}")
-                    await append_result_to_csv(offer_id, None, error_msg)
+                    await append_failed_to_csv(offer_id, error_msg)
                     return (offer_id, None, error_msg)
                 
                 logger.info(f"✅ [{offer_id}] Translation successful ({len(translated_html)} chars) [port {port}]")
@@ -239,23 +260,23 @@ async def call_translate_api_async(
             else:
                 error_msg = f"API returned status {response.status_code}"
                 logger.error(f"❌ [{offer_id}] {error_msg}")
-                await append_result_to_csv(offer_id, None, error_msg)
+                await append_failed_to_csv(offer_id, error_msg)
                 return (offer_id, None, error_msg)
                 
         except httpx.TimeoutException:
             error_msg = "Request timeout"
             logger.error(f"❌ [{offer_id}] {error_msg}")
-            await append_result_to_csv(offer_id, None, error_msg)
+            await append_failed_to_csv(offer_id, error_msg)
             return (offer_id, None, error_msg)
         except httpx.ConnectError:
             error_msg = f"Connection error - is FastAPI running on {api_url}?"
             logger.error(f"❌ [{offer_id}] {error_msg}")
-            await append_result_to_csv(offer_id, None, error_msg)
+            await append_failed_to_csv(offer_id, error_msg)
             return (offer_id, None, error_msg)
         except Exception as e:
             error_msg = f"{type(e).__name__}: {str(e)}"
             logger.error(f"❌ [{offer_id}] {error_msg}")
-            await append_result_to_csv(offer_id, None, error_msg)
+            await append_failed_to_csv(offer_id, error_msg)
             return (offer_id, None, error_msg)
 
 
@@ -353,7 +374,8 @@ def main():
         logger.info("=" * 60)
         logger.info(f"✅ Successful: {successful}/{len(results)}")
         logger.info(f"❌ Failed: {failed}/{len(results)}")
-        logger.info(f"📄 CSV Output: {CSV_OUTPUT} (appended incrementally)")
+        logger.info(f"📄 Success CSV: {CSV_OUTPUT} (appended incrementally)")
+        logger.info(f"📄 Failed CSV: {FAILED_CSV_OUTPUT} (appended incrementally)")
         logger.info(f"📁 HTML Files: {OUTPUT_DIR}/")
         logger.info("=" * 60)
         
