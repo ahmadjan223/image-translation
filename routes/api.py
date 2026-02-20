@@ -45,7 +45,8 @@ from config import (
 from models import (
     BatchTranslateRequest,
     BatchTranslateResponse,
-    ImageTranslationResult
+    ImageTranslationResult,
+    TranslatedProductImages
 )
 from utils.image import load_image_to_bgr, save_image, get_image_dimensions, convert_to_webp, get_file_extension
 from utils.html_parser import (
@@ -251,10 +252,16 @@ async def inpaint_and_overlay_image(
     offer_id: str,
     results: List,
     url_mapping: Dict[str, str],
-    lama: Optional[SimpleLama]
+    lama: Optional[SimpleLama],
+    category: str = "description",
+    inpaint_only: bool = False
 ):
     """
     Inpaint and overlay English text on image (in-memory, no disk I/O).
+    
+    Args:
+        category: "description" for HTML images, "mainImages" for product images
+        inpaint_only: If True, remove Chinese text but do NOT overlay English (used for whiteImage)
     """
     request_id = f"{offer_id}-img{image_index}"
     
@@ -297,7 +304,13 @@ async def inpaint_and_overlay_image(
                     del img_bgr
                     del mask
                     
-                    final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
+                    if inpaint_only:
+                        # whiteImage: just remove Chinese text, no English overlay
+                        from PIL import Image as PilImage
+                        import cv2 as _cv2
+                        final_pil = PilImage.fromarray(_cv2.cvtColor(inpainted_bgr, _cv2.COLOR_BGR2RGB))
+                    else:
+                        final_pil = overlay_english_text(inpainted_bgr, ch_items, FONT_PATH)
                     del inpainted_bgr  # Free ~10-40MB
                     
                     result_bytes = convert_to_webp(
@@ -333,7 +346,8 @@ async def inpaint_and_overlay_image(
                 img_bytes,
                 offer_id,
                 f"image_{image_index}",
-                "image/webp"
+                "image/webp",
+                category  # "description" or "mainImages"
             )
             if blob_path:
                 public_url = await loop.run_in_executor(
@@ -400,6 +414,29 @@ async def translate_batch(request: BatchTranslateRequest):
         original_html = request.description
         image_urls = extract_image_urls(original_html)
         logger.info(f"[{offer_id}] Found {len(image_urls)} images in HTML")
+        
+        # Collect productImages URLs (processed identically to HTML images)
+        html_image_count = len(image_urls)  # track boundary
+        product_image_urls: List[str] = []   # original order
+        white_image_url: Optional[str] = None
+        
+        if request.productImages:
+            product_image_urls = list(request.productImages.images or [])
+            white_image_url = request.productImages.whiteImage
+            
+            # Default whiteImage to first product image if not provided
+            if not white_image_url and product_image_urls:
+                white_image_url = product_image_urls[0]
+                logger.info(f"[{offer_id}] whiteImage not provided, defaulting to first product image: {white_image_url}")
+            
+            # Append all product images (including whiteImage) to the main list
+            # so they go through the same OCR → translate → inpaint pipeline
+            for url in product_image_urls:
+                if url not in image_urls:
+                    image_urls.append(url)
+            if white_image_url and white_image_url not in image_urls:
+                image_urls.append(white_image_url)
+            logger.info(f"[{offer_id}] Added {len(product_image_urls)} product images + whiteImage to pipeline (total {len(image_urls)})")
         
         # ============ OPTIMIZED WORKFLOW: Collect all Chinese → Single translation ============
         
@@ -497,6 +534,11 @@ async def translate_batch(request: BatchTranslateRequest):
         results = [None] * len(image_urls)
         url_mapping: Dict[str, str] = {}
         
+        # Determine the index of the whiteImage in image_urls (if any)
+        white_image_index: Optional[int] = None
+        if white_image_url and white_image_url in image_urls:
+            white_image_index = image_urls.index(white_image_url)
+        
         inpainting_tasks = [
             inpaint_and_overlay_image(
                 image_urls[idx],
@@ -508,7 +550,9 @@ async def translate_batch(request: BatchTranslateRequest):
                 offer_id,
                 results,
                 url_mapping,
-                LAMA_INSTANCE
+                LAMA_INSTANCE,
+                "description" if idx < html_image_count else "mainImages",  # category based on image type
+                inpaint_only=(idx == white_image_index)  # whiteImage: remove text only, no overlay
             )
             for idx in range(len(image_urls))
         ]
@@ -532,13 +576,25 @@ async def translate_batch(request: BatchTranslateRequest):
         # Replace URLs in HTML (html_content already has translated text)
         translated_html = replace_image_urls(html_content, url_mapping)
         
-        # Save translated HTML
-        # html_output_path = session_dir / f"{offer_id}.html"
-        # with open(html_output_path, "w", encoding="utf-8") as f:
-        #     f.write(translated_html)
-        # logger.info(f"[{offer_id}] Saved HTML to {html_output_path}")
+        # ---- Build translated productImages response ----
+        translated_product_images: Optional[TranslatedProductImages] = None
+        if request.productImages:
+            translated_pi_list: List[Optional[str]] = []
+            for pi_url in product_image_urls:
+                translated_pi_list.append(url_mapping.get(pi_url, pi_url))
+            translated_white = (
+                url_mapping.get(white_image_url, white_image_url)
+                if white_image_url else None
+            )
+            translated_product_images = TranslatedProductImages(
+                images=translated_pi_list,
+                whiteImage=translated_white
+            )
         
-        # Count successes and failures
+        # Only count HTML-sourced images for image_results slice
+        html_results = results[:html_image_count]
+        
+        # Count successes and failures across ALL images
         successful = sum(1 for r in results if r and r.success)
         failed = len(results) - successful
         
@@ -551,7 +607,8 @@ async def translate_batch(request: BatchTranslateRequest):
             successful_translations=successful,
             failed_translations=failed,
             translated_html=translated_html,
-            image_results=results
+            image_results=results,
+            translated_product_images=translated_product_images
         )
     
     except Exception as e:

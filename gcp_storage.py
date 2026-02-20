@@ -130,16 +130,18 @@ class GCPCloudStorage:
         image_data: bytes,
         folder_name: str,
         image_name: str,
-        content_type: str = "image/webp"
+        content_type: str = "image/webp",
+        category: str = "description"
     ) -> Optional[str]:
         """
         Upload image to GCP Cloud Storage
         
         Args:
             image_data: Image bytes to upload
-            folder_name: Folder name in bucket (e.g., "product", "icon")
+            folder_name: Folder name in bucket (e.g., offer_id)
             image_name: Name of the image file (without extension)
             content_type: Content type of the image (default: image/webp)
+            category: Image category - "description" or "mainImages" (default: "description")
             
         Returns:
             GCS object path or None if upload fails
@@ -149,8 +151,8 @@ class GCPCloudStorage:
             return None
         
         try:
-            # Construct the blob path: public/products/translated/description/{folder_name}/{image_name}.webp
-            blob_path = f"public/products/translated/description/{folder_name}/{image_name}.webp"
+            # Construct the blob path: public/products/translated/{category}/{folder_name}/{image_name}.webp
+            blob_path = f"public/products/translated/{category}/{folder_name}/{image_name}.webp"
             blob = self.bucket.blob(blob_path)
             
             # Set metadata

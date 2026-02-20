@@ -24,10 +24,17 @@ class ChineseItem(BaseModel):
 
 # --- Batch Translation Models ---
 
+class ProductImages(BaseModel):
+    """Model for product images received alongside HTML."""
+    images: List[str] = []
+    whiteImage: Optional[str] = None
+
+
 class BatchTranslateRequest(BaseModel):
     """Request model for batch translating images in HTML content."""
     description: str
     offer_id: Optional[str] = None
+    productImages: Optional[ProductImages] = None
 
 
 class ImageTranslationResult(BaseModel):
@@ -40,6 +47,12 @@ class ImageTranslationResult(BaseModel):
     error: Optional[str] = None
 
 
+class TranslatedProductImages(BaseModel):
+    """Translated product images returned in response."""
+    images: List[Optional[str]] = []
+    whiteImage: Optional[str] = None
+
+
 class BatchTranslateResponse(BaseModel):
     """Response model after batch translation."""
     offer_id: str
@@ -49,3 +62,4 @@ class BatchTranslateResponse(BaseModel):
     failed_translations: int
     translated_html: str
     image_results: List[ImageTranslationResult]
+    translated_product_images: Optional[TranslatedProductImages] = None

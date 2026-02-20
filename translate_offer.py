@@ -161,8 +161,10 @@ async def append_failed_to_csv(offer_id: str, error: str):
             logger.error(f"❌ [{offer_id}] Failed to write to failed CSV: {e}")
 
 
-def get_description_from_mongodb(offer_id: str) -> Optional[str]:
-    """Fetch description from MongoDB for a single offer_id on-demand."""
+def get_offer_data_from_mongodb(offer_id: str) -> Tuple[Optional[str], Optional[Dict]]:
+    """Fetch description and productImages from MongoDB for a single offer_id on-demand.
+    Returns: (description, productImages_dict_or_None)
+    """
     if not MONGODB_CONNECTION_STRING:
         raise ValueError("mongodb_connection_string environment variable not set")
     if not MONGODB_DATABASE_NAME:
@@ -180,19 +182,25 @@ def get_description_from_mongodb(offer_id: str) -> Optional[str]:
         
         if document:
             description = document.get('description', '')
+            product_images = document.get('productImages', None)
+            
             if description:
                 logger.info(f"✅ [{offer_id}] Retrieved description from MongoDB ({len(description)} chars)")
-                return description
+                if product_images:
+                    img_count = len(product_images.get('images', []))
+                    has_white = bool(product_images.get('whiteImage'))
+                    logger.info(f"   [{offer_id}] productImages: {img_count} images, whiteImage={'yes' if has_white else 'no'}")
+                return description, product_images
             else:
                 logger.warning(f"⚠️  [{offer_id}] Empty description in MongoDB")
-                return None
+                return None, None
         else:
             logger.warning(f"⚠️  [{offer_id}] Not found in MongoDB")
-            return None
+            return None, None
         
     except Exception as e:
         logger.error(f"❌ [{offer_id}] MongoDB error: {e}")
-        return None
+        return None, None
     finally:
         if mongo_client:
             mongo_client.close()
@@ -213,9 +221,9 @@ async def call_translate_api_async(
     async with semaphore:  # Limit concurrent requests
         port = api_url.split(':')[-1].split('/')[0]
         
-        # Fetch description from MongoDB on-demand
+        # Fetch description and productImages from MongoDB on-demand
         loop = asyncio.get_event_loop()
-        description = await loop.run_in_executor(None, get_description_from_mongodb, offer_id)
+        description, product_images = await loop.run_in_executor(None, get_offer_data_from_mongodb, offer_id)
         
         if not description:
             error_msg = "No description found in MongoDB"
@@ -232,6 +240,8 @@ async def call_translate_api_async(
             "description": description,
             "offer_id": str(offer_id),
         }
+        if product_images:
+            data["productImages"] = product_images
         
         try:
             response = await client.post(api_url, headers=headers, json=data, timeout=600.0)
