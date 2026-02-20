@@ -177,53 +177,53 @@ async def extract_chinese_from_image(
             def run_ocr_in_memory():
                 from utils.image import load_image_from_bytes
                 import gc
+                import tempfile
+                import glob
                 
                 img_bgr = load_image_from_bytes(img_bytes)
                 
-                # Run OCR
-                results = ocr.ocr(img_bgr, cls=False)
+                # Save image temporarily for OCR predict method
+                with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp_file:
+                    temp_path = tmp_file.name
+                    cv2.imwrite(temp_path, img_bgr)
                 
-                # Free the image immediately after OCR
+                # Free the image immediately after saving
                 del img_bgr
                 gc.collect()
                 
-                # Transform to expected format (same as run_ocr_on_image)
-                if not results or results[0] is None:
-                    return {
-                        "rec_texts": [],
-                        "rec_scores": [],
-                        "rec_boxes": [],
-                        "rec_polys": []
-                    }
-                
-                rec_texts = []
-                rec_scores = []
-                rec_boxes = []
-                rec_polys = []
-                
-                for line in results[0]:
-                    if line is None:
-                        continue
-                    box_coords = line[0]
-                    text_info = line[1]
+                # Create temporary output directory
+                with tempfile.TemporaryDirectory() as outdir:
+                    # Run OCR using predict() which returns OCRResult objects
+                    outputs = ocr.predict(temp_path)
                     
-                    rec_texts.append(text_info[0])
-                    rec_scores.append(float(text_info[1]))
+                    # Save OCRResult to JSON
+                    for res in outputs:
+                        if res is not None:
+                            res.save_to_json(outdir)
                     
-                    # Convert polygon to bounding box
-                    xs = [pt[0] for pt in box_coords]
-                    ys = [pt[1] for pt in box_coords]
-                    x1, x2 = min(xs), max(xs)
-                    y1, y2 = min(ys), max(ys)
-                    rec_boxes.append([x1, y1, x2, y2])
-                    rec_polys.append(box_coords)
+                    # Find the JSON file that was just created
+                    jfiles = sorted(glob.glob(os.path.join(outdir, "*.json")), key=os.path.getmtime)
+                    if not jfiles:
+                        # No detections - return empty structure
+                        data = {
+                            "rec_texts": [],
+                            "rec_scores": [],
+                            "rec_boxes": [],
+                            "rec_polys": []
+                        }
+                    else:
+                        # Load the JSON file
+                        with open(jfiles[-1], "r", encoding="utf-8") as f:
+                            data = json.load(f)
                 
-                return {
-                    "rec_texts": rec_texts,
-                    "rec_scores": rec_scores,
-                    "rec_boxes": rec_boxes,
-                    "rec_polys": rec_polys
-                }
+                # Clean up temporary image file
+                try:
+                    os.unlink(temp_path)
+                except:
+                    pass
+                
+                return data
+            
             ocr_data = await loop.run_in_executor(None, run_ocr_in_memory)
             ch_items = get_chinese_items(ocr_data, conf_thresh=OCR_CONFIDENCE_THRESH)
             
@@ -339,28 +339,28 @@ async def inpaint_and_overlay_image(
         
         # Upload the EXACT same bytes to GCS (no re-conversion)
         public_url = None
-        if gcp_storage.is_available():
-            blob_path = await loop.run_in_executor(
-                None,
-                gcp_storage.upload_image,
-                img_bytes,
-                offer_id,
-                f"image_{image_index}",
-                "image/webp",
-                category  # "description" or "mainImages"
-            )
-            if blob_path:
-                public_url = await loop.run_in_executor(
-                    None,
-                    gcp_storage.get_public_url,
-                    blob_path,
-                    True  # use_cdn
-                )
-                # Delete local file after successful upload to save disk space
-                try:
-                    await loop.run_in_executor(None, os.remove, local_path)
-                except Exception as e:
-                    logger.warning(f"[{request_id}] Failed to delete local file: {e}")
+        # if gcp_storage.is_available():
+        #     blob_path = await loop.run_in_executor(
+        #         None,
+        #         gcp_storage.upload_image,
+        #         img_bytes,
+        #         offer_id,
+        #         f"image_{image_index}",
+        #         "image/webp",
+        #         category  # "description" or "mainImages"
+        #     )
+        #     if blob_path:
+        #         public_url = await loop.run_in_executor(
+        #             None,
+        #             gcp_storage.get_public_url,
+        #             blob_path,
+        #             True  # use_cdn
+        #         )
+        #         # Delete local file after successful upload to save disk space
+        #         try:
+        #             await loop.run_in_executor(None, os.remove, local_path)
+        #         except Exception as e:
+        #             logger.warning(f"[{request_id}] Failed to delete local file: {e}")
         
         # Store results
         results[image_index] = ImageTranslationResult(
@@ -429,14 +429,20 @@ async def translate_batch(request: BatchTranslateRequest):
                 white_image_url = product_image_urls[0]
                 logger.info(f"[{offer_id}] whiteImage not provided, defaulting to first product image: {white_image_url}")
             
-            # Append all product images (including whiteImage) to the main list
-            # so they go through the same OCR → translate → inpaint pipeline
+            # Append all product images to the main list
             for url in product_image_urls:
                 if url not in image_urls:
                     image_urls.append(url)
-            if white_image_url and white_image_url not in image_urls:
+            
+            # ALWAYS append whiteImage separately (even if it's a duplicate)
+            # This ensures it gets processed twice:
+            # 1. Once as a regular product image (with English text overlay)
+            # 2. Once as whiteImage (inpaint_only=True, Chinese removed but no overlay)
+            if white_image_url:
                 image_urls.append(white_image_url)
-            logger.info(f"[{offer_id}] Added {len(product_image_urls)} product images + whiteImage to pipeline (total {len(image_urls)})")
+                logger.info(f"[{offer_id}] Added {len(product_image_urls)} product images + whiteImage to pipeline (total {len(image_urls)})")
+            else:
+                logger.info(f"[{offer_id}] Added {len(product_image_urls)} product images to pipeline (total {len(image_urls)})")
         
         # ============ OPTIMIZED WORKFLOW: Collect all Chinese → Single translation ============
         
@@ -619,15 +625,15 @@ async def translate_batch(request: BatchTranslateRequest):
         sys.stdout.flush()
         raise HTTPException(status_code=500, detail=f"Batch translation error: {str(e)}")
     
-    finally:
-        # Clean up session directory to prevent disk space exhaustion
+    # finally:
+    #     # Clean up session directory to prevent disk space exhaustion
         
-        try:
-            if session_dir.exists():
-                await asyncio.get_running_loop().run_in_executor(
-                    None,
-                    lambda: shutil.rmtree(session_dir, ignore_errors=True)
-                )
-                logger.info(f"[{offer_id}] Cleaned up session directory: {session_dir}")
-        except Exception as e:
-            logger.warning(f"[{offer_id}] Failed to clean up session directory: {e}")
+    #     try:
+    #         if session_dir.exists():
+    #             await asyncio.get_running_loop().run_in_executor(
+    #                 None,
+    #                 lambda: shutil.rmtree(session_dir, ignore_errors=True)
+    #             )
+    #             logger.info(f"[{offer_id}] Cleaned up session directory: {session_dir}")
+    #     except Exception as e:
+    #         logger.warning(f"[{offer_id}] Failed to clean up session directory: {e}")
