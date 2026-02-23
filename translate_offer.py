@@ -13,7 +13,28 @@ Usage:
     python translate_offer.py
 
 Output:
-  - CSV file: translated_offers.csv (appended incrementally)
+  - CSV file: translated_offers.csv (appended incrementally) if gcp_storage.is_available():
+            blob_path = await loop.run_in_executor(
+                None,
+                gcp_storage.upload_image,
+                img_bytes,
+                offer_id,
+                f"image_{image_index}",
+                "image/webp",
+                category  # "description" or "mainImages"
+            )
+            if blob_path:
+                public_url = await loop.run_in_executor(
+                    None,
+                    gcp_storage.get_public_url,
+                    blob_path,
+                    True  # use_cdn
+                )
+                # Delete local file after successful upload to save disk space
+                try:
+                    await loop.run_in_executor(None, os.remove, local_path)
+                except Exception as e:
+                    logger.warning(f"[{request_id}] Failed to delete local file: {e}")
   - Individual HTML files: translated_offers/{offer_id}.html
 """
 
@@ -84,8 +105,8 @@ def get_already_processed_offers() -> Set[str]:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 # Only count as processed if HTML is not empty
-                if row.get('html'):
-                    processed.add(row['offerid'])
+                if row.get('description'):
+                    processed.add(row['offerId'])
         logger.info(f"📋 Found {len(processed)} already processed offers in {CSV_OUTPUT}")
     except Exception as e:
         logger.warning(f"⚠️  Could not read existing CSV: {e}")
@@ -93,19 +114,40 @@ def get_already_processed_offers() -> Set[str]:
     return processed
 
 
+EXPECTED_HEADERS = ['offerId', 'description', 'productImages']
+
+
+def _ensure_csv_headers(filepath: str, headers: List[str]):
+    """Write headers to CSV if file is missing, empty, or has wrong/missing headers."""
+    needs_headers = False
+    existing_rows = []
+
+    if not Path(filepath).exists() or Path(filepath).stat().st_size == 0:
+        needs_headers = True
+    else:
+        with open(filepath, 'r', newline='', encoding='utf-8') as f:
+            reader = csv.reader(f)
+            try:
+                first_row = next(reader)
+                if first_row != headers:
+                    # Wrong headers - prepend correct ones while keeping data
+                    needs_headers = True
+                    existing_rows = list(reader)
+            except StopIteration:
+                needs_headers = True
+
+    if needs_headers:
+        with open(filepath, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+            writer.writerow(headers)
+            writer.writerows(existing_rows)
+        logger.info(f"📄 Wrote headers to {filepath}: {headers}")
+
+
 def initialize_csv_if_needed():
-    """Create CSV with headers if it doesn't exist."""
-    if not Path(CSV_OUTPUT).exists():
-        with open(CSV_OUTPUT, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['offerid', 'html'])
-        logger.info(f"📄 Created new CSV file: {CSV_OUTPUT}")
-    
-    if not Path(FAILED_CSV_OUTPUT).exists():
-        with open(FAILED_CSV_OUTPUT, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['offerid', 'error'])
-        logger.info(f"📄 Created new failed CSV file: {FAILED_CSV_OUTPUT}")
+    """Ensure CSVs exist and have correct headers."""
+    _ensure_csv_headers(CSV_OUTPUT, EXPECTED_HEADERS)
+    _ensure_csv_headers(FAILED_CSV_OUTPUT, ['offerid', 'error'])
 
 
 def load_offer_ids_from_csv(csv_file: str) -> List[str]:
@@ -129,19 +171,26 @@ def load_offer_ids_from_csv(csv_file: str) -> List[str]:
     return offer_ids
 
 
-async def append_result_to_csv(offer_id: str, translated_html: Optional[str], error: Optional[str]):
+async def append_result_to_csv(
+    offer_id: str,
+    translated_html: Optional[str],
+    error: Optional[str],
+    translated_product_images: Optional[Dict] = None
+):
     """Append a single result to CSV immediately (thread-safe)."""
     async with csv_lock:
         try:
             with open(CSV_OUTPUT, 'a', newline='', encoding='utf-8') as csvfile:
                 writer = csv.writer(csvfile, quoting=csv.QUOTE_MINIMAL)
                 
+                product_images_json = json.dumps(translated_product_images) if translated_product_images else ''
+                
                 if translated_html:
                     # Escape newlines and quotes for CSV
                     html_escaped = translated_html.replace('\n', '\\n').replace('\r', '\\r')
-                    writer.writerow([offer_id, html_escaped, ''])
+                    writer.writerow([offer_id, html_escaped, product_images_json])  # offerid, translated_html, translated_mainImages
                 else:
-                    writer.writerow([offer_id, '', error or 'Unknown error'])
+                    writer.writerow([offer_id, '', product_images_json])  # offerid, translated_html, translated_mainImages
             
             logger.info(f"💾 [{offer_id}] Appended to CSV")
         except Exception as e:
@@ -249,6 +298,7 @@ async def call_translate_api_async(
             if response.status_code == 200:
                 response_data = response.json()
                 translated_html = response_data.get('translated_html', '')
+                translated_product_images = response_data.get('translated_product_images', None)
                 
                 if not translated_html:
                     error_msg = "Empty translated_html in response"
@@ -257,6 +307,9 @@ async def call_translate_api_async(
                     return (offer_id, None, error_msg)
                 
                 logger.info(f"✅ [{offer_id}] Translation successful ({len(translated_html)} chars) [port {port}]")
+                if translated_product_images:
+                    img_count = len((translated_product_images.get('images') or []))
+                    logger.info(f"   [{offer_id}] translated_product_images: {img_count} images, whiteImage={'yes' if translated_product_images.get('whiteImage') else 'no'}")
                 
                 # Save individual HTML file immediately
                 OUTPUT_DIR.mkdir(exist_ok=True)
@@ -265,7 +318,7 @@ async def call_translate_api_async(
                 await loop.run_in_executor(None, lambda: output_path.write_text(translated_html, encoding='utf-8'))
                 logger.info(f"💾 [{offer_id}] Saved: {output_path}")
                 
-                await append_result_to_csv(offer_id, translated_html, None)
+                await append_result_to_csv(offer_id, translated_html, None, translated_product_images)
                 return (offer_id, translated_html, None)
             else:
                 error_msg = f"API returned status {response.status_code}"
