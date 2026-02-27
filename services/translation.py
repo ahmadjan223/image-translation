@@ -2,11 +2,49 @@
 Translation service using Google Gemini.
 """
 import json
+import os
+import datetime
+from pathlib import Path
 from typing import List, Dict
 
 from google import genai
 
 from config import GEMINI_API_KEY, TRANSLATION_SYSTEM_PROMPT
+
+# Directory where LLM requests will be saved for offline testing
+_LLM_REQUESTS_DIR = Path(__file__).resolve().parent.parent / "llm_requests"
+
+
+def _save_llm_request(tag: str, system_prompt: str, user_content: str, model: str, temperature: float) -> None:
+    """
+    Save a full LLM request payload to a JSON file for offline/local-LLM testing.
+
+    Each file is written to  llm_requests/<tag>_<ISO-timestamp>.json  and contains
+    an OpenAI-compatible messages array so it can be dropped straight into any
+    local-LLM runner (Ollama, LM Studio, llama.cpp server, etc.).
+    """
+    try:
+        _LLM_REQUESTS_DIR.mkdir(parents=True, exist_ok=True)
+        ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        file_path = _LLM_REQUESTS_DIR / f"{tag}_{ts}.json"
+
+        request_data = {
+            "model": model,
+            "temperature": temperature,
+            "response_format": {"type": "json_object"},
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user",   "content": user_content},
+            ],
+        }
+
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(request_data, f, ensure_ascii=False, indent=2)
+
+        print(f"   💾 LLM request saved → {file_path.relative_to(file_path.parent.parent)}")
+    except Exception as exc:
+        # Never let saving break the actual translation flow
+        print(f"   ⚠️  Could not save LLM request: {exc}")
 
 # Initialize Gemini client
 _gemini_client = None
@@ -22,7 +60,8 @@ def get_gemini_client() -> genai.Client:
 
 def translate_items_gemini(
     ch_items: List[Dict],
-    model: str = "models/gemini-2.5-pro"
+    model: str = "models/"
+    ""
 ) -> List[str]:
     """
     Translate Chinese items to English using Gemini.
@@ -44,11 +83,20 @@ def translate_items_gemini(
         items.append({"i": i, "cn": cn, "max_chars": max_chars})
     
     payload = {"items": items}
-    
+    user_content = json.dumps(payload, ensure_ascii=False)
+
+    _save_llm_request(
+        tag="translate_items",
+        system_prompt=TRANSLATION_SYSTEM_PROMPT,
+        user_content=user_content,
+        model=model,
+        temperature=0.2,
+    )
+
     client = get_gemini_client()
     resp = client.models.generate_content(
         model=model,
-        contents=json.dumps(payload, ensure_ascii=False),
+        contents=user_content,
         config={
             "system_instruction": TRANSLATION_SYSTEM_PROMPT,
             "temperature": 0.2,
@@ -64,7 +112,7 @@ def translate_items_gemini(
 def translate_batch_all(
     html_items: List[Dict],
     image_items: Dict[str, List[Dict]],
-    model: str = "models/gemini-2.5-pro"
+    model: str = "models"
 ) -> tuple[List[str], Dict[str, List[str]]]:
     """
     Translate ALL Chinese text (HTML + all images) in a SINGLE API call.
@@ -134,9 +182,19 @@ Return JSON with same structure:
 Remember: Same Chinese → Same English throughout! Keep it SHORT!"""
     
     client = get_gemini_client()
+    batch_user_content = json.dumps(payload, ensure_ascii=False)
+
+    _save_llm_request(
+        tag="translate_batch_all",
+        system_prompt=consistency_prompt,
+        user_content=batch_user_content,
+        model=model,
+        temperature=0.2,
+    )
+
     resp = client.models.generate_content(
         model=model,
-        contents=json.dumps(payload, ensure_ascii=False),
+        contents=batch_user_content,
         config={
             "system_instruction": consistency_prompt,
             "temperature": 0.2,
